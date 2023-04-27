@@ -2,7 +2,10 @@ using _5eCombatTracker.API.Interfaces;
 using _5eCombatTracker.API.Services;
 using _5eCombatTracker.Data.Helpers;
 using _5eCombatTracker.Data.Seeder;
+using _5eCombatTracker.Migrations;
+using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +16,15 @@ builder.Services.AddControllers()
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+var connectionString = builder.Configuration.GetConnectionString("5eCombatTracker");
+builder.Services.AddLogging(x => x.AddFluentMigratorConsole())
+    .AddFluentMigratorCore()
+    .ConfigureRunner(c => c.AddPostgres()
+                            .WithGlobalConnectionString(connectionString)
+                            .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations()
+                    );
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -35,7 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.Migrate();
 app.UseDbSeederMiddleware();
 
 app.UseHttpsRedirection();

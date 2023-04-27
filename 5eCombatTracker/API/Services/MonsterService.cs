@@ -27,7 +27,7 @@ namespace _5eCombatTracker.API.Services
         }
 
 
-        public async Task<MonsterDTO> GetMonsters(string name)
+        public async Task<MonsterDTO> GetMonster(string name)
         {
             MonsterDTO monster = new MonsterDTO();
             monster = _dataContext.Monster

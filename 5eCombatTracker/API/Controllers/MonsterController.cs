@@ -16,11 +16,11 @@ namespace _5eCombatTracker.API.Controllers
 
         [HttpGet]
         [Route("api/[controller]/[action]/{name}")]
-        public async Task<ActionResult<MonsterDTO>> GetMonstersByNameAsync(string name)
+        public async Task<ActionResult<MonsterDTO>> GetMonsterByNameAsync(string name)
         {
             try
             {
-                var responseData = await _monsterService.GetMonsters(name);
+                var responseData = await _monsterService.GetMonster(name);
                 if (responseData == null) { return StatusCode(StatusCodes.Status404NotFound); }
                 return Ok(responseData);
             }

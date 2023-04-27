@@ -17,15 +17,9 @@ namespace _5eCombatTracker.Data.Helpers
             optionsBuilder.UseNpgsql(_configuration.GetConnectionString("5eCombatTracker"));
         }
 
-
         public DbSet<Monster> Monster { get; set; }
+        public DbSet<BiomeType> BiomeTypes { get; set; }
+        public DbSet<RandomEncounter> RandomEncounter { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Monster>(monster =>
-            {
-                monster.ToTable("monster");
-            });
-        }
     }
 }
