@@ -1,4 +1,5 @@
-﻿using FluentMigrator;
+﻿using _5eCombatTracker.Data.Models;
+using FluentMigrator;
 
 namespace _5eCombatTracker.Migrations
 {
@@ -41,6 +42,12 @@ namespace _5eCombatTracker.Migrations
                 .WithColumn("BiomeType").AsInt32().ForeignKey()
                 .WithColumn("Name").AsString()
                 .WithColumn("MonsterGroup").AsString();
+
+            Insert.IntoTable("RandomEncounter")
+                .Row(new { BiomeType = "Dungeon", Name = "The Zombies", MonsterGroup = "{Zombie, Zombie, Zombie}" })
+                .Row(new { BiomeType = "Dungeon", Name = "The Skeletons", MonsterGroup = "{Skeleton, Skeleton, Skeleton}" })
+                .Row(new { BiomeType = "Dungeon", Name = "Undead Mix", MonsterGroup = "{Skeleton, Zombie, Zombie}" })
+                .Row(new { BiomeType = "Dungeon", Name = "Treasure", MonsterGroup = "{Treasure chest}" });
         }
 
         public override void Down()

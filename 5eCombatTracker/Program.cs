@@ -33,6 +33,7 @@ builder.Services.AddDbContext<DataContext>
     (options => options.UseNpgsql(builder.Configuration["5eCombatTracker"]));
 
 builder.Services.AddScoped<IMonsterService, MonsterService>();
+builder.Services.AddScoped<IEncounterService, EncounterService>();
 builder.Services.AddScoped<IDbSeeder, DbSeeder>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
