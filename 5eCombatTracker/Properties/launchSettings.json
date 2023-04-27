@@ -3,10 +3,11 @@
     "5eCombatTracker": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "swagger/index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:63483;http://localhost:63484"
+      "applicationUrl": "https://localhost:7237;http://localhost:7236"
     }
   }
 }

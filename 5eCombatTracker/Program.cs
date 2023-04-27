@@ -1,16 +1,18 @@
 using _5eCombatTracker.API.Interfaces;
 using _5eCombatTracker.API.Services;
-using _5eCombatTracker.Data;
 using _5eCombatTracker.Data.Helpers;
 using _5eCombatTracker.Data.Seeder;
-using Microsoft.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Writers;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -32,6 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseDbSeederMiddleware();
 

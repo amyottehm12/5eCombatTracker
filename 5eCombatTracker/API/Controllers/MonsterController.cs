@@ -1,20 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using _5eCombatTracker.API.Interfaces;
 using _5eCombatTracker.Data.DTO;
-using _5eCombatTracker.Data.Seeder;
 
 namespace _5eCombatTracker.API.Controllers
 {
     [ApiController]
-    //[Route("[controller]")]
     public class MonsterController : ControllerBase
     {
+
         private readonly IMonsterService _monsterService;
-        private readonly IDbSeeder _dbSeeder;
-        public MonsterController(IMonsterService monsterService, IDbSeeder DbSeeder) 
+        public MonsterController(IMonsterService monsterService) 
         {
             _monsterService = monsterService;
-            _dbSeeder = DbSeeder;
         }
 
         [HttpGet]
@@ -47,11 +44,5 @@ namespace _5eCombatTracker.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-
-        //[HttpPost(Name = "SeedMonsters")]
-        //public void PostMonsters()
-        //{
-        //    _dbSeeder.Seed();
-        //}
     }
 }
