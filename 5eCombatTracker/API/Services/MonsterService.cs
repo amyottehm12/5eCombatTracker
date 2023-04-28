@@ -11,12 +11,10 @@ namespace _5eCombatTracker.API.Services
     public class MonsterService : IMonsterService
     {
         private DataContext _dataContext;
-        private readonly IMapper _mapper;
         private readonly MapperConfiguration _mapperConfiguration;
-        public MonsterService(DataContext dataContext, IMapper mappper)
+        public MonsterService(DataContext dataContext)
         {
             _dataContext = dataContext;
-            _mapper = mappper;
             _mapperConfiguration = new MapperConfiguration(mc =>
             {
                 mc.CreateMap<Monster, MonsterDTO>()
@@ -29,8 +27,7 @@ namespace _5eCombatTracker.API.Services
 
         public async Task<MonsterDTO> GetMonster(string name)
         {
-            MonsterDTO monster = new MonsterDTO();
-            monster = _dataContext.Monster
+            MonsterDTO monster = _dataContext.Monster
                 .ProjectTo<MonsterDTO>(_mapperConfiguration)
                 .FirstOrDefault(m => m.Name == name);
 
@@ -39,8 +36,7 @@ namespace _5eCombatTracker.API.Services
 
         public async Task<List<string>> GetAllMonsters()
         {
-            List<string> monsters = new List<string>();
-            monsters = _dataContext.Monster
+            List<string> monsters = _dataContext.Monster
                 .ProjectTo<MonsterDTO>(_mapperConfiguration)
                 .Select(x => x.Name)
                 .ToList();

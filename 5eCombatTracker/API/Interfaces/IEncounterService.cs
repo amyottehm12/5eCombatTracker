@@ -6,7 +6,7 @@ namespace _5eCombatTracker.API.Interfaces
 {
     public interface IEncounterService
     {
-        public EncounterDTO GetRandomEncounter(BiomeTypeEnum biomeType);
-        public List<RandomEncounter> GetAllEncountersByType(BiomeTypeEnum biomeType);
+        public Task<EncounterDTO> GetRandomEncounter(BiomeTypeEnum biomeType);
+        //public List<RandomEncounter> GetAllEncountersByType(BiomeTypeEnum biomeType);
     }
 }

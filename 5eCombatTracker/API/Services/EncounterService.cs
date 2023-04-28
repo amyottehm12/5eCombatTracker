@@ -11,12 +11,10 @@ namespace _5eCombatTracker.API.Services
     public class EncounterService : IEncounterService
     {
         public DataContext _dataContext;
-        private readonly IMapper _mapper;
         private readonly MapperConfiguration _mapperConfiguration;
-        public EncounterService(DataContext dataContext, IMapper mappper)
+        public EncounterService(DataContext dataContext)
         {
-            _dataContext = dataContext; 
-            _mapper = mappper;
+            _dataContext = dataContext;
             _mapperConfiguration = new MapperConfiguration(mc =>
             {
                 mc.CreateMap<RandomEncounter, EncounterDTO>()
@@ -25,9 +23,9 @@ namespace _5eCombatTracker.API.Services
             });
         }
 
-        public EncounterDTO GetRandomEncounter(BiomeTypeEnum biomeType)
+        public async Task<EncounterDTO> GetRandomEncounter(BiomeTypeEnum biomeType)
         {
-            var encounter = _dataContext.RandomEncounter
+            EncounterDTO encounter = _dataContext.RandomEncounter
                 .Where(x => x.Biome.Name == biomeType.ToString())
                 .ProjectTo<EncounterDTO>(_mapperConfiguration)
                 .OrderBy(x => Guid.NewGuid())
@@ -36,7 +34,7 @@ namespace _5eCombatTracker.API.Services
             return encounter;
         }
 
-        public List<RandomEncounter> GetAllEncountersByType(BiomeTypeEnum biomeType)
+        private List<RandomEncounter> GetAllEncountersByType(BiomeTypeEnum biomeType)
         {
             List<RandomEncounter> encounter = new List<RandomEncounter>();
             return encounter = _dataContext.RandomEncounter
