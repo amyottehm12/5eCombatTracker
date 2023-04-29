@@ -12,7 +12,4 @@ export class AppComponent {
     console.log('Constructing AppComponent')
   }
 
-  ngOnInt() {
-    console.log('ngOnInit App.Component')
-  }
 }

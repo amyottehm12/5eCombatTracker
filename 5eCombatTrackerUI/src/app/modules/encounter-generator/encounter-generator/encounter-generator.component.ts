@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IEncounterModel } from 'src/app/model/encountermodel';
+import { IEncounter } from 'src/app/model/IEncounter';
 import { EncounterService } from 'src/app/services/encounter.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class EncounterGeneratorComponent implements OnInit {
     console.log('Constructing EncounterGeneratorComponent, injecting EncounterService')
   }  
 
-  public encounter!: IEncounterModel;
+  public encounter!: IEncounter;
   
   ngOnInit() {
     console.log('ngOnInit App.Component')
@@ -21,8 +21,8 @@ export class EncounterGeneratorComponent implements OnInit {
   }
 
   getRandomEncounter() {
-    this.encounterService.getRandomEncounter()
-    .subscribe((data: IEncounterModel) =>
+    this.encounterService.getRandomEncounter('Dungeon')
+    .subscribe((data: IEncounter) =>
     {
       console.log(data)
       this.encounter = data;
