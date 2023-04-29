@@ -38,6 +38,18 @@ builder.Services.AddScoped<IDbSeeder, DbSeeder>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200")
+                                .AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -53,6 +65,8 @@ app.UseDbSeederMiddleware();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("AllowOrigin");
 
 app.MapControllers();
 

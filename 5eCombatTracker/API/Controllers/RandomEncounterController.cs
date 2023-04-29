@@ -16,14 +16,13 @@ namespace _5eCombatTracker.API.Controllers
             _encounterService = encounterService;
         }
 
-        //BiomeTypes biome = BiomeTypes.Forest
         [HttpGet]
-        [Route("api/[controller]/[action]/{BiomeTypes}")]
-        public async Task<ActionResult<EncounterDTO>> GetRandomEncounter(BiomeTypeEnum BiomeTypes = BiomeTypeEnum.Dungeon)
+        [Route("api/[controller]/[action]/{BiomeType}")]
+        public async Task<IActionResult> GetRandomEncounter(BiomeTypeEnum BiomeType = BiomeTypeEnum.Dungeon)
         {
             try
             {
-                var responseData = await _encounterService.GetRandomEncounter(BiomeTypes);
+                var responseData = await _encounterService.GetRandomEncounter(BiomeType);
                 if (responseData == null) { return StatusCode(StatusCodes.Status404NotFound); }
                 return Ok(responseData);
             }

@@ -16,7 +16,7 @@ namespace _5eCombatTracker.API.Controllers
 
         [HttpGet]
         [Route("api/[controller]/[action]/{name}")]
-        public async Task<ActionResult<MonsterDTO>> GetMonsterByNameAsync(string name)
+        public async Task<IActionResult> GetMonsterByNameAsync(string name)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace _5eCombatTracker.API.Controllers
 
         [HttpGet]
         [Route("api/[controller]/[action]")]
-        public async Task<ActionResult<List<string>>> GetAllMonsters()
+        public async Task<IActionResult> GetAllMonsters()
         {
             try
             {

@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>_5eCombatTracker</RootNamespace>
     <GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
+    <UserSecretsId>bf37967f-31d6-48d6-92fe-527bb286dad8</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

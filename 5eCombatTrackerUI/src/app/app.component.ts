@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = '5eCombatTrackerUI';
+  
+  constructor() {  
+    console.log('Constructing AppComponent')
+  }
+
+  ngOnInt() {
+    console.log('ngOnInit App.Component')
+  }
 }
