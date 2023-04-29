@@ -4,16 +4,19 @@ using _5eCombatTracker.Data.Helpers;
 using _5eCombatTracker.Data.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Newtonsoft.Json;
 using static _5eCombatTracker.Data.Enums;
 
 namespace _5eCombatTracker.API.Services
 {
     public class EncounterService : IEncounterService
     {
+        private readonly IMonsterService _monsterService;
         public DataContext _dataContext;
         private readonly MapperConfiguration _mapperConfiguration;
-        public EncounterService(DataContext dataContext)
+        public EncounterService(DataContext dataContext, IMonsterService monsterService)
         {
+            _monsterService = monsterService;
             _dataContext = dataContext;
             _mapperConfiguration = new MapperConfiguration(mc =>
             {
@@ -31,6 +34,8 @@ namespace _5eCombatTracker.API.Services
                 .OrderBy(x => Guid.NewGuid())
                 .FirstOrDefault();
 
+            EncounterLogger(encounter.Monsters);
+
             return encounter;
         }
 
@@ -40,6 +45,17 @@ namespace _5eCombatTracker.API.Services
             return encounter = _dataContext.RandomEncounter
                 .Where(x => x.Biome.Name == biomeType.ToString())
                 .ToList();
+        }
+
+        private void EncounterLogger(string encounterCreatures)
+        {
+            EncounterMonsterDTO monsters = JsonConvert.DeserializeObject<EncounterMonsterDTO>(encounterCreatures);
+            foreach(var monster in monsters.Monsters) 
+            {
+                if (monster == "Treasure Chest") continue;
+                MonsterDTO monsterData = _monsterService.GetMonster(monster).Result;
+                Console.WriteLine(monsterData.Name + " " + monsterData.AC + " " + monsterData.HP);
+            }
         }
     }
 }

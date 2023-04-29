@@ -44,10 +44,10 @@ namespace _5eCombatTracker.Migrations
                 .WithColumn("MonsterGroup").AsString();
 
             Insert.IntoTable("RandomEncounter")
-                .Row(new { BiomeType = "Dungeon", Name = "The Zombies", MonsterGroup = "{Zombie, Zombie, Zombie}" })
-                .Row(new { BiomeType = "Dungeon", Name = "The Skeletons", MonsterGroup = "{Skeleton, Skeleton, Skeleton}" })
-                .Row(new { BiomeType = "Dungeon", Name = "Undead Mix", MonsterGroup = "{Skeleton, Zombie, Zombie}" })
-                .Row(new { BiomeType = "Dungeon", Name = "Treasure", MonsterGroup = "{Treasure chest}" });
+                .Row(new { BiomeType = 3, Name = "The Zombies", MonsterGroup = "{'Monsters':['Zombie', 'Zombie', 'Zombie']}" })
+                .Row(new { BiomeType = 3, Name = "The Skeletons", MonsterGroup = "{'Monsters':['Skeleton', 'Skeleton', 'Skeleton']}" })
+                .Row(new { BiomeType = 3, Name = "Undead Mix", MonsterGroup = "{'Monsters':['Skeleton', 'Zombie', 'Zombie']}" })
+                .Row(new { BiomeType = 3, Name = "Treasure", MonsterGroup = "{'Monsters':['Treasure Chest']}" });
         }
 
         public override void Down()

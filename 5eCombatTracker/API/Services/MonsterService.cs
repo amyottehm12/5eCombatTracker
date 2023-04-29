@@ -29,7 +29,7 @@ namespace _5eCombatTracker.API.Services
         {
             MonsterDTO monster = _dataContext.Monster
                 .ProjectTo<MonsterDTO>(_mapperConfiguration)
-                .FirstOrDefault(m => m.Name == name);
+                .FirstOrDefault(m => m.Name == name.ToLower());
 
             return monster;
         }
