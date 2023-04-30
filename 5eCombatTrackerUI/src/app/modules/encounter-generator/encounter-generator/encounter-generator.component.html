@@ -1,8 +1,18 @@
-<p>encounter-generator works!</p>
+<section>
+    <h3>Encounter Detail</h3>  
 
+    <div>
+        <select #biomeTypeSelector (change)="onSelected(biomeTypeSelector.value)">
+            <option default>Select a biome</option>
+            <option *ngFor="let biomeType of biomeTypes">
+                {{biomeType}}
+            </option>
+        </select>
+        <button (click)="getRandomEncounter()">Generate encounter</button>
+    </div>
 
-<h1>Encounter Detail</h1>  
-
-<div *ngIf="encounter">
-    {{encounter.name}} {{encounter.monsters}}
-</div>
+    <div *ngIf="encounter">
+        {{encounter.name}} {{encounter.monsters}}
+    </div>
+    
+</section>

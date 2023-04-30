@@ -34,6 +34,7 @@ builder.Services.AddDbContext<DataContext>
 
 builder.Services.AddScoped<IMonsterService, MonsterService>();
 builder.Services.AddScoped<IEncounterService, EncounterService>();
+builder.Services.AddScoped<IBiomeTypeService, BiomeTypeService>();
 builder.Services.AddScoped<IDbSeeder, DbSeeder>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

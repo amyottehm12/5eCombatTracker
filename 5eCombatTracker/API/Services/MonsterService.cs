@@ -21,6 +21,9 @@ namespace _5eCombatTracker.API.Services
                 .ForMember(dto => dto.Name, conf => conf.MapFrom(monster => monster.Name))
                 .ForMember(dto => dto.AC, conf => conf.MapFrom(monster => monster.HP))
                 .ForMember(dto => dto.HP, conf => conf.MapFrom(monster => monster.AC));
+
+                mc.CreateMap<Monster, string>()
+                .ConvertUsing(m => m.Name);
             });
         }
 
@@ -37,8 +40,7 @@ namespace _5eCombatTracker.API.Services
         public async Task<List<string>> GetAllMonsters()
         {
             List<string> monsters = _dataContext.Monster
-                .ProjectTo<MonsterDTO>(_mapperConfiguration)
-                .Select(x => x.Name)
+                .ProjectTo<string>(_mapperConfiguration)
                 .ToList();
 
             return monsters;

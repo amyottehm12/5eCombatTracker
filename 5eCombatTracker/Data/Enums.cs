@@ -9,7 +9,8 @@ namespace _5eCombatTracker.Data
         public enum BiomeTypeEnum
         {
             Forest = 1,
-            Dungeon = 2
+            Mountains = 2,
+            Dungeon = 3
         }
     }
 }
