@@ -16,17 +16,15 @@ export class EncounterGeneratorComponent implements OnInit {
   constructor(private encounterService : EncounterService, 
               private biomeTypeService: BiomeTypeService,
               private monsterService: MonsterService) { 
-      //if (this.monsters == undefined) this.monsters = [];
   }  
 
-  public monsters!: IMonster[];
+  public monsters: IMonster[] = [];
   public encounter!: IEncounter;
   public biomeTypes!: string[];
   public biomeType!: string;
   
   ngOnInit() {
     this.getAllBiomeTypes();
-    this.monsters = [];
   }
 
   async encounterHandler() {
