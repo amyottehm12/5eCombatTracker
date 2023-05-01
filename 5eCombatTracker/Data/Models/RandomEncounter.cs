@@ -10,6 +10,6 @@ namespace _5eCombatTracker.Data.Models
         [ForeignKey("BiomeType")]
         public BiomeType Biome { get; set; }
         public string Name { get; set; }
-        public string MonsterGroup { get; set; }
+        public List<string> MonsterGroup { get; set; }
     }
 }

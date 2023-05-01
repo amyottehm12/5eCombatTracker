@@ -1,4 +1,4 @@
 export interface IEncounter {
     name: string;
-    monsters: string
+    monsters: string[];
 }

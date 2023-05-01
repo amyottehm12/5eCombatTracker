@@ -8,11 +8,16 @@
                 {{biomeType}}
             </option>
         </select>
-        <button (click)="getRandomEncounter()">Generate encounter</button>
+        <button (click)="encounterHandler()">Generate encounter</button>
     </div>
 
-    <div *ngIf="encounter">
-        {{encounter.name}} {{encounter.monsters}}
+    <div *ngIf="monsters.length > 0">
+        {{encounter.name}}
+        <div *ngFor="let monster of monsters">
+            <div>{{monster.name}}</div>
+            <div>{{monster.ac}}</div>
+            <div>{{monster.hp}}</div>
+        </div>
     </div>
     
 </section>

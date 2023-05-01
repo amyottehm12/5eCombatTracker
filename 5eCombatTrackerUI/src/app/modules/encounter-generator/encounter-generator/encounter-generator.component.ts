@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { first, firstValueFrom } from 'rxjs';
 import { IEncounter } from 'src/app/model/IEncounter';
+import { IMonster } from 'src/app/model/IMonster';
 import { BiomeTypeService } from 'src/app/services/biometype.service';
 import { EncounterService } from 'src/app/services/encounter.service';
+import { MonsterService } from 'src/app/services/monster.service';
 
 @Component({
   selector: 'app-encounter-generator',
@@ -10,26 +13,40 @@ import { EncounterService } from 'src/app/services/encounter.service';
 })
 export class EncounterGeneratorComponent implements OnInit {
 
-  constructor(private encounterService : EncounterService, private biomeTypeService: BiomeTypeService) {  
-    console.log('Constructing EncounterGeneratorComponent, injecting EncounterService, BiomeTypeService')
+  constructor(private encounterService : EncounterService, 
+              private biomeTypeService: BiomeTypeService,
+              private monsterService: MonsterService) { 
+      //if (this.monsters == undefined) this.monsters = [];
   }  
 
+  public monsters!: IMonster[];
   public encounter!: IEncounter;
   public biomeTypes!: string[];
   public biomeType!: string;
   
   ngOnInit() {
-    console.log('ngOnInit App.Component')
-    // this.getRandomEncounter();
     this.getAllBiomeTypes();
+    this.monsters = [];
   }
 
-  getRandomEncounter() {
-    this.encounterService.getRandomEncounter(this.biomeType)
-    .subscribe((data: IEncounter) =>
-    {
-      this.encounter = data;
-    });
+  async encounterHandler() {
+    await this.getRandomEncounter();
+    console.log(this.encounter.monsters);
+
+    this.encounter.monsters.forEach(monster => {
+        this.getMonsterData(monster);
+      })
+  }
+
+  async getRandomEncounter() {
+    const response = await firstValueFrom(this.encounterService.getRandomEncounter(this.biomeType));
+    this.encounter = response;
+  }
+
+  async getMonsterData(monster: string) {
+    const response = await firstValueFrom(this.monsterService.getMonsterData(monster));
+    console.log(response);
+    this.monsters.push(response);
   }
 
   getAllBiomeTypes() {

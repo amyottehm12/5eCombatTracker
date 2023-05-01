@@ -3,8 +3,8 @@ using FluentMigrator;
 
 namespace _5eCombatTracker.Migrations
 {
-    [Migration(20232704)]
-    public class Migration20232704 : Migration
+    [Migration(20230427)]
+    public class Migration20230427 : Migration
     {
         public override void Up()
         {
@@ -41,13 +41,7 @@ namespace _5eCombatTracker.Migrations
                 .WithColumn("Id").AsInt32().Identity().PrimaryKey()
                 .WithColumn("BiomeType").AsInt32().ForeignKey()
                 .WithColumn("Name").AsString()
-                .WithColumn("MonsterGroup").AsString();
-
-            Insert.IntoTable("RandomEncounter")
-                .Row(new { BiomeType = 3, Name = "The Zombies", MonsterGroup = "{'Monsters':['Zombie', 'Zombie', 'Zombie']}" })
-                .Row(new { BiomeType = 3, Name = "The Skeletons", MonsterGroup = "{'Monsters':['Skeleton', 'Skeleton', 'Skeleton']}" })
-                .Row(new { BiomeType = 3, Name = "Undead Mix", MonsterGroup = "{'Monsters':['Skeleton', 'Zombie', 'Zombie']}" })
-                .Row(new { BiomeType = 3, Name = "Treasure", MonsterGroup = "{'Monsters':['Treasure Chest']}" });
+                .WithColumn("MonsterGroup").AsCustom("TEXT[]");
         }
 
         public override void Down()
