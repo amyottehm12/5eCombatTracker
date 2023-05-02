@@ -14,9 +14,10 @@
     <div *ngIf="monsters.length > 0">
         {{encounter.name}}
         <div *ngFor="let monster of monsters">
-            <div>{{monster.name}}</div>
-            <div>{{monster.ac}}</div>
-            <div>{{monster.hp}}</div>
+            <div>Name: {{monster.name}}</div>
+            <div>AC: {{monster.ac}}</div>
+            <div>HP: {{monster.hp}}</div>
+            <div>Initiative: {{monster.initiative}}</div>
         </div>
     </div>
     

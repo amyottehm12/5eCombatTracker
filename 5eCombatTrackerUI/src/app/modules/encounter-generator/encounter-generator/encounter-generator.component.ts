@@ -16,7 +16,7 @@ export class EncounterGeneratorComponent implements OnInit {
   constructor(private encounterService : EncounterService, 
               private biomeTypeService: BiomeTypeService,
               private monsterService: MonsterService) { 
-  }  
+  }
 
   public monsters: IMonster[] = [];
   public encounter!: IEncounter;
@@ -28,8 +28,8 @@ export class EncounterGeneratorComponent implements OnInit {
   }
 
   async encounterHandler() {
+    this.monsters = [];
     await this.getRandomEncounter();
-    console.log(this.encounter.monsters);
 
     this.encounter.monsters.forEach(monster => {
         this.getMonsterData(monster);
@@ -44,6 +44,7 @@ export class EncounterGeneratorComponent implements OnInit {
   async getMonsterData(monster: string) {
     const response = await firstValueFrom(this.monsterService.getMonsterData(monster));
     console.log(response);
+    response.initiative = this.encounterService.getInitiativeValue();
     this.monsters.push(response);
   }
 

@@ -4,6 +4,7 @@ using _5eCombatTracker.Data.Helpers;
 using _5eCombatTracker.Data.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 
 namespace _5eCombatTracker.API.Services
@@ -30,18 +31,18 @@ namespace _5eCombatTracker.API.Services
 
         public async Task<MonsterDTO> GetMonster(string name)
         {
-            MonsterDTO monster = _dataContext.Monster
+            MonsterDTO monster = await _dataContext.Monster
                 .ProjectTo<MonsterDTO>(_mapperConfiguration)
-                .FirstOrDefault(m => m.Name == name.ToLower());
+                .FirstOrDefaultAsync(m => m.Name == name.ToLower());
 
             return monster;
         }
 
         public async Task<List<string>> GetAllMonsters()
         {
-            List<string> monsters = _dataContext.Monster
+            List<string> monsters = await _dataContext.Monster
                 .ProjectTo<string>(_mapperConfiguration)
-                .ToList();
+                .ToListAsync();
 
             return monsters;
         }

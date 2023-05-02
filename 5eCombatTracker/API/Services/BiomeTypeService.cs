@@ -4,6 +4,7 @@ using _5eCombatTracker.Data.Helpers;
 using _5eCombatTracker.Data.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace _5eCombatTracker.API.Services
 {
@@ -23,9 +24,9 @@ namespace _5eCombatTracker.API.Services
 
         public async Task<List<string>> GetAllBiomes()
         {
-            List<string> biomeTypes = _dataContext.BiomeType
+            List<string> biomeTypes = await _dataContext.BiomeType
                 .ProjectTo<string>(_mapperConfiguration)
-                .ToList();
+                .ToListAsync();
 
             return biomeTypes;
         }
