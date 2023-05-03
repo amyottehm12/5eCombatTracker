@@ -6,6 +6,7 @@ import { BiomeTypeService } from 'src/app/services/biometype.service';
 import { EncounterService } from 'src/app/services/encounter.service';
 import { MonsterService } from 'src/app/services/monster.service';
 
+
 @Component({
   selector: 'app-encounter-generator',
   templateUrl: './encounter-generator.component.html',
@@ -31,7 +32,7 @@ export class EncounterGeneratorComponent implements OnInit {
     this.monsters = [];
     await this.getRandomEncounter();
 
-    this.encounter.monsters.forEach(monster => {
+    await this.encounter.monsters.forEach(monster => {
         this.getMonsterData(monster);
       })
   }
@@ -43,9 +44,16 @@ export class EncounterGeneratorComponent implements OnInit {
 
   async getMonsterData(monster: string) {
     const response = await firstValueFrom(this.monsterService.getMonsterData(monster));
-    console.log(response);
     response.initiative = this.encounterService.getInitiativeValue();
     this.monsters.push(response);
+  }
+
+  sortFn = (a: IMonster, b: IMonster): number => {
+    console.log("sortFn");
+    if (a.initiative < b.initiative) return -1;
+    if (a.initiative === b.initiative) return 0; 
+    if (a.initiative > b.initiative) return 1;
+    else return 1;
   }
 
   getAllBiomeTypes() {
@@ -57,7 +65,6 @@ export class EncounterGeneratorComponent implements OnInit {
   }
 
   onSelected(data:string) {
-    console.log(data);
     this.biomeType = data;
   }
 

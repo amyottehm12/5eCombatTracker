@@ -13,7 +13,7 @@
 
     <div *ngIf="monsters.length > 0">
         {{encounter.name}}
-        <div *ngFor="let monster of monsters">
+        <div *ngFor="let monster of monsters | orderBy: sortFn">
             <div>Name: {{monster.name}}</div>
             <div>AC: {{monster.ac}}</div>
             <div>HP: {{monster.hp}}</div>

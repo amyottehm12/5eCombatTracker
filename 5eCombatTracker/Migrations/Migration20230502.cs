@@ -20,6 +20,10 @@ namespace _5eCombatTracker.Migrations
                 .FromTable("MonsterAttacks").ForeignColumn("MonsterName")
                 .ToTable("Monster").PrimaryColumn("Name");
 
+            //This can't technically run (with the above FK) until after monster data has been seeded
+            //which doesn't happen until an API is called
+            //which happens AFTER these migrations attempt to run
+            //need to fix
             Insert.IntoTable("MonsterAttacks")
                 .Row(new { MonsterName = "zombie", WeaponName = "Slam", DamageDie = 6, DamageBonus = 1, ExtraEffect = "none", DescriptionSet = "{}" })
                 .Row(new { MonsterName = "zombie", WeaponName = "Bite", DamageDie = 4, DamageBonus = 1, ExtraEffect = "Saving throw vs con for disease", DescriptionSet = "{}" })

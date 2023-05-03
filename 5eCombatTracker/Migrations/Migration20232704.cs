@@ -42,6 +42,11 @@ namespace _5eCombatTracker.Migrations
                 .WithColumn("BiomeType").AsInt32().ForeignKey()
                 .WithColumn("Name").AsString()
                 .WithColumn("MonsterGroup").AsCustom("TEXT[]");
+
+            Insert.IntoTable("RandomEncounter")
+                .Row(new { BiomeType = 3, Name = "The Zombies", MonsterGroup = "{ Zombie, Zombie, Zombie }" })
+                .Row(new { BiomeType = 3, Name = "The Skeletons", MonsterGroup = "{ Skeleton, Skeleton, Skeleton }"})
+                .Row(new { BiomeType = 3, Name = "Undead Mix", MonsterGroup = "{ Skeleton, Zombie, Zombie }" });
         }
 
         public override void Down()
