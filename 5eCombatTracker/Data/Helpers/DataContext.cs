@@ -20,6 +20,7 @@ namespace _5eCombatTracker.Data.Helpers
         public DbSet<Monster> Monster { get; set; }
         public DbSet<BiomeType> BiomeType { get; set; }
         public DbSet<RandomEncounter> RandomEncounter { get; set; }
+        public DbSet<MonsterAttacks> MonsterAttacks { get; set; }
 
     }
 }

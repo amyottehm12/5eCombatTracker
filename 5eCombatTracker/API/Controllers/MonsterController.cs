@@ -39,8 +39,25 @@ namespace _5eCombatTracker.API.Controllers
                 var responseData = await _monsterService.GetAllMonsters();
                 return Ok(responseData);
             }
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/[action]/{monsterName}")]
+        public async Task<IActionResult> GetRandomMonsterAttack(string monsterName)
+        {
+            try
+            {
+                var responseData = await _monsterService.GetRandomMonsterAttack(monsterName);
+                return Ok(responseData);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }

@@ -9,7 +9,7 @@ namespace _5eCombatTracker.Migrations
         {
             Create.Table("MonsterAttacks")
                .WithColumn("Id").AsString().Identity().NotNullable().PrimaryKey()
-               .WithColumn("MonsterName").AsString().NotNullable().ForeignKey()
+               .WithColumn("Monster").AsString().NotNullable().ForeignKey()
                .WithColumn("WeaponName").AsString()
                .WithColumn("DamageDie").AsInt32()
                .WithColumn("DamageBonus").AsInt32()

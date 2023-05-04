@@ -35,6 +35,8 @@ export class EncounterGeneratorComponent implements OnInit {
     await this.encounter.monsters.forEach(monster => {
         this.getMonsterData(monster);
       })
+    
+    
   }
 
   async getRandomEncounter() {
