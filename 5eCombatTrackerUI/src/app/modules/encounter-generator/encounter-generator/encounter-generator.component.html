@@ -20,5 +20,16 @@
             <div>Initiative: {{monster.initiative}}</div>
         </div>
     </div>
+
+    <div *ngIf="monsters.length > 0">
+        <button (click)="roundHandler()">Next Turn</button>
+    </div>
+
+    <div *ngIf="this.currentRound > 0">
+        <div *ngFor="let monster of monsters | slice:1">
+            <div>{{monster.name}} attack {{this.currentRound}}</div>
+            <div>{{monster.attacks.weaponName}}</div>
+        </div>
+    </div>
     
 </section>
