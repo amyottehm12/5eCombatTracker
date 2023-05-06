@@ -8,12 +8,12 @@
                 {{biomeType}}
             </option>
         </select>
-        <button (click)="encounterHandler()">Generate encounter</button>
+        <button (click)="encounterSetup()">Generate encounter</button>
     </div>
 
-    <div *ngIf="monsters.length > 0">
+    <div *ngIf="this.displayEncounter">
         {{encounter.name}}
-        <div *ngFor="let monster of monsters | orderBy: sortFn">
+        <div *ngFor="let monster of monsters">
             <div>Name: {{monster.name}}</div>
             <div>AC: {{monster.ac}}</div>
             <div>HP: {{monster.hp}}</div>
@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div *ngIf="monsters.length > 0">
+    <div *ngIf="this.displayEncounter">
         <button (click)="roundHandler()">Next Turn</button>
     </div>
 

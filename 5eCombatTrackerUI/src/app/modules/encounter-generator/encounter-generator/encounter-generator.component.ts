@@ -25,24 +25,34 @@ export class EncounterGeneratorComponent implements OnInit {
   public encounter!: IEncounter;
   public biomeTypes!: string[];
   public biomeType!: string;
+
   public currentInitiative!: number;
   public currentRound: number = 0;
-  public firstRound: boolean = true;
+  public displayEncounter: boolean = false;
 
+  private firstRound: boolean = true;
+  
   ngOnInit() {
-    this.getAllBiomeTypes();
+    this.setBiomeTypes();
   }
 
-  async encounterHandler() {
+  async encounterSetup(): Promise<void> {
     this.monsters = [];
-    await this.getRandomEncounter();
+    console.log("calling set random encounter");
+    await this.setRandomEncounter();
 
-    await this.encounter.monsters.forEach(monster => {
-        this.getMonsterData(monster);
-      })
+    console.log("calling set monster data");
+    for (let i = 0; i < this.encounter.monsters.length; i++){
+      await this.setMonsterData(this.encounter.monsters[i]);
+    }
+    
+    console.log("calling order function");
+    await this.orderMonsterData();
+
+    this.displayEncounter = true;
   }
 
-  roundHandler() {
+  roundHandler(): void {
     if (this.firstRound) {
       //Set initial initiative
       this.firstRoundSetup()
@@ -58,40 +68,38 @@ export class EncounterGeneratorComponent implements OnInit {
       }
     }
 
-    this.getMonsterAttack();
+    this.setMonsterAttack();
   }
 
-  firstRoundSetup() {
+  firstRoundSetup(): void {
     this.currentInitiative = 0;
     this.currentRound = 1;
     this.firstRound = false;
   }
 
-  async getRandomEncounter() {
+  async setRandomEncounter(): Promise<void> {
     const response = await firstValueFrom(this.encounterService.getRandomEncounter(this.biomeType));
     this.encounter = response;
+    console.log("random encounter set");
   }
 
-  async getMonsterData(monster: string) {
+  async setMonsterData(monster: string): Promise<void> {
     const response = await firstValueFrom(this.monsterService.getMonsterData(monster));
-    response.initiative = this.encounterService.getInitiativeValue();
+    response.initiative = await this.encounterService.getInitiativeValue();
     this.monsters.push(response);
+    console.log("monster initiative set: " + response.initiative);
   }
 
-  async getMonsterAttack() {
+  async orderMonsterData(): Promise<void> {
+    console.log(this.monsters.sort((a,b) => (b.initiative > a.initiative) ? 1 : ((a.initiative > b.initiative) ? -1 : 0)));
+  }
+
+  async setMonsterAttack(): Promise<void> {
     const response = await firstValueFrom(this.monsterAttackService.getMonsterAttack(this.monsters[this.currentInitiative].name))
     this.monsters[this.currentInitiative].attacks = response;
   }
 
-  sortFn = (a: IMonster, b: IMonster): number => {
-    console.log("sortFn");
-    if (a.initiative < b.initiative) return -1;
-    if (a.initiative === b.initiative) return 0; 
-    if (a.initiative > b.initiative) return 1;
-    else return 1;
-  }
-
-  getAllBiomeTypes() {
+  setBiomeTypes(): void {
     this.biomeTypeService.getAllBiomeTypes()
     .subscribe((data: string[]) =>
     {
@@ -99,7 +107,7 @@ export class EncounterGeneratorComponent implements OnInit {
     })
   }
 
-  onSelected(data:string) {
+  onSelected(data:string): void {
     this.biomeType = data;
   }
 
