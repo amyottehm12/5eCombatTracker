@@ -25,10 +25,14 @@
         <button (click)="roundHandler()">Next Turn</button>
     </div>
 
-    <div *ngIf="this.currentRound > 0">
-        <div *ngFor="let monster of monsters | slice:1">
-            <div>{{monster.name}} attack {{this.currentRound}}</div>
-            <div>{{monster.attacks.weaponName}}</div>
+    <div *ngIf="this.activationReady">
+        <div>
+            Combat round: {{currentRound}}
+            <div>{{currentMonster.name}} activation</div>
+            <div>{{currentMonster.attacks.weaponName}}</div>
+            <div>{{currentMonster.attacks.damageDie}}</div>
+            <div>{{currentMonster.attacks.damageBonus}}</div>
+            <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>
         </div>
     </div>
     

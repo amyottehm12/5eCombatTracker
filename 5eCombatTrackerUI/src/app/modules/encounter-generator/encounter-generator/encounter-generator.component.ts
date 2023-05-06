@@ -22,22 +22,25 @@ export class EncounterGeneratorComponent implements OnInit {
   }
 
   public monsters: IMonster[] = [];
+  public currentMonster!: IMonster;
   public encounter!: IEncounter;
   public biomeTypes!: string[];
   public biomeType!: string;
 
   public currentInitiative!: number;
   public currentRound: number = 0;
+  
   public displayEncounter: boolean = false;
-
+  public activationReady: boolean = false;
   private firstRound: boolean = true;
   
   ngOnInit() {
     this.setBiomeTypes();
   }
 
-  async encounterSetup(): Promise<void> {
-    this.monsters = [];
+  async encounterSetup() {
+    await this.roundAndEncounterReset();
+
     console.log("calling set random encounter");
     await this.setRandomEncounter();
 
@@ -52,14 +55,16 @@ export class EncounterGeneratorComponent implements OnInit {
     this.displayEncounter = true;
   }
 
-  roundHandler(): void {
+  async roundHandler(): Promise<void> {
+    this.activationReady = false;
+
     if (this.firstRound) {
       //Set initial initiative
       this.firstRoundSetup()
     }
     else {
       //if we've reached the end of turn order, start new turn order
-      if (this.currentInitiative == this.monsters.length) {
+      if (this.currentInitiative == this.monsters.length - 1) {
         this.currentRound ++;
         this.currentInitiative = 0;
       }
@@ -68,7 +73,16 @@ export class EncounterGeneratorComponent implements OnInit {
       }
     }
 
-    this.setMonsterAttack();
+    await this.setMonsterAttack();
+    this.currentMonster = this.monsters[this.currentInitiative];
+    this.activationReady = true;
+  }
+
+  async roundAndEncounterReset(): Promise<void> {
+    this.monsters = [];
+    this.firstRound = true;
+    this.activationReady = false;
+    this.displayEncounter = false;
   }
 
   firstRoundSetup(): void {
