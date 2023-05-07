@@ -21,6 +21,12 @@ namespace _5eCombatTracker.Data.Seeder
                 var MonsterSeeder = new MonsterSeeder(_dataContext, _environment);
                 MonsterSeeder.Seed();
             }
+
+            if (!_dataContext.MonsterAttacks.Any())
+            {
+                var MonsterAttackSeeder = new MonsterAttackSeeder(_dataContext, _environment);
+                MonsterAttackSeeder.Seed();
+            }
         }
     }
 }

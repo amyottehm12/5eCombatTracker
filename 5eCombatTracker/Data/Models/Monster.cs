@@ -25,6 +25,11 @@ namespace _5eCombatTracker.Data.Models
         public decimal? _Wis { get; set; }
         public decimal? _Cha { get; set; }
 
+        public Monster(string name = "")
+        {
+            this.Name = name;
+        }
+
         public static Monster FromCsv(string csvLine)
         {
             string[] data = csvLine.Split(',');

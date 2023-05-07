@@ -19,19 +19,6 @@ namespace _5eCombatTracker.Migrations
             Create.ForeignKey()
                 .FromTable("MonsterAttacks").ForeignColumn("MonsterName")
                 .ToTable("Monster").PrimaryColumn("Name");
-
-            //This can't technically run (with the above FK) until after monster data has been seeded
-            //which doesn't happen until an API is called
-            //which happens AFTER these migrations attempt to run
-            //need to fix
-            Insert.IntoTable("MonsterAttacks")
-                .Row(new { MonsterName = "zombie", WeaponName = "Slam", DamageDie = 6, DamageBonus = 1, ExtraEffect = "none", DescriptionSet = "{}" })
-                .Row(new { MonsterName = "zombie", WeaponName = "Bite", DamageDie = 4, DamageBonus = 1, ExtraEffect = "Saving throw vs con for disease", DescriptionSet = "{}" })
-                .Row(new { MonsterName = "zombie", WeaponName = "Acid Spit", DamageDie = 4, DamageBonus = 2, ExtraEffect = "Saving throw vs con for 2 acid damage", DescriptionSet = "{}" })
-                .Row(new { MonsterName = "zombie", WeaponName = "Graple", DamageDie = 0, DamageBonus = 0, ExtraEffect = "Saving throw vs str for prone", DescriptionSet = "{}" })
-                .Row(new { MonsterName = "skeleton", WeaponName = "Shortsword", DamageDie = 6, DamageBonus = 2, ExtraEffect = "none", DescriptionSet = "{}" })
-                .Row(new { MonsterName = "skeleton", WeaponName = "Skeletal claw", DamageDie = 6, DamageBonus = 2, ExtraEffect = "none", DescriptionSet = "{}" })
-                .Row(new { MonsterName = "skeleton", WeaponName = "shortbow", DamageDie = 4, DamageBonus = 2, ExtraEffect = "none", DescriptionSet = "{}" });
         }
 
         public override void Down()
