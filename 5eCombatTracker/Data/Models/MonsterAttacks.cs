@@ -24,8 +24,6 @@ namespace _5eCombatTracker.Data.Models
         //a bool for enchanted values?
         //can i make this more interesting then just converting damage into some elemental type?
 
-
-
         public static MonsterAttacks FromCsv(string csvLine)
         {
             string[] data = csvLine.Split(',');
