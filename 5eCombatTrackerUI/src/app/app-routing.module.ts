@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EncounterHandlerComponent } from './modules/encounter-handler/encounter-handler.component';
+
+import { EncounterHandlerComponent } from './core/modules/encounter-handler/encounter-handler.component';
 
 const routes: Routes = [
   {

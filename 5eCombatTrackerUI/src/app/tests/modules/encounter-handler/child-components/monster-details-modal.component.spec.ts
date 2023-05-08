@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MonsterDetailsModalComponent } from './monster-details-modal.component';
+import { MonsterDetailsModalComponent } from '../../../../core/modules/encounter-handler/monster-details/monster-details-modal/monster-details-modal.component';
 
 describe('MonsterDetailsModalComponent', () => {
   let component: MonsterDetailsModalComponent;

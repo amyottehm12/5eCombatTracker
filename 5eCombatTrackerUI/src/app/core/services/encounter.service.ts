@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 
 import { environmentVariables } from 'src/environments/variables';
 
-import { IEncounter } from '../core/model/IEncounter';
+import { IEncounter } from '../models/IEncounter';
+
 
 @Injectable({
   providedIn: 'root'

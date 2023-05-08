@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EncounterSetupComponent } from './encounter-setup.component';
+import { EncounterSetupComponent } from '../../../../core/modules/encounter-handler/encounter-setup/encounter-setup.component';
 
 describe('EncounterSetupComponent', () => {
   let component: EncounterSetupComponent;

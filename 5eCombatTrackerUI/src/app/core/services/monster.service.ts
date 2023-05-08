@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { environmentVariables } from 'src/environments/variables';
 
-import { IMonster } from '../core/model/IMonster';
+import { IMonster } from '../models/IMonster';
 
 @Injectable({
   providedIn: 'root'

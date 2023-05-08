@@ -2,9 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 import { IEncounter } from 'src/app/core/models/IEncounter';
 import { IMonster } from 'src/app/core/models/IMonster';
+import { BiomeTypeService } from 'src/app/core/services/biome-type.service';
+import { EncounterGeneratorService } from 'src/app/core/services/encounter-generator.service';
 
-import { EncounterHelper } from 'src/app/services/encounter-generator.service';
-import { BiomeTypeService } from 'src/app/services/biome-type.service';
+
 
 @Component({
   selector: 'app-encounter-setup',
@@ -13,7 +14,7 @@ import { BiomeTypeService } from 'src/app/services/biome-type.service';
 })
 export class EncounterSetupComponent {
   constructor(private biomeTypeService: BiomeTypeService,
-              private encounterHandler: EncounterHelper) { }
+              private encounterHandler: EncounterGeneratorService) { }
 
   @Output("reset") reset: EventEmitter<any> = new EventEmitter;
   @Output("monsterCreated") monsterCreated: EventEmitter<IMonster[]> = new EventEmitter;

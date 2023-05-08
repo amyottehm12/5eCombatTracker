@@ -6,14 +6,14 @@ import { MonsterService } from "./monster.service";
 import { MonsterAttackService } from "./monster-attack.service";
 import { DieRoller } from "../shared-helpers/die-roller";
 
-import { IEncounter } from "../core/model/IEncounter";
-import { IMonster } from "../core/model/IMonster";
-import { IMonsterAttack } from "../core/model/IMonsterAttack";
+import { IEncounter } from "../models/IEncounter";
+import { IMonster } from "../models/IMonster";
+import { IMonsterAttack } from "../models/IMonsterAttack";
 
 @Injectable({
     providedIn: 'root'
   })
-  export class EncounterHelper {
+  export class EncounterGeneratorService {
 
     constructor(private encounterService : EncounterService,
                 private monsterService: MonsterService,

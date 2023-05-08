@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EncounterHandlerComponent } from './encounter-handler.component';
+import { EncounterHandlerComponent } from '../../../core/modules/encounter-handler/encounter-handler.component';
 
 describe('EncounterGeneratorComponent', () => {
   let component: EncounterHandlerComponent;

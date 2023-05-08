@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoundHandler } from './round-handler.component';
+import { RoundHandler } from '../../../../core/modules/encounter-handler/round-handler/round-handler.component';
 
 describe('MonsterAttacksComponent', () => {
   let component: RoundHandler;

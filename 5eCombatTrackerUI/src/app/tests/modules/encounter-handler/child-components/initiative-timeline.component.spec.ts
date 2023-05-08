@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InitiativeTimelineComponent } from './initiative-timeline.component';
+import { InitiativeTimelineComponent } from '../../../../core/modules/encounter-handler/initiative-timeline/initiative-timeline.component';
 
 describe('InitiativeTimelineComponent', () => {
   let component: InitiativeTimelineComponent;
