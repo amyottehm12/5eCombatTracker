@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { EncounterHelper } from 'src/app/services/encounter-generator.service';
 
-import { IMonster } from 'src/app/core/model/IMonster';
+import { IMonster } from 'src/app/core/models/IMonster';
 
 @Component({
   selector: 'app-round-handler',

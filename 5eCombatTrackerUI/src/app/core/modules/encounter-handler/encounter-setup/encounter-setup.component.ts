@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
-import { IEncounter } from 'src/app/core/model/IEncounter';
-import { IMonster } from 'src/app/core/model/IMonster';
+import { IEncounter } from 'src/app/core/models/IEncounter';
+import { IMonster } from 'src/app/core/models/IMonster';
 
 import { EncounterHelper } from 'src/app/services/encounter-generator.service';
 import { BiomeTypeService } from 'src/app/services/biome-type.service';

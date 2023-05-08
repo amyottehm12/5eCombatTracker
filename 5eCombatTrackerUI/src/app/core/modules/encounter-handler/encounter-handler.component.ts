@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 
 import { RoundHandler } from './round-handler/round-handler.component';
 
-import { IMonster } from 'src/app/core/model/IMonster';
+import { IMonster } from 'src/app/core/models/IMonster';
 
 @Component({
   selector: 'app-encounter-handler',
