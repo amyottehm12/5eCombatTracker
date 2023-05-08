@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MonsterAttacksComponent } from './monster-attacks.component';
+import { RoundHandler } from './round-handler.component';
 
 describe('MonsterAttacksComponent', () => {
-  let component: MonsterAttacksComponent;
-  let fixture: ComponentFixture<MonsterAttacksComponent>;
+  let component: RoundHandler;
+  let fixture: ComponentFixture<RoundHandler>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MonsterAttacksComponent ]
+      declarations: [ RoundHandler ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MonsterAttacksComponent);
+    fixture = TestBed.createComponent(RoundHandler);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

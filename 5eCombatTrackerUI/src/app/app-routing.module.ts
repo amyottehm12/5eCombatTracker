@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EncounterGeneratorComponent } from './modules/encounter-generator/encounter-generator.component';
+import { EncounterHandlerComponent } from './modules/encounter-handler/encounter-handler.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: EncounterGeneratorComponent
+    component: EncounterHandlerComponent
   }
 ];
 

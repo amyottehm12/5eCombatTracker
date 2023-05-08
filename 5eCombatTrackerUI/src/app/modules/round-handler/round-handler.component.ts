@@ -1,16 +1,16 @@
 import { Component, Input } from '@angular/core';
 
-import { EncounterHandler } from 'src/app/helpers/encounter-handler';
+import { EncounterHelper } from 'src/app/helpers/encounter-helper';
 
 import { IMonster } from 'src/app/model/IMonster';
 
 @Component({
-  selector: 'app-monster-attacks',
-  templateUrl: './monster-attacks.component.html',
-  styleUrls: ['./monster-attacks.component.css']
+  selector: 'app-round-handler',
+  templateUrl: './round-handler.component.html',
+  styleUrls: ['./round-handler.component.css']
 })
-export class MonsterAttacksComponent {
-  constructor(private encounterHandler: EncounterHandler) { }
+export class RoundHandler {
+  constructor(private encounterHandler: EncounterHelper) { }
 
 
   @Input() public monsters: IMonster[] = [];
@@ -52,7 +52,7 @@ export class MonsterAttacksComponent {
     this.firstRound = false;
   }
 
-  async roundAndEncounterReset(): Promise<void> {
+  async roundReset(): Promise<void> {
     this.firstRound = true;
     this.activationReady = false;
   }

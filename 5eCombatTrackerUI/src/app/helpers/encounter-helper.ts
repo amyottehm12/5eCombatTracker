@@ -13,7 +13,7 @@ import { IMonsterAttack } from "../model/IMonsterAttack";
 @Injectable({
     providedIn: 'root'
   })
-  export class EncounterHandler {
+  export class EncounterHelper {
 
     constructor(private encounterService : EncounterService,
                 private monsterService: MonsterService,

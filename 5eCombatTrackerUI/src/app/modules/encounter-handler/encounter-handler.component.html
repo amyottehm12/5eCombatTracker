@@ -1,5 +1,8 @@
 <section>
-    <h3>Encounter Detail</h3>  
+    <div>
+        <app-encounter-setup>
+        </app-encounter-setup>
+    </div>
 
     <div>
         <select #biomeTypeSelector (change)="onSelected(biomeTypeSelector.value)">
@@ -16,7 +19,6 @@
         </app-initiative-timeline>
     </div>
 
-
     <div *ngIf="this.displayEncounter">
         {{encounter.name}}
         <div *ngFor="let monster of monsters">
@@ -28,9 +30,9 @@
     </div>
 
 
-    <app-monster-attacks
+    <app-round-handler
     [monsters]="monsters"
     [displayEncounter]="displayEncounter">
-    </app-monster-attacks>
+    </app-round-handler>
     
 </section>

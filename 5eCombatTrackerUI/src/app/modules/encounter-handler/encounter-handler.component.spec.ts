@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EncounterGeneratorComponent } from './encounter-generator.component';
+import { EncounterHandlerComponent } from './encounter-handler.component';
 
 describe('EncounterGeneratorComponent', () => {
-  let component: EncounterGeneratorComponent;
-  let fixture: ComponentFixture<EncounterGeneratorComponent>;
+  let component: EncounterHandlerComponent;
+  let fixture: ComponentFixture<EncounterHandlerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EncounterGeneratorComponent ]
+      declarations: [ EncounterHandlerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EncounterGeneratorComponent);
+    fixture = TestBed.createComponent(EncounterHandlerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

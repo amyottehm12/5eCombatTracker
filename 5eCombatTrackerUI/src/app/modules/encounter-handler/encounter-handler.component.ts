@@ -1,26 +1,24 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { EncounterHandler } from 'src/app/helpers/encounter-handler';
+import { EncounterHelper } from 'src/app/helpers/encounter-helper';
 import { BiomeTypeService } from 'src/app/services/biometype.service';
 
 import { IEncounter } from 'src/app/model/IEncounter';
 import { IMonster } from 'src/app/model/IMonster';
-import { MonsterAttacksComponent } from '../monster-attacks/monster-attacks.component';
-
-
+import { RoundHandler } from '../round-handler/round-handler.component';
 
 @Component({
-  selector: 'app-encounter-generator',
-  templateUrl: './encounter-generator.component.html',
-  styleUrls: ['./encounter-generator.component.css']
+  selector: 'app-encounter-handler',
+  templateUrl: './encounter-handler.component.html',
+  styleUrls: ['./encounter-handler.component.css']
 })
-export class EncounterGeneratorComponent implements OnInit {
+export class EncounterHandlerComponent implements OnInit {
 
   constructor(private biomeTypeService: BiomeTypeService,
-              private encounterHandler: EncounterHandler) { 
+              private encounterHandler: EncounterHelper) { 
   }
 
-  @ViewChild(MonsterAttacksComponent) child!: any;
+  @ViewChild(RoundHandler) child!: any;
 
   public encounter!: IEncounter;
   public monsters: IMonster[] = [];
@@ -48,8 +46,8 @@ export class EncounterGeneratorComponent implements OnInit {
 
   async encounterSetup() {
     console.log("Resetting round");
-    await this.roundAndEncounterReset();
-    await this.child.roundAndEncounterReset();
+    await this.encounterReset();
+    await this.child.roundReset();
 
     console.log("Calling set random encounter");
     this.encounter = await this.encounterHandler.setRandomEncounter(this.biomeType)
@@ -67,13 +65,10 @@ export class EncounterGeneratorComponent implements OnInit {
     console.log("Monsters ordered");
 
     this.displayEncounter = true;
-    
   }
 
-  async roundAndEncounterReset(): Promise<void> {
+  async encounterReset(): Promise<void> {
     this.monsters = [];
-    //this.firstRound = true;
-    //this.activationReady = false;
     this.displayEncounter = false;
   }
 
