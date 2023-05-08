@@ -1,0 +1,9 @@
+<div>
+    <select #biomeTypeSelector (change)="onSelected(biomeTypeSelector.value)">
+        <option default>Select a biome</option>
+        <option *ngFor="let biomeType of biomeTypes">
+            {{biomeType}}
+        </option>
+    </select>
+    <button (click)="encounterSetup()">Generate encounter</button>
+</div>

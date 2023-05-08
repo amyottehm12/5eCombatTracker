@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EncounterService } from './encounter.service';
+import { BiomeTypeService } from '../biome-type.service';
 
-describe('EncounterService', () => {
-  let service: EncounterService;
+describe('BiomeserviceService', () => {
+  let service: BiomeTypeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EncounterService);
+    service = TestBed.inject(BiomeTypeService);
   });
 
   it('should be created', () => {

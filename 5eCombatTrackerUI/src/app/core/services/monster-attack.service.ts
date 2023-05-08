@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environmentVariables } from 'src/environments/variables';
-import { IMonsterAttack } from '../model/IMonsterAttack';
 
+import { IMonsterAttack } from '../core/model/IMonsterAttack';
 
 @Injectable({
   providedIn: 'root'

@@ -1,38 +1,26 @@
 <section>
     <div>
-        <app-encounter-setup>
+        <app-encounter-setup
+        (reset)="reset()"
+        (monsterCreated)="monsterCreated($event)"
+        (encounterReady)="encounterReady($event)"
+        (encounterNameSet)="encounterNameSet($event)">
         </app-encounter-setup>
     </div>
 
     <div>
-        <select #biomeTypeSelector (change)="onSelected(biomeTypeSelector.value)">
-            <option default>Select a biome</option>
-            <option *ngFor="let biomeType of biomeTypes">
-                {{biomeType}}
-            </option>
-        </select>
-        <button (click)="encounterSetup()">Generate encounter</button>
-    </div>
-
-    <div>
-        <app-initiative-timeline>
+        <app-initiative-timeline
+        [encounterName]="encounterName">
         </app-initiative-timeline>
     </div>
 
-    <div *ngIf="this.displayEncounter">
-        {{encounter.name}}
-        <div *ngFor="let monster of monsters">
-            <div>Name: {{monster.name}}</div>
-            <div>AC: {{monster.ac}}</div>
-            <div>HP: {{monster.hp}}</div>
-            <div>Initiative: {{monster.initiative}}</div>
-        </div>
-    </div>
-
+    <app-monster-details>
+    </app-monster-details>
 
     <app-round-handler
     [monsters]="monsters"
-    [displayEncounter]="displayEncounter">
+    [displayEncounter]="displayEncounter"
+    >
     </app-round-handler>
     
 </section>

@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
 
-import { EncounterService } from "../services/encounter.service";
-import { MonsterService } from "../services/monster.service";
-import { MonsterAttackService } from "../services/monster-attack.service";
-import { DieRoller } from "./die-roller";
+import { EncounterService } from "./encounter.service";
+import { MonsterService } from "./monster.service";
+import { MonsterAttackService } from "./monster-attack.service";
+import { DieRoller } from "../shared-helpers/die-roller";
 
-import { IEncounter } from "../model/IEncounter";
-import { IMonster } from "../model/IMonster";
-import { IMonsterAttack } from "../model/IMonsterAttack";
+import { IEncounter } from "../core/model/IEncounter";
+import { IMonster } from "../core/model/IMonster";
+import { IMonsterAttack } from "../core/model/IMonsterAttack";
 
 @Injectable({
     providedIn: 'root'

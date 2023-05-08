@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 
-import { EncounterHelper } from 'src/app/helpers/encounter-helper';
+import { EncounterHelper } from 'src/app/services/encounter-generator.service';
 
-import { IMonster } from 'src/app/model/IMonster';
+import { IMonster } from 'src/app/core/model/IMonster';
 
 @Component({
   selector: 'app-round-handler',
@@ -11,7 +11,6 @@ import { IMonster } from 'src/app/model/IMonster';
 })
 export class RoundHandler {
   constructor(private encounterHandler: EncounterHelper) { }
-
 
   @Input() public monsters: IMonster[] = [];
   public currentMonster!: IMonster;
