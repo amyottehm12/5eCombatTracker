@@ -10,8 +10,7 @@ namespace _5eCombatTracker.Data.Models
         [ForeignKey("Monster")]
         public Monster MonsterId { get; set; }
         public string WeaponName { get; set; }
-        //If null then no roll? otherwise contain bonus to hit here? Obviously all attack rolls are d20s, so dont need to hold die type
-        //public int? HitRoll { get; set; }
+        public int? HitRoll { get; set; }
         public int DamageDie { get; set; }
         public int DamageBonus { get; set; }
         public string ExtraEffect { get; set; }
@@ -30,10 +29,11 @@ namespace _5eCombatTracker.Data.Models
             MonsterAttacks attack = new MonsterAttacks();
             attack.MonsterId = (data[0] == null) ? new Monster(data[0]) : new Monster();
             attack.WeaponName = data[1];
-            attack.DamageDie = Convert.ToInt32(data[2]);
-            attack.DamageBonus = Convert.ToInt32(data[3]);
-            attack.ExtraEffect = data[4];
-            attack.DescriptionSet = new List<string> { data[5] };
+            attack.HitRoll = Convert.ToInt32(data[2]);
+            attack.DamageDie = Convert.ToInt32(data[3]);
+            attack.DamageBonus = Convert.ToInt32(data[4]);
+            attack.ExtraEffect = data[5];
+            attack.DescriptionSet = new List<string> { data[6] };
 
             return attack;
         }

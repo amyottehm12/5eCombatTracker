@@ -11,6 +11,7 @@ namespace _5eCombatTracker.Migrations
                .WithColumn("Id").AsString().Identity().NotNullable().PrimaryKey()
                .WithColumn("Monster").AsString().NotNullable().ForeignKey()
                .WithColumn("WeaponName").AsString()
+               .WithColumn("HitRoll").AsInt32().Nullable()
                .WithColumn("DamageDie").AsInt32()
                .WithColumn("DamageBonus").AsInt32()
                .WithColumn("ExtraEffect").AsString()

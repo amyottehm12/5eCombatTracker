@@ -11,6 +11,12 @@
         <button (click)="encounterSetup()">Generate encounter</button>
     </div>
 
+    <div>
+        <app-initiative-timeline>
+        </app-initiative-timeline>
+    </div>
+
+
     <div *ngIf="this.displayEncounter">
         {{encounter.name}}
         <div *ngFor="let monster of monsters">
@@ -21,19 +27,10 @@
         </div>
     </div>
 
-    <div *ngIf="this.displayEncounter">
-        <button (click)="roundHandler()">Next Turn</button>
-    </div>
 
-    <div *ngIf="this.activationReady">
-        <div>
-            Combat round: {{currentRound}}
-            <div>{{currentMonster.name}} activation</div>
-            <div>{{currentMonster.attacks.weaponName}}</div>
-            <div>{{currentMonster.attacks.damageDie}}</div>
-            <div>{{currentMonster.attacks.damageBonus}}</div>
-            <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>
-        </div>
-    </div>
+    <app-monster-attacks
+    [monsters]="monsters"
+    [displayEncounter]="displayEncounter">
+    </app-monster-attacks>
     
 </section>

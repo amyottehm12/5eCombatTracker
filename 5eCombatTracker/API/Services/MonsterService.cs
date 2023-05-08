@@ -18,10 +18,7 @@ namespace _5eCombatTracker.API.Services
             _dataContext = dataContext;
             _mapperConfiguration = new MapperConfiguration(mc =>
             {
-                mc.CreateMap<Monster, MonsterDTO>()
-                .ForMember(dto => dto.Name, conf => conf.MapFrom(monster => monster.Name))
-                .ForMember(dto => dto.AC, conf => conf.MapFrom(monster => monster.HP))
-                .ForMember(dto => dto.HP, conf => conf.MapFrom(monster => monster.AC));
+                mc.CreateMap<Monster, MonsterDTO>();
 
                 mc.CreateMap<Monster, string>()
                 .ConvertUsing(m => m.Name);

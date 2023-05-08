@@ -1,0 +1,15 @@
+
+<div *ngIf="this.displayEncounter">
+    <button (click)="roundHandler()">Next Turn</button>
+</div>
+
+<div *ngIf="activationReady">
+    <div *ngIf="currentMonster">
+        Combat round: {{currentRound}}
+        <h3>{{currentMonster.name}} activation</h3>
+        <div>{{currentMonster.name}} attacks with a {{currentMonster.attacks.weaponName}}</div>
+        <div>Hit roll: {{currentMonster.attacks.toHitResult}}</div>
+        <div>Dealing {{currentMonster.attacks.damageResult}}, on a hit</div>
+        <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ namespace _5eCombatTracker.API.Controllers
 
         [HttpPost]
         [Route("api/[controller]/monsters")]
-        public void PostMonsters()
+        public void SeedData()
         {
             _dbSeeder.Seed();
         }

@@ -20,7 +20,6 @@ namespace _5eCombatTracker.API.Services
             _mapperConfiguration = new MapperConfiguration(mc =>
             {
                 mc.CreateMap<RandomEncounter, EncounterDTO>()
-                .ForMember(dto => dto.Name, conf => conf.MapFrom(encounter => encounter.Name))
                 .ForMember(dto => dto.Monsters, conf => conf.MapFrom(encounter => encounter.MonsterGroup));
             });
         }

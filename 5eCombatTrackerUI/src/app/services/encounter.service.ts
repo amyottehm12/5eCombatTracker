@@ -19,9 +19,4 @@ export class EncounterService {
   getRandomEncounter(BiomeType: string): Observable<IEncounter> {
     return this.http.get<IEncounter>(environmentVariables.baseURL + 'api/RandomEncounter/GetRandomEncounter/' + BiomeType);
   }
-
-  async getInitiativeValue(initiative = 0): Promise<number> {
-    return Math.floor((Math.random() * 20) + 1 + initiative);
-  }
-
 }
