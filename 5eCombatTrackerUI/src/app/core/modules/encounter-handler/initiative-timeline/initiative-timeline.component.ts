@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Chart, LineController, LineElement, LinearScale, PointElement } from 'chart.js';
-import { CategoryScale } from 'chart.js/dist';
+import { Chart, LineController, LineElement, LinearScale, PointElement, CategoryScale } from 'chart.js';
 
 import { IMonster } from 'src/app/core/models/IMonster';
 
@@ -23,28 +22,21 @@ export class InitiativeTimelineComponent implements OnInit {
 
   createChart(){
     this.chart = new Chart("MyChart", {
-      type: 'line', //this denotes tha type of chart
+      type: 'line',
 
-      data: {// values on X-Axis
-        labels: ['2022-05-10', '2022-05-11', '2022-05-12','2022-05-13',
-								 '2022-05-14', '2022-05-15', '2022-05-16','2022-05-17', ], 
+      data: {
+        labels: ['30', '25', '20','15',
+								 '10', '5', '1' ], 
 	       datasets: [
           {
-            label: "Sales",
-            data: ['467','576', '572', '79', '92',
-								 '574', '573', '576'],
+            label: "Monsters",
+            data: [],
             backgroundColor: 'blue'
-          },
-          {
-            label: "Profit",
-            data: ['542', '542', '536', '327', '17',
-									 '0.00', '538', '541'],
-            backgroundColor: 'limegreen'
-          }  
+          } 
         ]
       },
       options: {
-        aspectRatio:2.5
+        aspectRatio:5
       }
       
     });
