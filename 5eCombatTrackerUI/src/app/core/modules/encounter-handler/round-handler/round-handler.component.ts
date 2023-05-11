@@ -9,7 +9,7 @@ import { IMonster } from 'src/app/core/models/IMonster';
   templateUrl: './round-handler.component.html',
   styleUrls: ['./round-handler.component.css']
 })
-export class RoundHandler {
+export class RoundHandlerComponent {
   constructor(private encounterHandler: EncounterGeneratorService) { }
 
   @Input() public monsters: IMonster[] = [];

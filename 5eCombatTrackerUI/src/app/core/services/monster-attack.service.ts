@@ -13,7 +13,7 @@ import { IMonsterAttack } from '../models/IMonsterAttack';
 export class MonsterAttackService {
 
   constructor(private http: HttpClient) {
-    console.log('Constructing EncounterService, including HttpClient') 
+    console.log('Constructing MonsterAttackService, including HttpClient') 
   }
 
   getMonsterAttack(monsterName: string): Observable<IMonsterAttack> {

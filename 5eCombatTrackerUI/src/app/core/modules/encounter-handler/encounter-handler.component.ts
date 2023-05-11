@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { RoundHandler } from './round-handler/round-handler.component';
+import { RoundHandlerComponent } from './round-handler/round-handler.component';
 
 import { IMonster } from 'src/app/core/models/IMonster';
+import { InitiativeTimelineComponent } from './initiative-timeline/initiative-timeline.component';
 
 @Component({
   selector: 'app-encounter-handler',
@@ -11,7 +12,8 @@ import { IMonster } from 'src/app/core/models/IMonster';
 })
 export class EncounterHandlerComponent {
 
-  @ViewChild(RoundHandler) child!: any;
+  @ViewChild(RoundHandlerComponent) roundHandlerChild!: any;
+  @ViewChild(InitiativeTimelineComponent) initiativeTimelineChild!: any;
 
   public encounterName: string = "";
   public monsters: IMonster[] = [];
@@ -19,15 +21,20 @@ export class EncounterHandlerComponent {
   public displayEncounter: boolean = false;
 
   reset() {
-    this.child.roundReset();
+    this.roundHandlerChild.roundReset();
   }
 
-  monsterCreated(monsters: IMonster[]) {
+  async monsterCreated(monsters: IMonster[]) {
     this.monsters = monsters;
+    console.log("Awaiting timeline update monsters");
+    await this.initiativeTimelineChild.updateMonsters(monsters);
+    console.log("Awaiting timeline create chart");
+    await this.initiativeTimelineChild.createChart();
   }
 
   encounterReady(displayEncounter: boolean) {
     this.displayEncounter = displayEncounter;
+    //
   }
 
   encounterNameSet(encounterName: string) {

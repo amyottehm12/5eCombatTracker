@@ -18,7 +18,9 @@ import { IMonsterAttack } from "../models/IMonsterAttack";
     constructor(private encounterService : EncounterService,
                 private monsterService: MonsterService,
                 private monsterAttackService: MonsterAttackService,
-                private dieRoller: DieRoller) { }
+                private dieRoller: DieRoller) {
+        console.log('Constructing EncounterGeneratorService, including EncounterService, MonsterService, MonsterAttackService, DieRoller')
+    }
 
     async setRandomEncounter(biomeType: string): Promise<IEncounter> {
         const response = await firstValueFrom(this.encounterService.getRandomEncounter(biomeType));
