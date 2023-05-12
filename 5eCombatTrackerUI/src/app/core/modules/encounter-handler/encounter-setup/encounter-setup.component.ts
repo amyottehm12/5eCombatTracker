@@ -5,8 +5,6 @@ import { IMonster } from 'src/app/core/models/IMonster';
 import { BiomeTypeService } from 'src/app/core/services/biome-type.service';
 import { EncounterGeneratorService } from 'src/app/core/services/encounter-generator.service';
 
-
-
 @Component({
   selector: 'app-encounter-setup',
   templateUrl: './encounter-setup.component.html',
@@ -17,7 +15,7 @@ export class EncounterSetupComponent {
               private encounterHandler: EncounterGeneratorService) { }
 
   @Output("reset") reset: EventEmitter<any> = new EventEmitter;
-  @Output("monsterCreated") monsterCreated: EventEmitter<IMonster[]> = new EventEmitter;
+  @Output("monsterCreatedOrChanged") monsterCreatedOrChanged: EventEmitter<IMonster[]> = new EventEmitter;
   @Output("encounterReady") encounterReady: EventEmitter<boolean> = new EventEmitter; 
   @Output("encounterNameSet") encounterNameSet: EventEmitter<string> = new EventEmitter; 
 
@@ -53,7 +51,8 @@ export class EncounterSetupComponent {
     console.log("Calling set monster data");
     for (let i = 0; i < this.encounter.monsters.length; i++) {
       this.monsters.push(await this.encounterHandler.setMonsterData(this.encounter.monsters[i]));
-      console.log("Monster initiative set: " + this.monsters[i].initiative);
+      this.monsters[i].id = i;
+      console.log("Monster " + this.monsters[i].id +  " initiative set: " + this.monsters[i].initiative);
     }
     console.log("All initiatives set");
     
@@ -62,7 +61,7 @@ export class EncounterSetupComponent {
     console.log("Monsters ordered");
 
     this.encounterReady.emit(true);
-    this.monsterCreated.emit(this.monsters);
+    this.monsterCreatedOrChanged.emit(this.monsters);
     this.encounterNameSet.emit(this.encounter.name);
   }
 

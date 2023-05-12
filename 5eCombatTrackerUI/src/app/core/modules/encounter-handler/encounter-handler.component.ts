@@ -24,17 +24,19 @@ export class EncounterHandlerComponent {
     this.roundHandlerChild.roundReset();
   }
 
-  async monsterCreated(monsters: IMonster[]) {
+  async monsterCreatedOrChanged(monsters: IMonster[]) {
+    console.log("Encounter handler has heard monsters has created or been edited");
     this.monsters = monsters;
     console.log("Awaiting timeline update monsters");
     await this.initiativeTimelineChild.updateMonsters(monsters);
-    console.log("Awaiting timeline create chart");
-    await this.initiativeTimelineChild.createChart();
+  }
+
+  async monsterOrderUpdates(monsters: IMonster[]) {
+
   }
 
   encounterReady(displayEncounter: boolean) {
     this.displayEncounter = displayEncounter;
-    //
   }
 
   encounterNameSet(encounterName: string) {

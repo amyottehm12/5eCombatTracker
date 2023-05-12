@@ -2,7 +2,7 @@
     <div>
         <app-encounter-setup
         (reset)="reset()"
-        (monsterCreated)="monsterCreated($event)"
+        (monsterCreatedOrChanged)="monsterCreatedOrChanged($event)"
         (encounterReady)="encounterReady($event)"
         (encounterNameSet)="encounterNameSet($event)">
         </app-encounter-setup>
@@ -19,6 +19,7 @@
     </app-monster-details>
 
     <app-round-handler
+    (monsterCreatedOrChanged)="monsterCreatedOrChanged($event)"
     [monsters]="monsters"
     [displayEncounter]="displayEncounter"
     >

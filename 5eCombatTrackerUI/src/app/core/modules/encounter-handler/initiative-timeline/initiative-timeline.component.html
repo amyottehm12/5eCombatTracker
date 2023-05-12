@@ -1,3 +1,9 @@
 <h2>{{encounterName}}</h2>
 
-<div style="width: 50%"><canvas  id="MyChart"></canvas></div>
+<div class="flex-container">
+    <div class="flex-child" *ngFor="let monster of monsters">
+        <div> {{ monster.name }} </div>
+        <div> {{ monster.initiative }} </div>
+        <div> id: {{ monster.id }} </div>
+    </div>
+</div>
