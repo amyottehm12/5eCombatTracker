@@ -24,4 +24,8 @@ export class InitiativeTimelineComponent {
       this.monsters = data
     })
   }
+
+  onSelected(data:string, id:string): void {
+    if (data === "0") this.encounterHandler.removeMonster(parseInt(id));
+  }
 }

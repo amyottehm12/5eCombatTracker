@@ -6,6 +6,8 @@
             <div> {{ monster.name }} </div>
             <div> {{ monster.initiative }} </div>
             <div> id: {{ monster.id }} </div>
+            <div><input #monsterHp id={{monster.id}} type="number" min="0" max={{monster.hp}} value={{monster.hp}}
+                    (change)="onSelected(monsterHp.value, monsterHp.id)"></div>
         </div>
     </div>
     <app-monster-details></app-monster-details>

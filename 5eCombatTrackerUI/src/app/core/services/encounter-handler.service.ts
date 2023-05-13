@@ -38,6 +38,7 @@ export class EncounterHandlerService {
         for (let i = 0; i < monsterNames.length; i++) {
             let response = await firstValueFrom(this.monsterService.getMonsterData(monsterNames[i]));
             response.initiative = await this.dieRoller.rollDie(20, 0);
+            response.currentHp = response.hp;
             response.id = i;
             this._internalMonsters.push(response);
         }
@@ -75,6 +76,11 @@ export class EncounterHandlerService {
 
     private async resetMonsters(): Promise<void> {
         this._internalMonsters = [];
+        this.setMonsters();
+    }
+
+    public async removeMonster(id: number): Promise<void> {
+        delete this._internalMonsters[this._internalMonsters.findIndex(x => x.id == id)];
         this.setMonsters();
     }
 
