@@ -1,5 +1,12 @@
+.initiative-container {
+    border: 2px solid rebeccapurple;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
 .flex-container {
     display: flex;
+    padding: 20px;
 }
 
 .flex-child {

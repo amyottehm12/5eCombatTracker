@@ -11,7 +11,6 @@ import { environmentVariables } from 'src/environments/variables';
 export class BiomeTypeService {
 
   constructor(private http: HttpClient) {
-    console.log('Constructing BiomeserviceService, including HttpClient') 
   }
 
   getAllBiomeTypes(): Observable<string[]> {

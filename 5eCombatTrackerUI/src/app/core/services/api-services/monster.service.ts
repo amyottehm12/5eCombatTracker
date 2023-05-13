@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { environmentVariables } from 'src/environments/variables';
 
-import { IMonster } from '../models/IMonster';
+import { IMonster } from '../../models/IMonster';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,6 @@ import { IMonster } from '../models/IMonster';
 export class MonsterService {
 
   constructor(private http: HttpClient) {
-    console.log('Constructing MonsterService, including HttpClient') 
   }
 
   getMonsterData(monster: string): Observable<IMonster> {

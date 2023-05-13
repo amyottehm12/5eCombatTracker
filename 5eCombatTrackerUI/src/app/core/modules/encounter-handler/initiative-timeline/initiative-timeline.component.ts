@@ -1,24 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { IMonster } from 'src/app/core/models/IMonster';
+import { EncounterHandlerService } from 'src/app/core/services/encounter-handler.service';
 
 @Component({
   selector: 'app-initiative-timeline',
   templateUrl: './initiative-timeline.component.html',
   styleUrls: ['./initiative-timeline.component.css']
 })
-export class InitiativeTimelineComponent implements OnInit {
-  @Input() public encounterName: string = "";
-  @Input() public monsters: IMonster[] = [];
+export class InitiativeTimelineComponent {
+  @Input() public encounterName: string = ""
+  @Input() public displayEncounter: boolean = false;;
+  public monsters: IMonster[] = [];
 
-  public chart: any;
-
-  ngOnInit() {
+  constructor(private encounterHandler: EncounterHandlerService) {
+    this.getMonsters();
   }
-
-  async updateMonsters(monsters: IMonster[]): Promise<void> {
-    console.log("Timeline component monsters update");
-    this.monsters = monsters;
-    console.log(this.monsters);
+  
+  getMonsters(): void {
+    this.encounterHandler.getMonsters()
+    .subscribe((data: IMonster[]) =>
+    {
+      this.monsters = data
+    })
   }
 }

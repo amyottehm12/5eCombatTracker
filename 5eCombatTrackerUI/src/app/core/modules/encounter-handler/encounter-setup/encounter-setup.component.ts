@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
-import { IEncounter } from 'src/app/core/models/IEncounter';
-import { IMonster } from 'src/app/core/models/IMonster';
-import { BiomeTypeService } from 'src/app/core/services/biome-type.service';
-import { EncounterGeneratorService } from 'src/app/core/services/encounter-generator.service';
+import { BiomeTypeService } from 'src/app/core/services/api-services/biome-type.service';
+import { EncounterService } from 'src/app/core/services/api-services/encounter.service';
+import { EncounterHandlerService } from 'src/app/core/services/encounter-handler.service';
 
 @Component({
   selector: 'app-encounter-setup',
@@ -12,15 +12,13 @@ import { EncounterGeneratorService } from 'src/app/core/services/encounter-gener
 })
 export class EncounterSetupComponent {
   constructor(private biomeTypeService: BiomeTypeService,
-              private encounterHandler: EncounterGeneratorService) { }
+              private encounterService: EncounterService,
+              private encounterHandlerService: EncounterHandlerService) { }
 
   @Output("reset") reset: EventEmitter<any> = new EventEmitter;
-  @Output("monsterCreatedOrChanged") monsterCreatedOrChanged: EventEmitter<IMonster[]> = new EventEmitter;
   @Output("encounterReady") encounterReady: EventEmitter<boolean> = new EventEmitter; 
   @Output("encounterNameSet") encounterNameSet: EventEmitter<string> = new EventEmitter; 
 
-  public encounter!: IEncounter;
-  public monsters: IMonster[] = [];
   public biomeTypes: string[] = [];
   public biomeType!: string;
 
@@ -41,39 +39,17 @@ export class EncounterSetupComponent {
   }
 
   async encounterSetup() {
-    console.log("Resetting round");
     await this.encounterReset();
 
-    console.log("Calling set random encounter");
-    this.encounter = await this.encounterHandler.setRandomEncounter(this.biomeType)
-    console.log("Random encounter set");
-
-    console.log("Calling set monster data");
-    for (let i = 0; i < this.encounter.monsters.length; i++) {
-      this.monsters.push(await this.encounterHandler.setMonsterData(this.encounter.monsters[i]));
-      this.monsters[i].id = i;
-      console.log("Monster " + this.monsters[i].id +  " initiative set: " + this.monsters[i].initiative);
-    }
-    console.log("All initiatives set");
-    
-    console.log("Calling order function");
-    await this.orderMonsterData();
-    console.log("Monsters ordered");
+    let encounter = await firstValueFrom(this.encounterService.getRandomEncounter(this.biomeType));
+    await this.encounterHandlerService.setupMonsterData(encounter.monsters);
 
     this.encounterReady.emit(true);
-    this.monsterCreatedOrChanged.emit(this.monsters);
-    this.encounterNameSet.emit(this.encounter.name);
+    this.encounterNameSet.emit(encounter.name);
   }
 
   async encounterReset(): Promise<void> {
-    this.monsters = [];
     this.encounterReady.emit(false);
     this.reset.emit();
-  }
-
-  async orderMonsterData(): Promise<void> {
-    console.log(this.monsters.sort((a,b) => (b.initiative > a.initiative) ? 1 : ((a.initiative > b.initiative) ? -1 : 0)));
-  }
-
-  
+  }  
 }

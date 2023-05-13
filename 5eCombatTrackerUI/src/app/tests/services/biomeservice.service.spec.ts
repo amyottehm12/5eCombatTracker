@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BiomeTypeService } from 'src/app/core/services/biome-type.service';
+import { BiomeTypeService } from 'src/app/core/services/api-services/biome-type.service';
 
 describe('BiomeserviceService', () => {
   let service: BiomeTypeService;

@@ -4,8 +4,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
 import { environmentVariables } from 'src/environments/variables';
-
-import { IEncounter } from '../models/IEncounter';
+import { IEncounter } from '../../models/IEncounter';
 
 
 @Injectable({
@@ -14,7 +13,6 @@ import { IEncounter } from '../models/IEncounter';
 export class EncounterService {
 
   constructor(private http: HttpClient) {
-      console.log('Constructing EncounterService, including HttpClient') 
   }
 
   getRandomEncounter(BiomeType: string): Observable<IEncounter> {
