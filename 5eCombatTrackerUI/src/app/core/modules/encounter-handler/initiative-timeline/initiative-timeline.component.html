@@ -1,6 +1,5 @@
-<h2>{{encounterName}}</h2>
-
 <div *ngIf="this.displayEncounter" class="initiative-container">
+    <h2>{{encounterName}}</h2>
     <div class="flex-container">
         <div class="flex-child" *ngFor="let monster of monsters">
             <div> {{ monster.name }} </div>

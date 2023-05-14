@@ -16,7 +16,7 @@ export class EncounterSetupComponent {
               private encounterHandlerService: EncounterHandlerService) { }
 
   @Output("reset") reset: EventEmitter<any> = new EventEmitter;
-  @Output("encounterReady") encounterReady: EventEmitter<boolean> = new EventEmitter; 
+  @Output("displayEncounterChanged") displayEncounterChanged: EventEmitter<boolean> = new EventEmitter; 
   @Output("encounterNameSet") encounterNameSet: EventEmitter<string> = new EventEmitter; 
 
   public biomeTypes: string[] = [];
@@ -44,12 +44,12 @@ export class EncounterSetupComponent {
     let encounter = await firstValueFrom(this.encounterService.getRandomEncounter(this.biomeType));
     await this.encounterHandlerService.setupMonsterData(encounter.monsters);
 
-    this.encounterReady.emit(true);
+    this.displayEncounterChanged.emit(true);
     this.encounterNameSet.emit(encounter.name);
   }
 
   async encounterReset(): Promise<void> {
-    this.encounterReady.emit(false);
+    this.displayEncounterChanged.emit(false);
     this.reset.emit();
   }  
 }

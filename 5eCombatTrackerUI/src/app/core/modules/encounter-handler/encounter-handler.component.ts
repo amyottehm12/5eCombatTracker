@@ -37,7 +37,7 @@ export class EncounterHandlerComponent {
     this.roundHandlerChild.roundReset();
   }
 
-  encounterReady(displayEncounter: boolean) {
+  displayEncounterChanged(displayEncounter: boolean) {
     this.displayEncounter = displayEncounter;
   }
 

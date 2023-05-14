@@ -2,7 +2,7 @@
     <div>
         <app-encounter-setup
         (reset)="reset()"
-        (encounterReady)="encounterReady($event)"
+        (displayEncounterChanged)="displayEncounterChanged($event)"
         (encounterNameSet)="encounterNameSet($event)">
         </app-encounter-setup>
     </div>
@@ -10,7 +10,8 @@
     <div>
         <app-initiative-timeline
         [encounterName]="encounterName"
-        [displayEncounter]="displayEncounter">
+        [displayEncounter]="displayEncounter"
+        (displayEncounterChanged)="displayEncounterChanged($event)">
         </app-initiative-timeline>
     </div>
     

@@ -3,33 +3,20 @@ import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 
 import { IMonster } from '../models/IMonster';
 
-import { EncounterService } from './api-services/encounter.service';
 import { MonsterService } from './api-services/monster.service';
 import { MonsterAttackService } from './api-services/monster-attack.service';
 import { DieRoller } from '../shared-helpers/die-roller';
-import { IEncounter } from '../models/IEncounter';
+import { MonsterObservable } from './abstract-observables/monster-observable';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EncounterHandlerService {
-
-    public monsters: Observable<IMonster[]> = new Observable<IMonster[]>;
-    private _monsters: BehaviorSubject<IMonster[]> = new BehaviorSubject<IMonster[]>([]);
-    private _internalMonsters: IMonster[] = [];
+export class EncounterHandlerService extends MonsterObservable{
 
     constructor(private monsterService: MonsterService,
                 private monsterAttackService: MonsterAttackService,
                 private dieRoller: DieRoller) {
-          this.monsters = this._monsters.asObservable();
-    }
-
-    public getMonsters(): Observable<IMonster[]> {
-        return this.monsters;
-    }   
-
-    private setMonsters(): void {
-        this._monsters.next(this._internalMonsters);
+          super();
     }
 
     public async setupMonsterData(monsterNames: string[]): Promise<void> {
@@ -80,7 +67,7 @@ export class EncounterHandlerService {
     }
 
     public async removeMonster(id: number): Promise<void> {
-        delete this._internalMonsters[this._internalMonsters.findIndex(x => x.id == id)];
+        this._internalMonsters.splice(this._internalMonsters.findIndex(x => x.id == id), 1);
         this.setMonsters();
     }
 
