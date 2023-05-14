@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { IMonster } from 'src/app/core/models/IMonster';
+import { CombatLogService } from 'src/app/core/services/combat-log.service';
 import { EncounterHandlerService } from 'src/app/core/services/encounter-handler.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class RoundHandlerComponent {
   public activationReady: boolean = false;
   private firstRound: boolean = true;
 
-  constructor(private encounterHandler: EncounterHandlerService) {
+  constructor(private encounterHandler: EncounterHandlerService,
+              private logService: CombatLogService) {
     this.getMonsters();
   }
 
@@ -40,7 +42,7 @@ export class RoundHandlerComponent {
     else if (!this.firstRound) {
       this.currentTurn ++;
     }
-
+    
     if (this.firstRound) this.firstRound = false;
     else {
       this.encounterHandler.shiftMonsters();
@@ -57,6 +59,15 @@ export class RoundHandlerComponent {
     this.activationReady = false;
     this.currentRound = 1;
   }
+
+  public setLogs(monsterData: IMonster) {
+    this.logService.logPush(
+      monsterData.name + " " +
+      "attack " + this.currentRound + " " +
+      monsterData.attacks.weaponName + " " +
+      monsterData.attacks.damageResult
+    );
+}
 
 
 }

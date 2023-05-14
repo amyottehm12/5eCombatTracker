@@ -30,6 +30,10 @@ export class InitiativeTimelineComponent {
     })
   }
 
+  getURL(url: string) {
+    return url;
+  }
+
   async onSelected(data:string, id:string): Promise<void> {
     if (data === "0") await this.encounterHandler.removeMonster(parseInt(id));
   }

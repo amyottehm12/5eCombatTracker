@@ -1,7 +1,7 @@
 <div *ngIf="this.displayEncounter" class="initiative-container">
     <h2>{{encounterName}}</h2>
     <div class="flex-container">
-        <div class="flex-child" *ngFor="let monster of monsters">
+        <div class="flex-child" *ngFor="let monster of monsters" [style.background-image]="'url('+monster.imageURL+')'">
             <div> {{ monster.name }} </div>
             <div> {{ monster.initiative }} </div>
             <div> id: {{ monster.id }} </div>

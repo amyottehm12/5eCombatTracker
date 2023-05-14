@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 import { IMonster } from '../models/IMonster';
 
 import { MonsterService } from './api-services/monster.service';
 import { MonsterAttackService } from './api-services/monster-attack.service';
+import { CombatLogService } from './combat-log.service';
 import { DieRoller } from '../shared-helpers/die-roller';
-import { MonsterObservable } from './abstract-observables/monster-observable';
+import { Observables } from './observables';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EncounterHandlerService extends MonsterObservable{
+export class EncounterHandlerService extends Observables {
 
     constructor(private monsterService: MonsterService,
                 private monsterAttackService: MonsterAttackService,
@@ -21,12 +22,13 @@ export class EncounterHandlerService extends MonsterObservable{
 
     public async setupMonsterData(monsterNames: string[]): Promise<void> {
         await this.resetMonsters();
-
+        
         for (let i = 0; i < monsterNames.length; i++) {
             let response = await firstValueFrom(this.monsterService.getMonsterData(monsterNames[i]));
             response.initiative = await this.dieRoller.rollDie(20, 0);
             response.currentHp = response.hp;
             response.id = i;
+            response.imageURL = "assets/monster-images/" + response.name + ".png";
             this._internalMonsters.push(response);
         }
 

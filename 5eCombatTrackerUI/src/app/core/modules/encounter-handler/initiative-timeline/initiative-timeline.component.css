@@ -1,7 +1,7 @@
 .initiative-container {
     border: 2px solid rebeccapurple;
     padding: 20px;
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
 .flex-container {
@@ -14,4 +14,6 @@
     border: 2px solid red;
     padding: 20px;
     margin: 20px;
+    height: 500px;
+    background-repeat: no-repeat;
 }  

@@ -15,6 +15,7 @@ import { EncounterSetupComponent } from './core/modules/encounter-handler/encoun
 import { AdminComponent } from './core/modules/admin/admin.component';
 import { MonsterDetailsComponent } from './core/modules/encounter-handler/initiative-timeline/monster-details/monster-details.component';
 import { MonsterDetailsModalComponent } from './core/modules/encounter-handler/initiative-timeline/monster-details/monster-details-modal/monster-details-modal.component';
+import { CombatLogComponent } from './core/modules/encounter-handler/round-handler/combat-log/combat-log.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MonsterDetailsModalComponent } from './core/modules/encounter-handler/i
     InitiativeTimelineComponent,
     EncounterSetupComponent,
     AdminComponent,
-    MonsterDetailsModalComponent
+    MonsterDetailsModalComponent,
+    CombatLogComponent
   ],
   imports: [
     BrowserModule,

@@ -8,4 +8,5 @@ export interface IMonster {
     ac: number;
     initiative: number;
     attacks: IMonsterAttack;
+    imageURL: string;
 }
