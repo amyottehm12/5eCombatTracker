@@ -1,5 +1,7 @@
 ﻿using _5eCombatTracker.Data.Helpers;
 using _5eCombatTracker.Data.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace _5eCombatTracker.Data.Seeder
 {
@@ -20,14 +22,13 @@ namespace _5eCombatTracker.Data.Seeder
             {
                 string root = _environment.ContentRootPath;
                 string filePath = Path.GetFullPath(Path.Combine(root, "Data/CSVSeedData", "monster_attacks.csv"));
-                List<MonsterAttacks> attacks = File.ReadAllLines(filePath).Select(x => MonsterAttacks.FromCsv(x)).ToList();
+                List<MonsterAttack> attacks = File.ReadAllLines(filePath).Select(x => MonsterAttack.FromCsv(x)).ToList();
 
-                foreach (MonsterAttacks attack in attacks)
+                foreach (MonsterAttack attack in attacks)
                 {
                     _dataContext.MonsterAttacks
                        .Add(attack);
                 }
-
                 _dataContext.SaveChanges();
             }
             catch (Exception ex) { throw ex; }

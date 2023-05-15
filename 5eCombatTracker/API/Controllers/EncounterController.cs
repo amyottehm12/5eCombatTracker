@@ -8,25 +8,25 @@ using static _5eCombatTracker.Data.Enums;
 namespace _5eCombatTracker.API.Controllers
 { 
     [ApiController]
-    public class RandomEncounterController : ControllerBase
+    public class EncounterController : ControllerBase
     {
         private readonly IEncounterService _encounterService;
-        public RandomEncounterController(IEncounterService encounterService)
+        public EncounterController(IEncounterService encounterService)
         {
             _encounterService = encounterService;
         }
 
         [HttpGet]
-        [Route("api/[controller]/[action]/{BiomeType}")]
-        public async Task<IActionResult> GetRandomEncounter(BiomeTypeEnum BiomeType = BiomeTypeEnum.Dungeon)
+        [Route("random")]
+        public async Task<IActionResult> GetRandomEncounter(BiomeTypeEnum biomeType = BiomeTypeEnum.Dungeon)
         {
             try
             {
-                var responseData = await _encounterService.GetRandomEncounter(BiomeType);
+                var responseData = await _encounterService.GetRandomEncounter(biomeType);
                 if (responseData == null) { return StatusCode(StatusCodes.Status404NotFound); }
                 return Ok(responseData);
             }
-            catch
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }

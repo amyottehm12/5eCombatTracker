@@ -22,39 +22,34 @@ namespace _5eCombatTracker.API.Services
 
                 mc.CreateMap<Monster, string>()
                 .ConvertUsing(m => m.Name);
-
-                mc.CreateMap<MonsterAttacks, MonsterAttackDTO>();
             });
         }
 
-
-        public async Task<MonsterDTO> GetMonster(string name)
+        public async Task<MonsterDTO> GetMonsterById(int id)
         {
-            MonsterDTO monster = await _dataContext.Monster
+            MonsterDTO monster = await _dataContext.Monsters
                 .ProjectTo<MonsterDTO>(_mapperConfiguration)
-                .FirstOrDefaultAsync(m => m.Name == name.ToLower());
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            return monster;
+        }
+
+        public async Task<MonsterDTO> GetMonsterByName(string name)
+        {
+            MonsterDTO monster = await _dataContext.Monsters
+                .ProjectTo<MonsterDTO>(_mapperConfiguration)
+                .FirstOrDefaultAsync(m => m.Name.ToLower() == name.ToLower());
 
             return monster;
         }
 
         public async Task<List<string>> GetAllMonsters()
         {
-            List<string> monsters = await _dataContext.Monster
+            List<string> monsters = await _dataContext.Monsters
                 .ProjectTo<string>(_mapperConfiguration)
                 .ToListAsync();
 
             return monsters;
-        }
-
-        public async Task<MonsterAttackDTO> GetRandomMonsterAttack(string monster)
-        {
-            MonsterAttackDTO monsterAttack = await _dataContext.MonsterAttacks
-                .Where(x => x.MonsterId.Name == monster)
-                .ProjectTo<MonsterAttackDTO>(_mapperConfiguration)
-                .OrderBy(x => Guid.NewGuid())
-                .FirstOrDefaultAsync();
-
-            return monsterAttack;
         }
     }
 }

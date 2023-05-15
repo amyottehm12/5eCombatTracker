@@ -3,18 +3,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace _5eCombatTracker.Data.Models
 {
-    public class MonsterAttacks
+    [Table("MonsterAttack", Schema = "public")]
+    public class MonsterAttack
     {
         [Key]
         public int Id { get; set; }
         [ForeignKey("Monster")]
-        public Monster MonsterId { get; set; }
+        public int MonsterId { get; set; }
         public string WeaponName { get; set; }
         public int? HitRoll { get; set; }
         public int DamageDie { get; set; }
         public int DamageBonus { get; set; }
         public string ExtraEffect { get; set; }
         public List<string> DescriptionSet { get; set; }
+
+        public virtual Monster Monster { get; set; }
+
 
         //a FK int to monster personality types, allowing for new attacks?
         //Is an arcanist a personality? for additional spells?
@@ -23,11 +27,11 @@ namespace _5eCombatTracker.Data.Models
         //a bool for enchanted values?
         //can i make this more interesting then just converting damage into some elemental type?
 
-        public static MonsterAttacks FromCsv(string csvLine)
+        public static MonsterAttack FromCsv(string csvLine)
         {
             string[] data = csvLine.Split(',');
-            MonsterAttacks attack = new MonsterAttacks();
-            attack.MonsterId = (data[0] == null) ? new Monster(data[0]) : new Monster();
+            MonsterAttack attack = new MonsterAttack();
+            attack.MonsterId = int.TryParse(data[0], out int result) ? result : 0;
             attack.WeaponName = data[1];
             attack.HitRoll = Convert.ToInt32(data[2]);
             attack.DamageDie = Convert.ToInt32(data[3]);

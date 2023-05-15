@@ -15,8 +15,8 @@ export class MonsterService {
   constructor(private http: HttpClient) {
   }
 
-  getMonsterData(monster: string): Observable<IMonster> {
-    return this.http.get<IMonster>(environmentVariables.baseURL + 'api/Monster/GetMonsterByName/' + monster);
+  getMonsterData(monsterId: number): Observable<IMonster> {
+    return this.http.get<IMonster>(environmentVariables.baseURL + 'api/Monster/' + monsterId);
   }
 
 }

@@ -7,9 +7,9 @@ namespace _5eCombatTracker.Migrations
     {
         public override void Up()
         {
-            Create.Table("MonsterAttacks")
-               .WithColumn("Id").AsString().Identity().NotNullable().PrimaryKey()
-               .WithColumn("Monster").AsString().NotNullable().ForeignKey()
+            Create.Table("MonsterAttack")
+               .WithColumn("Id").AsInt32().Identity().NotNullable().PrimaryKey()
+               .WithColumn("MonsterId").AsInt32().NotNullable().ForeignKey()
                .WithColumn("WeaponName").AsString()
                .WithColumn("HitRoll").AsInt32().Nullable()
                .WithColumn("DamageDie").AsInt32()
@@ -18,8 +18,12 @@ namespace _5eCombatTracker.Migrations
                .WithColumn("DescriptionSet").AsCustom("TEXT[]");
 
             Create.ForeignKey()
-                .FromTable("MonsterAttacks").ForeignColumn("MonsterName")
-                .ToTable("Monster").PrimaryColumn("Name");
+                .FromTable("MonsterAttack").ForeignColumn("MonsterId")
+                .ToTable("Monster").PrimaryColumn("Id");
+
+            Create.ForeignKey()
+                .FromTable("MonsterGroup").ForeignColumn("MonsterId")
+                .ToTable("Monster").PrimaryColumn("Id");
         }
 
         public override void Down()

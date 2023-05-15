@@ -14,6 +14,6 @@ export class BiomeTypeService {
   }
 
   getAllBiomeTypes(): Observable<string[]> {
-    return this.http.get<string[]>(environmentVariables.baseURL + 'api/BiomeType/GetAllBiomes');
+    return this.http.get<string[]>(environmentVariables.baseURL + 'api/BiomeType');
   }
 }

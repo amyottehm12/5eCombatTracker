@@ -24,7 +24,7 @@ namespace _5eCombatTracker.API.Services
 
         public async Task<List<string>> GetAllBiomes()
         {
-            List<string> biomeTypes = await _dataContext.BiomeType
+            List<string> biomeTypes = await _dataContext.BiomeTypes
                 .ProjectTo<string>(_mapperConfiguration)
                 .ToListAsync();
 

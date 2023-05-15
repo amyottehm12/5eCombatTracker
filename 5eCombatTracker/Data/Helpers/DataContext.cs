@@ -17,10 +17,12 @@ namespace _5eCombatTracker.Data.Helpers
             optionsBuilder.UseNpgsql(_configuration.GetConnectionString("5eCombatTracker"));
         }
 
-        public DbSet<Monster> Monster { get; set; }
-        public DbSet<BiomeType> BiomeType { get; set; }
-        public DbSet<RandomEncounter> RandomEncounter { get; set; }
-        public DbSet<MonsterAttacks> MonsterAttacks { get; set; }
+        public DbSet<Monster> Monsters { get; set; }
+        public DbSet<MonsterGroup> MonsterGroups { get; set; }
+
+        public DbSet<BiomeType> BiomeTypes { get; set; }
+        public DbSet<Encounter> Encounters { get; set; }
+        public DbSet<MonsterAttack> MonsterAttacks { get; set; }
 
     }
 }

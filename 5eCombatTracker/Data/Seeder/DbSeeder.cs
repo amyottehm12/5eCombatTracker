@@ -16,7 +16,7 @@ namespace _5eCombatTracker.Data.Seeder
         public void Seed()
         {
             _dataContext.Database.EnsureCreated();
-            if (!_dataContext.Monster.Any())
+            if (!_dataContext.Monsters.Any())
             {
                 var MonsterSeeder = new MonsterSeeder(_dataContext, _environment);
                 MonsterSeeder.Seed();

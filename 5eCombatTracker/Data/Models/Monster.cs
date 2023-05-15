@@ -4,9 +4,11 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace _5eCombatTracker.Data.Models
 {
+    [Table("Monster", Schema = "public")]
     public class Monster
     {
         [Key]
+        public int Id { get; set; }
         public string? Name { get; set; }
         public string? URL { get; set; }
         public string? CR { get; set; }

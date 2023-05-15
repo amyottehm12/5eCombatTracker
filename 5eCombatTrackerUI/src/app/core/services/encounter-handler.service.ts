@@ -28,7 +28,6 @@ export class EncounterHandlerService extends Observables {
             response.initiative = await this.dieRoller.rollDie(20, 0);
             response.currentHp = response.hp;
             response.id = i;
-            response.imageURL = "assets/monster-images/" + response.name + ".png";
             this._internalMonsters.push(response);
         }
 
@@ -54,7 +53,7 @@ export class EncounterHandlerService extends Observables {
 
     public async setMonsterAttack(): Promise<void> {
         const response = await firstValueFrom(
-            this.monsterAttackService.getMonsterAttack(this._internalMonsters[0].name)
+            this.monsterAttackService.getMonsterAttack(this._internalMonsters[0].id)
         );
         response.toHitResult = await this.dieRoller.rollDie(20, response.hitRoll);
         response.damageResult = await this.dieRoller.rollDie(response.damageDie, response.damageBonus);

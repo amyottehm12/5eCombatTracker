@@ -2,6 +2,7 @@
 {
     public class EncounterMonsterDTO
     {
-        public List<string> Monsters { get; set; }
+        public int Quantity { get; set; }
+        public MonsterDTO Monster { get; set; }
     }
 }
