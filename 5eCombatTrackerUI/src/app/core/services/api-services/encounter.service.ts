@@ -16,6 +16,6 @@ export class EncounterService {
   }
 
   getRandomEncounter(BiomeType: string): Observable<IEncounter> {
-    return this.http.get<IEncounter>(environmentVariables.baseURL + 'api/RandomEncounter/GetRandomEncounter/' + BiomeType);
+    return this.http.get<IEncounter>(environmentVariables.baseURL + 'api/Encounter/random/?biomeType=' + BiomeType);
   }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace _5eCombatTracker.API.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class BiomeTypeController : ControllerBase
     {
@@ -12,8 +13,13 @@ namespace _5eCombatTracker.API.Controllers
             _biomeService = biomeService;
         }
 
+        /// <summary>
+        /// Retrieves all biome types as a string list
+        /// </summary>
+        /// <response code="200">Biome types retreived successfully</response>
+        /// <response code="404">No biome types found</response>
+        /// <response code="500">Something went wrong retrieving biome types</response>
         [HttpGet]
-        [Route("api/[controller]/[action]")]
         public async Task<IActionResult> GetAllBiomes()
         {
             try 

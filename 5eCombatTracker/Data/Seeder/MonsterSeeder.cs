@@ -24,7 +24,7 @@ namespace _5eCombatTracker.Data.Seeder
 
                 foreach (Monster monster in monsters)
                 {
-                    _dataContext.Monster
+                    _dataContext.Monsters
                        .Add(monster);
                 }
                     _dataContext.SaveChanges();

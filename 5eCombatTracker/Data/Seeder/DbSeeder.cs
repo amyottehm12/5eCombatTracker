@@ -16,7 +16,7 @@ namespace _5eCombatTracker.Data.Seeder
         public void Seed()
         {
             _dataContext.Database.EnsureCreated();
-            if (!_dataContext.Monster.Any())
+            if (!_dataContext.Monsters.Any())
             {
                 var MonsterSeeder = new MonsterSeeder(_dataContext, _environment);
                 MonsterSeeder.Seed();
@@ -27,6 +27,20 @@ namespace _5eCombatTracker.Data.Seeder
                 var MonsterAttackSeeder = new MonsterAttackSeeder(_dataContext, _environment);
                 MonsterAttackSeeder.Seed();
             }
+
+            if (!_dataContext.MonsterGroups.Any())
+            {
+                var MonsterGroupSeeder = new MonsterGroupSeeder(_dataContext, _environment);
+                MonsterGroupSeeder.Seed();
+            }
+
+            if (!_dataContext.Encounters.Any())
+            {
+                var EncounterSeeder = new EncounterSeeder(_dataContext, _environment);
+                EncounterSeeder.Seed();
+            }
+
+
         }
     }
 }

@@ -27,7 +27,7 @@ export class InitiativeTimelineComponent {
         this.displayEncounter = false;
         this.displayEncounterChanged.emit(false);
       }
-    })
+    });
   }
 
   getURL(url: string) {

@@ -4,8 +4,8 @@
         <div class="flex-child" *ngFor="let monster of monsters" [style.background-image]="'url('+monster.imageURL+')'">
             <div> {{ monster.name }} </div>
             <div> {{ monster.initiative }} </div>
-            <div> id: {{ monster.id }} </div>
-            <div><input #monsterHp id={{monster.id}} type="number" min="0" max={{monster.hp}} value={{monster.hp}}
+            <div> id: {{ monster.generatedMonsterIdentifier }} </div>
+            <div><input #monsterHp id={{monster.generatedMonsterIdentifier}} type="number" min="0" max={{monster.hp}} value={{monster.hp}}
                     (change)="onSelected(monsterHp.value, monsterHp.id)"></div>
         </div>
     </div>

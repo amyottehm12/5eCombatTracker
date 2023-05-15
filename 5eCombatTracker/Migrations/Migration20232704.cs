@@ -9,7 +9,8 @@ namespace _5eCombatTracker.Migrations
         public override void Up()
         {
             Create.Table("Monster")
-                .WithColumn("Name").AsString().NotNullable().PrimaryKey()
+                .WithColumn("Id").AsInt32().Identity().PrimaryKey()
+                .WithColumn("Name").AsString().NotNullable()
                 .WithColumn("URL").AsString()
                 .WithColumn("CR").AsString()
                 .WithColumn("Type").AsString()
@@ -37,16 +38,22 @@ namespace _5eCombatTracker.Migrations
                 .Row(new { Name = "Mountains", Description = "Mountains" })
                 .Row(new { Name = "Dungeon", Description = "Dungeon" });
 
-            Create.Table("RandomEncounter")
-                .WithColumn("Id").AsInt32().Identity().PrimaryKey()
-                .WithColumn("BiomeType").AsInt32().ForeignKey()
-                .WithColumn("Name").AsString()
-                .WithColumn("MonsterGroup").AsCustom("TEXT[]");
+            Create.Table("MonsterGroup")
+                .WithColumn("MonsterGroupId").AsInt32().Identity().PrimaryKey()
+                .WithColumn("MonsterId").AsInt32().ForeignKey().PrimaryKey()
+                .WithColumn("Quantity").AsInt32().NotNullable();
 
-            Insert.IntoTable("RandomEncounter")
-                .Row(new { BiomeType = 3, Name = "The Zombies", MonsterGroup = "{ Zombie, Zombie, Zombie }" })
-                .Row(new { BiomeType = 3, Name = "The Skeletons", MonsterGroup = "{ Skeleton, Skeleton, Skeleton }"})
-                .Row(new { BiomeType = 3, Name = "Undead Mix", MonsterGroup = "{ Skeleton, Zombie, Zombie }" });
+            Create.Table("Encounter")
+                .WithColumn("EncounterId").AsInt32().Identity().PrimaryKey()
+                .WithColumn("BiomeTypeId").AsInt32().ForeignKey()
+                .WithColumn("Name").AsString()
+                .WithColumn("MonsterGroupId").AsInt32().ForeignKey();
+
+
+            //Insert.IntoTable("Encounter")
+            //    .Row(new { BiomeType = 3, Name = "The Zombies", MonsterGroupId = 1 })
+            //    .Row(new { BiomeType = 3, Name = "The Skeletons", MonsterGroupId = 2 })
+            //    .Row(new { BiomeType = 3, Name = "Undead Mix", MonsterGroupId = 3 });
         }
 
         public override void Down()

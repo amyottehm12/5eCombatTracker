@@ -3,19 +3,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace _5eCombatTracker.Data.Models
 {
-    public class MonsterAttacks
+    [Table("MonsterAttack", Schema = "public")]
+    public class MonsterAttack
     {
         [Key]
         public int Id { get; set; }
         [ForeignKey("Monster")]
-        public string MonsterId { get; set; }
-        public Monster Monster { get; set; }
+        public int MonsterId { get; set; }
         public string WeaponName { get; set; }
         public int? HitRoll { get; set; }
         public int DamageDie { get; set; }
         public int DamageBonus { get; set; }
         public string ExtraEffect { get; set; }
         public List<string> DescriptionSet { get; set; }
+
+        public virtual Monster Monster { get; set; }
+
 
         //a FK int to monster personality types, allowing for new attacks?
         //Is an arcanist a personality? for additional spells?

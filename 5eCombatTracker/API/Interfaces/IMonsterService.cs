@@ -4,9 +4,8 @@ namespace _5eCombatTracker.API.Interfaces
 {
     public interface IMonsterService
     {
-        public Task<MonsterDTO> GetMonster(string name);
+        public Task<MonsterDTO> GetMonsterById(int id);
+        public Task<MonsterDTO> GetMonsterByName(string name);
         public Task<List<string>> GetAllMonsters();
-        public Task<MonsterAttackDTO> GetRandomMonsterAttack(string monsterName);
-
     }
 }

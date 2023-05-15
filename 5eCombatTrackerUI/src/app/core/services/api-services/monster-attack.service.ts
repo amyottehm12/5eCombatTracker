@@ -15,7 +15,7 @@ export class MonsterAttackService {
   constructor(private http: HttpClient) {
   }
 
-  getMonsterAttack(monsterName: string): Observable<IMonsterAttack> {
-    return this.http.get<IMonsterAttack>(environmentVariables.baseURL + 'api/Monster/GetRandomMonsterAttack/' + monsterName);
+  getMonsterAttack(monsterId: number): Observable<IMonsterAttack> {
+    return this.http.get<IMonsterAttack>(environmentVariables.baseURL + 'api/MonsterAttack/random/?id=' + monsterId);
   }
 }
