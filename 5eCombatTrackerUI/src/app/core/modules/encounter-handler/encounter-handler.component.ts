@@ -3,7 +3,6 @@ import { Component, ViewChild } from '@angular/core';
 import { IMonster } from 'src/app/core/models/IMonster';
 
 import { InitiativeTimelineComponent } from './initiative-timeline/initiative-timeline.component';
-import { EncounterHandlerService } from '../../services/encounter-handler.service';
 import { RoundHandlerComponent } from './round-handler/round-handler.component';
 
 @Component({
@@ -20,18 +19,6 @@ export class EncounterHandlerComponent {
   public monsters: IMonster[] = [];
 
   public displayEncounter: boolean = false;
-
-  constructor(private encounterHandler: EncounterHandlerService) {
-    this.getMonsters();
-  }
-
-  getMonsters(): void {
-    this.encounterHandler.getMonsters()
-    .subscribe((data: IMonster[]) =>
-    {
-      this.monsters = data
-    })
-  }
 
   reset() {
     this.roundHandlerChild.roundReset();

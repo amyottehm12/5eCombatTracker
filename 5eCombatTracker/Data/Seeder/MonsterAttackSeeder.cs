@@ -23,7 +23,7 @@ namespace _5eCombatTracker.Data.Seeder
             {
                 string root = _environment.ContentRootPath;
                 string filePath = Path.GetFullPath(Path.Combine(root, "Data/CSVSeedData", "monster_attacks.csv"));
-                List<MonsterAttacks> attacks = File.ReadAllLines(filePath).Select(x => FromCsv(x)).ToList();
+                List<MonsterAttack> attacks = File.ReadAllLines(filePath).Select(x => FromCsv(x)).ToList();
 
                 foreach (MonsterAttack attack in attacks)
                 {
@@ -35,12 +35,12 @@ namespace _5eCombatTracker.Data.Seeder
             catch (Exception ex) { throw ex; }
         }
 
-        private MonsterAttacks FromCsv(string csvLine)
+        private MonsterAttack FromCsv(string csvLine)
         {
             string[] data = csvLine.Split(',');
-            Monster monster = _dataContext.Monster.FirstOrDefault(m => m.Name == data[0]);
-            MonsterAttacks attack = new MonsterAttacks();
-            attack.MonsterId = data[0];
+            Monster monster = _dataContext.Monsters.FirstOrDefault(m => m.Name == data[0]);
+            MonsterAttack attack = new MonsterAttack();
+            attack.MonsterId = monster.Id;
             attack.Monster = monster;
             attack.WeaponName = data[1];
             attack.HitRoll = Convert.ToInt32(data[2]);
