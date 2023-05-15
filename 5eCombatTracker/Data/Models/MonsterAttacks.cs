@@ -26,20 +26,5 @@ namespace _5eCombatTracker.Data.Models
 
         //a bool for enchanted values?
         //can i make this more interesting then just converting damage into some elemental type?
-
-        public static MonsterAttack FromCsv(string csvLine)
-        {
-            string[] data = csvLine.Split(',');
-            MonsterAttack attack = new MonsterAttack();
-            attack.MonsterId = int.TryParse(data[0], out int result) ? result : 0;
-            attack.WeaponName = data[1];
-            attack.HitRoll = Convert.ToInt32(data[2]);
-            attack.DamageDie = Convert.ToInt32(data[3]);
-            attack.DamageBonus = Convert.ToInt32(data[4]);
-            attack.ExtraEffect = data[5];
-            attack.DescriptionSet = new List<string> { data[6] };
-
-            return attack;
-        }
     }
 }

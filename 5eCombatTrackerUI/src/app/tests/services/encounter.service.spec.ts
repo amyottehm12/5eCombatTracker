@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EncounterService } from 'src/app/core/services/encounter.service';
+import { EncounterService } from 'src/app/core/services/api-services/encounter.service';
 
 describe('EncounterService', () => {
   let service: EncounterService;
