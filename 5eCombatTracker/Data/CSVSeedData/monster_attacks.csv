@@ -1,6 +1,6 @@
-1,"Bite",3,4,1,"Saving throw vs con for disease","{}"
-1,"Acid Spit",3,4,2,"Saving throw vs con for 2 acid damage","{}"
-1,"Graple",1,0,0,"Saving throw vs str for prone","{}"
-2,"Shortsword",4,6,2,"none","{}"
-2,"Skeletal claw",4,6,2,"none","{}"
-2,"shortbow",4,4,2,"none","{}"
+1,Bite,3,4,1,Saving throw vs con for disease,{}
+1,Acid Spit,3,4,2,Saving throw vs con for 2 acid damage,{}
+1,Graple,1,0,0,Saving throw vs str for prone,{}
+2,Shortsword,4,6,2,none,{}
+2,Skeletal claw,4,6,2,none,{}
+2,shortbow,4,4,2,none,{}
