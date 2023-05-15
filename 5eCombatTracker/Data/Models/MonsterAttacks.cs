@@ -8,7 +8,8 @@ namespace _5eCombatTracker.Data.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey("Monster")]
-        public Monster MonsterId { get; set; }
+        public string MonsterId { get; set; }
+        public Monster Monster { get; set; }
         public string WeaponName { get; set; }
         public int? HitRoll { get; set; }
         public int DamageDie { get; set; }
@@ -22,20 +23,5 @@ namespace _5eCombatTracker.Data.Models
 
         //a bool for enchanted values?
         //can i make this more interesting then just converting damage into some elemental type?
-
-        public static MonsterAttacks FromCsv(string csvLine)
-        {
-            string[] data = csvLine.Split(',');
-            MonsterAttacks attack = new MonsterAttacks();
-            attack.MonsterId = (data[0] == null) ? new Monster(data[0]) : new Monster();
-            attack.WeaponName = data[1];
-            attack.HitRoll = Convert.ToInt32(data[2]);
-            attack.DamageDie = Convert.ToInt32(data[3]);
-            attack.DamageBonus = Convert.ToInt32(data[4]);
-            attack.ExtraEffect = data[5];
-            attack.DescriptionSet = new List<string> { data[6] };
-
-            return attack;
-        }
     }
 }

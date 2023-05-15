@@ -9,7 +9,7 @@ namespace _5eCombatTracker.Migrations
         {
             Create.Table("MonsterAttacks")
                .WithColumn("Id").AsString().Identity().NotNullable().PrimaryKey()
-               .WithColumn("Monster").AsString().NotNullable().ForeignKey()
+               .WithColumn("MonsterId").AsString().NotNullable().ForeignKey()
                .WithColumn("WeaponName").AsString()
                .WithColumn("HitRoll").AsInt32().Nullable()
                .WithColumn("DamageDie").AsInt32()
@@ -18,7 +18,7 @@ namespace _5eCombatTracker.Migrations
                .WithColumn("DescriptionSet").AsCustom("TEXT[]");
 
             Create.ForeignKey()
-                .FromTable("MonsterAttacks").ForeignColumn("MonsterName")
+                .FromTable("MonsterAttacks").ForeignColumn("MonsterId")
                 .ToTable("Monster").PrimaryColumn("Name");
         }
 

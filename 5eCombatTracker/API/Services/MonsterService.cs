@@ -49,7 +49,7 @@ namespace _5eCombatTracker.API.Services
         public async Task<MonsterAttackDTO> GetRandomMonsterAttack(string monster)
         {
             MonsterAttackDTO monsterAttack = await _dataContext.MonsterAttacks
-                .Where(x => x.MonsterId.Name == monster)
+                .Where(x => x.Monster.Name == monster)
                 .ProjectTo<MonsterAttackDTO>(_mapperConfiguration)
                 .OrderBy(x => Guid.NewGuid())
                 .FirstOrDefaultAsync();

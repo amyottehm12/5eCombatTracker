@@ -1,6 +1,6 @@
-"zombie","Bite",3,4,1,"Saving throw vs con for disease","{}"
-"zombie","Acid Spit",3,4,2,"Saving throw vs con for 2 acid damage","{}"
-"zombie","Graple",1,0,0,"Saving throw vs str for prone","{}"
-"skeleton","Shortsword",4,6,2,"none","{}"
-"skeleton","Skeletal claw",4,6,2,"none","{}"
-"skeleton","shortbow",4,4,2,"none","{}"
+zombie,Bite,3,4,1,Saving throw vs con for disease,{}
+zombie,Acid Spit,3,4,2,Saving throw vs con for 2 acid damage,{}
+zombie,Graple,1,0,0,Saving throw vs str for prone,{}
+skeleton,Shortsword,4,6,2,none,{}
+skeleton,Skeletal claw,4,6,2,none,{}
+skeleton,shortbow,4,4,2,none,{}
