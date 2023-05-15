@@ -1,3 +1,5 @@
+import { IMonster } from "./IMonster";
+
 export interface IEncounter {
     name: string;
     monsters: IMonsterEncounter[];

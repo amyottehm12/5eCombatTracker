@@ -8,6 +8,8 @@ import { MonsterAttackService } from './api-services/monster-attack.service';
 import { CombatLogService } from './combat-log.service';
 import { DieRoller } from '../shared-helpers/die-roller';
 import { Observables } from './observables';
+import { IMonsterEncounter } from '../models/IEncounter';
+import { environmentVariables } from 'src/environments/variables';
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +22,18 @@ export class EncounterHandlerService extends Observables {
           super();
     }
 
-    public async setupMonsterData(monsterNames: string[]): Promise<void> {
+    public async setupMonsterData(monsterEncounter: IMonsterEncounter[]): Promise<void> {
         await this.resetMonsters();
-        
-        for (let i = 0; i < monsterNames.length; i++) {
-            let response = await firstValueFrom(this.monsterService.getMonsterData(monsterNames[i]));
-            response.initiative = await this.dieRoller.rollDie(20, 0);
-            response.currentHp = response.hp;
-            response.id = i;
-            this._internalMonsters.push(response);
+        let newMonster = null;
+        for (let i = 0; i < monsterEncounter.length; i++) {
+            for (let j = 1; j <= monsterEncounter[i].quantity; j++) {
+                newMonster = monsterEncounter[i].monster;
+                newMonster.initiative = await this.dieRoller.rollDie(20, 0);
+                newMonster.currentHp = newMonster.hp;
+                newMonster.generatedMonsterIdentifier = j;
+                newMonster.imageURL = this.generateImageURL(newMonster.name)
+                this._internalMonsters.push(newMonster);
+            }
         }
 
         await this.initiativeOrder();
@@ -70,6 +75,10 @@ export class EncounterHandlerService extends Observables {
     public async removeMonster(id: number): Promise<void> {
         this._internalMonsters.splice(this._internalMonsters.findIndex(x => x.id == id), 1);
         this.setMonsters();
+    }
+
+    private generateImageURL(name: string): string {
+        return environmentVariables.imageBaseURL + name.replace(' ', '-').toLowerCase() + '.png';
     }
 
 }

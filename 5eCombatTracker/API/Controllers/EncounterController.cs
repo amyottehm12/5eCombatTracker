@@ -6,7 +6,8 @@ using System.Xml.Linq;
 using static _5eCombatTracker.Data.Enums;
 
 namespace _5eCombatTracker.API.Controllers
-{ 
+{
+    [Route("api/[controller]")]
     [ApiController]
     public class EncounterController : ControllerBase
     {

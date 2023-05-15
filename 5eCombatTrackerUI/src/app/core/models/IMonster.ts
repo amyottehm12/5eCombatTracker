@@ -9,4 +9,5 @@ export interface IMonster {
     initiative: number;
     attacks: IMonsterAttack;
     imageURL: string;
+    generatedMonsterIdentifier: number;
 }
