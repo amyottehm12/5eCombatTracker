@@ -1,27 +1,23 @@
-﻿using _5eCombatTracker.API.Interfaces;
+﻿using _5eCombatTracker.API.Interfaces.Repositories;
+using _5eCombatTracker.API.Interfaces.Services;
 using _5eCombatTracker.Data.DTO;
-using _5eCombatTracker.Data.Helpers;
 using _5eCombatTracker.Data.Models;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Newtonsoft.Json;
 using static _5eCombatTracker.Data.Enums;
 
 namespace _5eCombatTracker.API.Services
 {
     public class EncounterService : IEncounterService
     {
-        public DataContext _dataContext;
+        private IEncounterRepository _encounterRepository;
+        private IMonsterGroupRepository _monsterGroupRepository;
         private readonly MapperConfiguration _mapperConfiguration;
-        public EncounterService(DataContext dataContext)
+        private Mapper _mapper;
+        public EncounterService(IEncounterRepository encounterRepository, IMonsterGroupRepository monsterGroupRepository)
         {
-            _dataContext = dataContext;
             _mapperConfiguration = new MapperConfiguration(mc =>
             {
                 mc.CreateMap<Encounter, EncounterDTO>();
-
                 mc.CreateMap<MonsterGroup, EncounterMonsterDTO>()
                     .ConvertUsing(monsterGroup => new EncounterMonsterDTO
                     {
@@ -34,24 +30,18 @@ namespace _5eCombatTracker.API.Services
                         Quantity = monsterGroup.Quantity
                     });
             });
+            _mapper = new Mapper(_mapperConfiguration);
+            _encounterRepository = encounterRepository;
+            _monsterGroupRepository = monsterGroupRepository;
         }
 
         public async Task<EncounterDTO> GetRandomEncounter(BiomeTypeEnum biomeType)
         {
-            var query = _dataContext.Encounters
-                .ProjectTo<EncounterDTO>(_mapperConfiguration)
-                .OrderBy(x => Guid.NewGuid());
-
-            var blah = query.ToQueryString();
-
-           
-            EncounterDTO encounter =  await query.FirstOrDefaultAsync();
-
-            encounter.Monsters = await _dataContext.MonsterGroups
-                .Where(x => x.MonsterGroupId == encounter.MonsterGroupId)
-                .ProjectTo<EncounterMonsterDTO>(_mapperConfiguration).ToListAsync();
-
-            return encounter;
+            Encounter encounter = await _encounterRepository.GetEncounterByBiomeNameRandom(biomeType.ToString());
+            EncounterDTO encounterDTO = _mapper.Map<Encounter, EncounterDTO>(encounter);
+            List<MonsterGroup> monsterGroup = await _monsterGroupRepository.GetMonsterGroupByMonsterGroupId(encounter.MonsterGroupId);
+            encounterDTO.Monsters = _mapper.Map<List<MonsterGroup>, List<EncounterMonsterDTO>>(monsterGroup);
+            return encounterDTO;
         }
     }
 }

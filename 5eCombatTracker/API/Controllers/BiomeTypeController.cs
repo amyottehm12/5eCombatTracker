@@ -1,4 +1,4 @@
-﻿using _5eCombatTracker.API.Interfaces;
+﻿using _5eCombatTracker.API.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _5eCombatTracker.API.Controllers

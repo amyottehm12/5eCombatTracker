@@ -1,4 +1,6 @@
-using _5eCombatTracker.API.Interfaces;
+using _5eCombatTracker.API.Interfaces.Repositories;
+using _5eCombatTracker.API.Interfaces.Services;
+using _5eCombatTracker.API.Repositories;
 using _5eCombatTracker.API.Services;
 using _5eCombatTracker.Data.Helpers;
 using _5eCombatTracker.Data.Seeder;
@@ -53,6 +55,11 @@ builder.Services.AddScoped<IMonsterService, MonsterService>();
 builder.Services.AddScoped<IMonsterAttackService, MonsterAttackService>();
 builder.Services.AddScoped<IEncounterService, EncounterService>();
 builder.Services.AddScoped<IBiomeTypeService, BiomeTypeService>();
+builder.Services.AddScoped<IBiomeTypeRepository, BiomeTypeRepository>();
+builder.Services.AddScoped<IMonsterRepository, MonsterRepository>();
+builder.Services.AddScoped<IMonsterAttackRepository, MonsterAttackRepository>();
+builder.Services.AddScoped<IMonsterGroupRepository, MonsterGroupRepository>();
+builder.Services.AddScoped<IEncounterRepository, EncounterRepository>();
 builder.Services.AddScoped<IDbSeeder, DbSeeder>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

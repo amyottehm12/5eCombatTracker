@@ -1,21 +1,18 @@
-﻿using _5eCombatTracker.API.Interfaces;
+﻿using _5eCombatTracker.API.Interfaces.Repositories;
+using _5eCombatTracker.API.Interfaces.Services;
 using _5eCombatTracker.Data.DTO;
-using _5eCombatTracker.Data.Helpers;
 using _5eCombatTracker.Data.Models;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
-using System.Xml.Linq;
 
 namespace _5eCombatTracker.API.Services
 {
     public class MonsterService : IMonsterService
     {
-        private DataContext _dataContext;
+        private IMonsterRepository _monsterRepository;
         private readonly MapperConfiguration _mapperConfiguration;
-        public MonsterService(DataContext dataContext)
+        private Mapper _mapper;
+        public MonsterService(IMonsterRepository monsterRepository)
         {
-            _dataContext = dataContext;
             _mapperConfiguration = new MapperConfiguration(mc =>
             {
                 mc.CreateMap<Monster, MonsterDTO>();
@@ -23,33 +20,26 @@ namespace _5eCombatTracker.API.Services
                 mc.CreateMap<Monster, string>()
                 .ConvertUsing(m => m.Name);
             });
+            _mapper = new Mapper(_mapperConfiguration);
+            _monsterRepository = monsterRepository;
         }
 
         public async Task<MonsterDTO> GetMonsterById(int id)
         {
-            MonsterDTO monster = await _dataContext.Monsters
-                .ProjectTo<MonsterDTO>(_mapperConfiguration)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            return monster;
+            Monster monster = await _monsterRepository.GetMonsterById(id);
+            return _mapper.Map<Monster, MonsterDTO>(monster);
         }
 
         public async Task<MonsterDTO> GetMonsterByName(string name)
         {
-            MonsterDTO monster = await _dataContext.Monsters
-                .ProjectTo<MonsterDTO>(_mapperConfiguration)
-                .FirstOrDefaultAsync(m => m.Name.ToLower() == name.ToLower());
-
-            return monster;
+            Monster monster = await _monsterRepository.GetMonsterByName(name);
+            return _mapper.Map<Monster, MonsterDTO>(monster);
         }
 
         public async Task<List<string>> GetAllMonsters()
         {
-            List<string> monsters = await _dataContext.Monsters
-                .ProjectTo<string>(_mapperConfiguration)
-                .ToListAsync();
-
-            return monsters;
+            List<Monster> monsters = await _monsterRepository.GetAllMonsters();
+            return _mapper.Map<List<Monster>, List<string>>(monsters);
         }
     }
 }

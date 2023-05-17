@@ -1,6 +1,6 @@
 ﻿using _5eCombatTracker.Data.DTO;
 
-namespace _5eCombatTracker.API.Interfaces
+namespace _5eCombatTracker.API.Interfaces.Services
 {
     public interface IMonsterService
     {

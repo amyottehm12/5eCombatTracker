@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using _5eCombatTracker.API.Interfaces;
 using _5eCombatTracker.Data.DTO;
+using _5eCombatTracker.API.Interfaces.Services;
 
 namespace _5eCombatTracker.API.Controllers
 {
