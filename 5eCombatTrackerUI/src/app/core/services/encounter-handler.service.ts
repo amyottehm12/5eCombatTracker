@@ -13,8 +13,6 @@ import { Observables } from './observables';
   providedIn: 'root'
 })
 export class EncounterHandlerService extends Observables {
-
-
     constructor(private monsterAttackService: MonsterAttackService,
                 private dieRoller: DieRoller) {
           super();
@@ -80,7 +78,7 @@ export class EncounterHandlerService extends Observables {
     }
 
     public async removeMonster(id: number): Promise<void> {
-        this._internalMonsters.splice(this._internalMonsters.findIndex(x => x.id == id), 1);
+        this._internalMonsters.splice(this._internalMonsters.findIndex(x => x.generatedMonsterIdentifier == id), 1);
         this.setMonsters();
     }
 

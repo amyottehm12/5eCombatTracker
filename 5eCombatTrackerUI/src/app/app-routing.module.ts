@@ -4,10 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EncounterHandlerComponent } from './core/modules/encounter-handler/encounter-handler.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: EncounterHandlerComponent
-  }
+  { path: '', component: EncounterHandlerComponent }
 ];
 
 @NgModule({
