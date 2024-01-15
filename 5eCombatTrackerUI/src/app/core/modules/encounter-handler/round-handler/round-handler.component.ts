@@ -4,6 +4,8 @@ import { IMonster } from 'src/app/core/models/IMonster';
 import { CombatLogService } from 'src/app/core/services/combat-log.service';
 import { EncounterHandlerService } from 'src/app/core/services/encounter-handler.service';
 
+
+
 @Component({
   selector: 'app-round-handler',
   templateUrl: './round-handler.component.html',
@@ -52,6 +54,11 @@ export class RoundHandlerComponent {
     
     this.currentMonster = this.monsters[0];
     this.activationReady = true;
+    this.writeAttackToLog(this.currentMonster);
+  }
+
+  async showLogModal(): Promise<void> {
+
   }
   
   async roundReset(): Promise<void> {
@@ -60,7 +67,7 @@ export class RoundHandlerComponent {
     this.currentRound = 1;
   }
 
-  public setLogs(monsterData: IMonster) {
+  public writeAttackToLog(monsterData: IMonster) {
     this.logService.logPush(
       monsterData.name + " " +
       "attack " + this.currentRound + " " +
