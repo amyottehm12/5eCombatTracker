@@ -21,7 +21,4 @@ export class MonsterDetailsComponent {
       this.currentMonster = data[0];
     })
   }
-
-
-
 }

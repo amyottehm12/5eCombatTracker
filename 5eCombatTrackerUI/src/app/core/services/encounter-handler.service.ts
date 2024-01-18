@@ -87,6 +87,11 @@ export class EncounterHandlerService extends Observables {
         this.setMonsters();
     }
 
+    public async setHealth(id: number, hp: number): Promise<void> {
+        this._internalMonsters[this._internalMonsters.findIndex(x => x.generatedMonsterIdentifier == id)].currentHp = hp;
+        this.setMonsters();
+    }
+
     public async removeMonster(id: number): Promise<void> {
         this._internalMonsters.splice(this._internalMonsters.findIndex(x => x.generatedMonsterIdentifier == id), 1);
         this.setMonsters();

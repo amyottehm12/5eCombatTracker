@@ -2,11 +2,16 @@
     <h2>{{encounterName}}</h2>
     <div class="flex-container">
         <div class="flex-child" *ngFor="let monster of monsters" [style.background-image]="'url('+monster.imageURL+')'">
-            <div> {{ monster.name }} </div>
-            <div> {{ monster.initiative }} </div>
-            <div> id: {{ monster.generatedMonsterIdentifier }} </div>
-            <div><input #monsterHp id={{monster.generatedMonsterIdentifier}} type="number" min="0" max={{monster.hp}} value={{monster.hp}}
-                    (change)="onSelected(monsterHp.value, monsterHp.id)"></div>
+            <div class="monster-info-snapshot-container">
+                <div> {{ monster.name }} </div>
+                <div> {{ monster.initiative }} </div>
+                <div> id: {{ monster.generatedMonsterIdentifier }} </div>
+                <div><input #monsterHp id={{monster.generatedMonsterIdentifier}} type="number" min="0" max={{monster.hp}} value={{monster.hp}}
+                        (change)="onSelected(monsterHp.value, monsterHp.id)"></div>    
+                <div class="monster-details-button-container">
+                    <button (click)="showMonsterDetailsModal(monster.generatedMonsterIdentifier)">Info</button>
+                </div>
+            </div>
         </div>
     </div>
     <app-monster-details></app-monster-details>
