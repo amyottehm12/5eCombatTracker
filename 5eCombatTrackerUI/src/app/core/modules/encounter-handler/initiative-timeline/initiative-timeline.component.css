@@ -17,3 +17,14 @@
     height: 500px;
     background-repeat: no-repeat;
 }  
+
+.monster-info-snapshot-container {
+    flex: 1;
+    border: 2px solid green;
+    width: 30%;
+}
+
+.monster-details-button-container {
+    margin-top: 25px;
+    margin-left: 25%;
+}

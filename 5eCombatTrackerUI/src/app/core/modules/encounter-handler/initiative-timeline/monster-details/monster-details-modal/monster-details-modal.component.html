@@ -1,1 +1,14 @@
-<p>monster-details-modal works!</p>
+<div class="monster-details-container">
+  <div mat-dialog-content>
+    <div class="monster-content">
+        <h1>{{ monster.name }} {{ monster.generatedMonsterIdentifier }}</h1>
+        <div>Initiative: {{ monster.initiative }} </div>
+        <div>{{ monster.currentHp }}/{{ monster.hp }}</div>
+        <div>AC: {{ monster.ac }}</div>
+        <!-- monster possible attacks ngFor? -->
+    </div>
+  </div>
+    <div mat-dialog-actions>
+      <button (click)="close()">Close</button>
+    </div>
+</div>
