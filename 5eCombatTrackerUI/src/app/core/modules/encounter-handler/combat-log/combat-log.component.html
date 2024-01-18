@@ -1,0 +1,14 @@
+
+<div class="log-container">
+<h1 mat-dialog-title>Combat Log</h1>
+<div mat-dialog-content>
+  <div class="log-content">
+    <div *ngFor="let entry of log">
+      <div>{{entry}}</div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button (click)="close()">Close</button>
+</div>
+</div>

@@ -61,7 +61,7 @@ export class EncounterHandlerService extends Observables {
         this.setMonsters()
     }
 
-    public async setMonsterAttack(): Promise<void> {
+    public async setMonsterAttack(round: number): Promise<void> {
         const response = await firstValueFrom(
             this.monsterAttackService.getMonsterAttack(this._internalMonsters[0].id)
         );
@@ -69,7 +69,17 @@ export class EncounterHandlerService extends Observables {
         response.damageResult = await this.dieRoller.rollDie(response.damageDie, response.damageBonus);
         
         this._internalMonsters[0].attacks = response;
+        this.writeAttackToLog(this._internalMonsters[0], round)
         this.setMonsters();
+    }
+
+    public writeAttackToLog(monsterData: IMonster, round: number) {
+        this._logEntry = 
+          monsterData.name + " " + monsterData.generatedMonsterIdentifier + " " +
+          "attack " + round + " " +
+          "with " + monsterData.attacks.weaponName + " " +
+          "for " + monsterData.attacks.damageResult;
+        this.logPush();
     }
 
     private async resetMonsters(): Promise<void> {

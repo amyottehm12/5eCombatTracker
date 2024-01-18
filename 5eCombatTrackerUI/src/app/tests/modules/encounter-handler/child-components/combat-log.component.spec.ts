@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CombatLogComponent } from '../../../../core/modules/encounter-handler/round-handler/combat-log/combat-log.component';
+import { CombatLogComponent } from '../../../../core/modules/encounter-handler/combat-log/combat-log.component';
 
-describe('CombatLogComponent', () => {
+describe('LogComponent', () => {
   let component: CombatLogComponent;
   let fixture: ComponentFixture<CombatLogComponent>;
 

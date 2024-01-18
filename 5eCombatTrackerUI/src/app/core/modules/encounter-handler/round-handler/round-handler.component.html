@@ -4,19 +4,19 @@
     <button (click)="roundHandler()">Next Attack</button>
 
 
-<div *ngIf="activationReady">
-    <div *ngIf="currentMonster">
-        Combat round: {{currentRound}}
-        <h3>{{currentMonster.name}} {{currentMonster.generatedMonsterIdentifier}} activation</h3>
-        <div>{{currentMonster.name}} attacks with a {{currentMonster.attacks.weaponName}}</div>
-        <div>Hit roll: {{currentMonster.attacks.toHitResult}}</div>
-        <div>Dealing {{currentMonster.attacks.damageResult}}, on a hit</div>
-        <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>
+    <div *ngIf="activationReady">
+        <div *ngIf="currentMonster">
+            Combat round: {{currentRound}}
+            <h3>{{currentMonster.name}} {{currentMonster.generatedMonsterIdentifier}} activation</h3>
+            <div>{{currentMonster.name}} attacks with a {{currentMonster.attacks.weaponName}}</div>
+            <div>Hit roll: {{currentMonster.attacks.toHitResult}}</div>
+            <div>Dealing {{currentMonster.attacks.damageResult}}, on a hit</div>
+            <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>
+        </div>
+    
+        <div>
+            <button (click)="showLogModal()">Show log</button>
+        </div>
     </div>
-
-    <div>
-        <!-- <button (click)="">Show log</button> -->
-    </div>
-</div>
 
 </div>
