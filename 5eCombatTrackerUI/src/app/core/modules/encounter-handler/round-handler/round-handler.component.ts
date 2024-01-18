@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { MatDialog } from '@angular/material/dialog';
+
 import { IMonster } from 'src/app/core/models/IMonster';
-import { CombatLogService } from 'src/app/core/services/combat-log.service';
 import { EncounterHandlerService } from 'src/app/core/services/encounter-handler.service';
-
-
+import { CombatLogComponent } from '../combat-log/combat-log.component';
 
 @Component({
   selector: 'app-round-handler',
@@ -13,6 +13,7 @@ import { EncounterHandlerService } from 'src/app/core/services/encounter-handler
 })
 export class RoundHandlerComponent {
   public monsters: IMonster[] = [];
+  public combatLog: string[] = [];
   public currentMonster!: IMonster;
 
   public currentTurn: number = 0;
@@ -23,8 +24,9 @@ export class RoundHandlerComponent {
   private firstRound: boolean = true;
 
   constructor(private encounterHandler: EncounterHandlerService,
-              private logService: CombatLogService) {
+              private dialog: MatDialog) {
     this.getMonsters();
+    this.getLog();
   }
 
   getMonsters(): void {
@@ -32,6 +34,14 @@ export class RoundHandlerComponent {
     .subscribe((data: IMonster[]) =>
     {
       this.monsters = data
+    })
+  }
+
+  getLog(): void {
+    this.encounterHandler.getLog()
+    .subscribe((data: string[])=>
+    {
+      this.combatLog = data
     })
   }
 
@@ -50,15 +60,16 @@ export class RoundHandlerComponent {
       this.encounterHandler.shiftMonsters();
     }
 
-    await this.encounterHandler.setMonsterAttack();
+    await this.encounterHandler.setMonsterAttack(this.currentRound);
     
     this.currentMonster = this.monsters[0];
     this.activationReady = true;
-    this.writeAttackToLog(this.currentMonster);
   }
 
   async showLogModal(): Promise<void> {
-
+      const dialogRef = this.dialog.open(CombatLogComponent, { 
+        height: '70%', width: '70%', data: this.combatLog
+      });
   }
   
   async roundReset(): Promise<void> {
@@ -66,15 +77,5 @@ export class RoundHandlerComponent {
     this.activationReady = false;
     this.currentRound = 1;
   }
-
-  public writeAttackToLog(monsterData: IMonster) {
-    this.logService.logPush(
-      monsterData.name + " " +
-      "attack " + this.currentRound + " " +
-      monsterData.attacks.weaponName + " " +
-      monsterData.attacks.damageResult
-    );
-}
-
 
 }
