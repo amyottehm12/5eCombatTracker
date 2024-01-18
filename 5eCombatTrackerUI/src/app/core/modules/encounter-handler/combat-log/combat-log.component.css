@@ -1,0 +1,13 @@
+.log-container {
+    padding: 20px;
+    width: 95%;
+    border-style: solid;
+}
+
+.log-content {
+    padding: 20px;
+    margin: 20px;
+    height: 70%;
+    width: 70%;
+    border-style: solid;
+}

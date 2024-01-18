@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { EncounterHandlerComponent } from './core/modules/encounter-handler/encounter-handler.component';
 import { RoundHandlerComponent } from './core/modules/encounter-handler/round-handler/round-handler.component';
 
@@ -13,8 +15,7 @@ import { EncounterSetupComponent } from './core/modules/encounter-handler/encoun
 import { AdminComponent } from './core/modules/admin/admin.component';
 import { MonsterDetailsComponent } from './core/modules/encounter-handler/initiative-timeline/monster-details/monster-details.component';
 import { MonsterDetailsModalComponent } from './core/modules/encounter-handler/initiative-timeline/monster-details/monster-details-modal/monster-details-modal.component';
-import { CombatLogComponent } from './core/modules/encounter-handler/round-handler/combat-log/combat-log.component';
-import { LogComponent } from './core/modules/encounter-handler/log/log.component';
+import { CombatLogComponent } from './core/modules/encounter-handler/combat-log/combat-log.component';
 
 
 @NgModule({
@@ -26,14 +27,13 @@ import { LogComponent } from './core/modules/encounter-handler/log/log.component
     InitiativeTimelineComponent,
     EncounterSetupComponent,
     AdminComponent,
-    MonsterDetailsModalComponent,
-    CombatLogComponent,
-    LogComponent
+    MonsterDetailsModalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
   ],
   providers: [  ],
   bootstrap: [AppComponent]

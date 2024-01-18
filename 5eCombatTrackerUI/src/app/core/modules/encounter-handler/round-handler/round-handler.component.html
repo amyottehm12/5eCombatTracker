@@ -3,6 +3,7 @@
 <div *ngIf="this.displayEncounter">
     <button (click)="roundHandler()">Next Attack</button>
 
+
     <div *ngIf="activationReady">
         <div *ngIf="currentMonster">
             Combat round: {{currentRound}}
@@ -12,9 +13,9 @@
             <div>Dealing {{currentMonster.attacks.damageResult}}, on a hit</div>
             <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>
         </div>
-
+    
         <div>
-            <button (click)="showLogModal">Show log</button>
+            <button (click)="showLogModal()">Show log</button>
         </div>
     </div>
 
