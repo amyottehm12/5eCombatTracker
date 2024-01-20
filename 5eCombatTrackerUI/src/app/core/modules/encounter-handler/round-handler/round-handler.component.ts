@@ -68,7 +68,7 @@ export class RoundHandlerComponent {
 
   async showLogModal(): Promise<void> {
       const dialogRef = this.dialog.open(CombatLogComponent, { 
-        height: '70%', width: '70%', data: this.combatLog
+        height: '70%', width: '70%', autoFocus: false, data: this.combatLog
       });
   }
   
