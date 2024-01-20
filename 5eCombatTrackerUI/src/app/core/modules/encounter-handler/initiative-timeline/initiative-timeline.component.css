@@ -9,22 +9,38 @@
     padding: 20px;
 }
 
-.flex-child {
+.card-container {
     flex: 1;
-    border: 2px solid red;
-    padding: 20px;
+    height: 250px;
+    max-width: 400px;
     margin: 20px;
-    height: 500px;
-    background-repeat: no-repeat;
+}
+
+.flex-child {
+    padding: 20px;
+    margin: 0 auto;
 }  
 
+.monster-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 80px;
+    margin: 10px;
+    display: inline-block;
+    border: 1px solid red;
+    vertical-align: middle;
+}
+
 .monster-info-snapshot-container {
-    flex: 1;
-    border: 2px solid green;
-    width: 30%;
+    display: inline-block;
+    border: 1px solid red;
+    vertical-align: middle;
 }
 
 .monster-details-button-container {
     margin-top: 25px;
-    margin-left: 25%;
+    position: absolute;
+    top: 80%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }

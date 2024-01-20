@@ -13,10 +13,11 @@
         [displayEncounter]="displayEncounter"
         (displayEncounterChanged)="displayEncounterChanged($event)">
         </app-initiative-timeline>
+
+        <app-round-handler
+        [displayEncounter]="displayEncounter">
+        </app-round-handler>
     </div>
     
-    <app-round-handler
-    [displayEncounter]="displayEncounter">
-    </app-round-handler>
     
 </section>

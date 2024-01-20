@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 import { EncounterHandlerComponent } from './core/modules/encounter-handler/encounter-handler.component';
 import { RoundHandlerComponent } from './core/modules/encounter-handler/round-handler/round-handler.component';
@@ -33,7 +34,8 @@ import { CombatLogComponent } from './core/modules/encounter-handler/combat-log/
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [  ],
   bootstrap: [AppComponent]

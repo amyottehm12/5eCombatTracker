@@ -1,20 +1,26 @@
 <div *ngIf="this.displayEncounter" class="initiative-container">
     <h2>{{encounterName}}</h2>
     <div class="flex-container">
-        <div class="flex-child" *ngFor="let monster of monsters" [style.background-image]="'url('+monster.imageURL+')'">
-            <div class="monster-info-snapshot-container">
-                <div> {{ monster.name }} </div>
-                <div> {{ monster.initiative }} </div>
-                <div> id: {{ monster.generatedMonsterIdentifier }} </div>
-                <div><input #monsterHp id={{monster.generatedMonsterIdentifier}} type="number" min="0" max={{monster.hp}} value={{monster.hp}}
-                        (change)="onSelected(monsterHp.value, monsterHp.id)"></div>    
+        <mat-card *ngFor="let monster of monsters" class="card-container">
+            <div class="flex-child">
+                <div class="monster-info-snapshot-container">
+                    <div> {{ monster.name }} </div>
+                    <div> {{ monster.initiative }} </div>
+                    <div> id: {{ monster.generatedMonsterIdentifier }} </div>
+                    <div>
+                        <input #monsterHp id={{monster.generatedMonsterIdentifier}} 
+                            type="number" min="0" max={{monster.hp}} value={{monster.hp}}
+                            (change)="onSelected(monsterHp.value, monsterHp.id)">
+                    </div>    
+                </div>
+                <div class="monster-image" [style.background-image]="'url('+monster.imageURL+')'"></div>
                 <div class="monster-details-button-container">
-                    <button (click)="showMonsterDetailsModal(monster.generatedMonsterIdentifier)">Info</button>
+                    <button (click)="showMonsterDetailsModal(monster.generatedMonsterIdentifier)">Details</button>
                 </div>
             </div>
-        </div>
+        </mat-card>
     </div>
-    <app-monster-details></app-monster-details>
+    <!-- <app-monster-details></app-monster-details> -->
 </div>
 
 

@@ -1,8 +1,6 @@
-
-
-<div *ngIf="this.displayEncounter">
+<div *ngIf="this.displayEncounter" >
+    <div class="round-handler-container">
     <button (click)="roundHandler()">Next Attack</button>
-
 
     <div *ngIf="activationReady">
         <div *ngIf="currentMonster">
@@ -17,6 +15,7 @@
         <div>
             <button (click)="showLogModal()">Show log</button>
         </div>
+    </div>
     </div>
 
 </div>
