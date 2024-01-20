@@ -7,6 +7,14 @@ import { AppComponent } from './app.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { EncounterHandlerComponent } from './core/modules/encounter-handler/encounter-handler.component';
 import { RoundHandlerComponent } from './core/modules/encounter-handler/round-handler/round-handler.component';
@@ -32,10 +40,17 @@ import { CombatLogComponent } from './core/modules/encounter-handler/combat-log/
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatGridListModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [  ],
   bootstrap: [AppComponent]

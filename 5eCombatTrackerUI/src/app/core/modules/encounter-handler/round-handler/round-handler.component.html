@@ -1,6 +1,6 @@
 <div *ngIf="this.displayEncounter" >
     <div class="round-handler-container">
-    <button (click)="roundHandler()">Next Attack</button>
+    <button mat-raised-button color="primary" (click)="roundHandler()" class="next-attack-button"><span class="next-attack-button-text">Next Attack<i class="material-icons">arrow_forward_ios</i></span></button>
 
     <div *ngIf="activationReady">
         <div *ngIf="currentMonster">

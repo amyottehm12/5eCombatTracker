@@ -1,5 +1,18 @@
 .round-handler-container {
-    border: 2px solid pink;
     padding: 20px;
     margin: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.next-attack-button {
+    width: 500px;
+    height: 2em;
+    font-size: 30px;
+}
+
+.next-attack-button-text {
+    padding: 20px;
+    float:left;
 }

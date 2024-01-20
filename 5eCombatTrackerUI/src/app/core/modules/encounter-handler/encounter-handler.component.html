@@ -7,7 +7,7 @@
         </app-encounter-setup>
     </div>
 
-    <div>
+    <div class="encounter-container" *ngIf="displayEncounter">
         <app-initiative-timeline
         [encounterName]="encounterName"
         [displayEncounter]="displayEncounter"
