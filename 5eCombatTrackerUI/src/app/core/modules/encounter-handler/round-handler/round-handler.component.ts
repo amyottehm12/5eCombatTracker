@@ -17,7 +17,7 @@ export class RoundHandlerComponent {
   public currentMonster!: IMonster;
 
   public currentTurn: number = 0;
-  public currentRound: number = 0;
+  public currentRound: number = 1;
 
   @Input() public displayEncounter: boolean = false;
   public activationReady: boolean = false;
