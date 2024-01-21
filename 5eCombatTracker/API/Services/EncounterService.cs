@@ -39,6 +39,7 @@ namespace _5eCombatTracker.API.Services
         {
             Encounter encounter = await _encounterRepository.GetEncounterByBiomeNameRandom(biomeType.ToString());
             EncounterDTO encounterDTO = _mapper.Map<Encounter, EncounterDTO>(encounter);
+            //null check for no monster group with specified encounter type
             List<MonsterGroup> monsterGroup = await _monsterGroupRepository.GetMonsterGroupByMonsterGroupId(encounter.MonsterGroupId);
             encounterDTO.Monsters = _mapper.Map<List<MonsterGroup>, List<EncounterMonsterDTO>>(monsterGroup);
             return encounterDTO;

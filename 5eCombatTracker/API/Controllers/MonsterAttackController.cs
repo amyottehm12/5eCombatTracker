@@ -33,7 +33,7 @@ namespace _5eCombatTracker.API.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return Problem();
             }
         }
     }
