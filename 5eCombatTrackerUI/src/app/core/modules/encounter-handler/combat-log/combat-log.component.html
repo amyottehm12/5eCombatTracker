@@ -1,14 +1,15 @@
-
-<div class="log-container">
-<h1 mat-dialog-title>Combat Log</h1>
-<div mat-dialog-content>
-  <div class="log-content">
-    <div *ngFor="let entry of log">
-      <div>{{entry}}</div>
-    </div>
+<div class="combat-log-header">
+  <div mat-dialog-actions class="flex-row flex-space-between">
+    <h1>Combat Log</h1>
+    <button class="combat-log-modal-button" mat-icon-button color="primary" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
 </div>
-<div mat-dialog-actions>
-  <button (click)="close()">Close</button>
-</div>
+<div mat-dialog-content>
+  <div class="combat-log-content">
+    <div *ngFor="let entry of log">
+      <div class="combat-log-content-item">{{entry}}</div>
+    </div>
+  </div>
 </div>

@@ -45,7 +45,7 @@ export class InitiativeTimelineComponent {
 
   async showMonsterDetailsModal(id: number): Promise<void> {
     const dialogRef = this.dialog.open(MonsterDetailsModalComponent, { 
-      height: '50%', width: '25%', data: this.monsters[this.monsters.findIndex(x => x.generatedMonsterIdentifier == id)]
+      data: this.monsters[this.monsters.findIndex(x => x.generatedMonsterIdentifier == id)]
     });
   }
 }

@@ -4,6 +4,16 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.round-handler-log {
+    background-color:#ddd;
+    border-radius: 25px;
+    border: 2px solid #ddd;
+    outline: 5px solid #eee;
+    outline-offset: -5px;
+    padding:2em;
 }
 
 .next-attack-button {
@@ -15,4 +25,13 @@
 .next-attack-button-text {
     padding: 20px;
     float:left;
+}
+
+.round-handler-current-turn-description {
+    margin-top: 1em;
+}
+
+.round-handler-show-log-button {
+    display:flex;
+    justify-content:flex-end;
 }

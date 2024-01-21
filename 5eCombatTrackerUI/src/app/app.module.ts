@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
 
 
 import { EncounterHandlerComponent } from './core/modules/encounter-handler/encounter-handler.component';
@@ -50,7 +51,8 @@ import { CombatLogComponent } from './core/modules/encounter-handler/combat-log/
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   providers: [  ],
   bootstrap: [AppComponent]

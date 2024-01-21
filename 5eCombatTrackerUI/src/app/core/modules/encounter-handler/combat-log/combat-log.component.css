@@ -1,13 +1,17 @@
-.log-container {
-    padding: 20px;
-    width: 95%;
-    border-style: solid;
+div.combat-log-header h1 {
+    margin: 1em 0px 0px 1em;
 }
 
-.log-content {
-    padding: 20px;
-    margin: 20px;
-    height: 70%;
-    width: 70%;
-    border-style: solid;
+.combat-log-body {
+    padding-top: 0px;
+}
+
+.combat-log-content {
+    padding: 2em;
+}
+
+.combat-log-content-item {
+    background-color: #eee;
+    padding:1em;
+    margin-top: 1em;
 }
