@@ -1,15 +1,23 @@
-<div class="combat-log-header">
-  <div mat-dialog-actions class="flex-row flex-space-between">
-    <h1>Combat Log</h1>
-    <button class="combat-log-modal-button" mat-icon-button color="primary" (click)="close()">
-      <mat-icon>close</mat-icon>
-    </button>
+<div class="combat-log-container">
+  <div class="combat-log-header">
+    <div mat-dialog-actions class="flex-row flex-space-between">
+      <h1>Combat Log</h1>
+      <button class="combat-log-modal-button" mat-icon-button color="primary" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
   </div>
-</div>
-<div mat-dialog-content>
-  <div class="combat-log-content">
-    <div *ngFor="let entry of log">
-      <div class="combat-log-content-item">{{entry}}</div>
+  <div mat-dialog-content>
+    <div class="combat-log-content">
+      <div *ngFor="let entry of logEntries; first as isFirst">
+        <div *ngIf="isFirst; else restOfLogEntries">
+          Current round:
+          <div class="combat-log-content-item">{{entry}}</div>
+        </div>
+        <ng-template #restOfLogEntries>
+          <div class="combat-log-content-item">{{entry}}</div>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>

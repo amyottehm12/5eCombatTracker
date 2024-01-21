@@ -27,13 +27,13 @@ import { MatIconModule } from '@angular/material/icon';
   ],
 })
 export class CombatLogComponent {
-  public log: string[];
+  public logEntries: string[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: string[],
     public dialogRef: MatDialogRef<CombatLogComponent>,
   ) {
-    this.log = data;
+    this.logEntries = data;
   }
 
   close(): void {
