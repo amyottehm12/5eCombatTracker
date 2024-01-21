@@ -5,6 +5,7 @@ import { IMonster } from 'src/app/core/models/IMonster';
 import { EncounterHandlerService } from 'src/app/core/services/encounter-handler.service';
 import { MonsterDetailsModalComponent } from './monster-details/monster-details-modal/monster-details-modal.component';
 
+
 @Component({
   selector: 'app-initiative-timeline',
   templateUrl: './initiative-timeline.component.html',
@@ -44,7 +45,7 @@ export class InitiativeTimelineComponent {
 
   async showMonsterDetailsModal(id: number): Promise<void> {
     const dialogRef = this.dialog.open(MonsterDetailsModalComponent, { 
-      height: '50%', width: '25%', data: this.monsters[this.monsters.findIndex(x => x.generatedMonsterIdentifier == id)]
+      data: this.monsters[this.monsters.findIndex(x => x.generatedMonsterIdentifier == id)]
     });
   }
 }

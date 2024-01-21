@@ -1,46 +1,48 @@
 .initiative-container {
-    border: 2px solid rebeccapurple;
+    background-color:#eee;
     padding: 20px;
-    margin: 20px;
-}
-
-.flex-container {
-    display: flex;
-    padding: 20px;
+    margin-bottom:40px;
 }
 
 .card-container {
-    flex: 1;
-    height: 250px;
-    max-width: 400px;
-    margin: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-top: 30px;
 }
 
-.flex-child {
-    padding: 20px;
-    margin: 0 auto;
-}  
+.card-info-and-picture-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    min-width: 300px;
+}
 
-.monster-image {
+.card-info, .card-image {
+    flex-grow: 1;
+    margin:20px;
+}
+
+.card-info {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image {
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 80px;
-    margin: 10px;
+    min-height:200px;
+    padding-left: 100px;
     display: inline-block;
-    border: 1px solid red;
     vertical-align: middle;
 }
 
-.monster-info-snapshot-container {
-    display: inline-block;
-    border: 1px solid red;
-    vertical-align: middle;
+.mat-mdc-card {
+    margin-bottom: 15px;
 }
 
-.monster-details-button-container {
-    margin-top: 25px;
-    position: absolute;
-    top: 80%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+.details-button {
+    width: 100%;
+    margin-top:10px;
 }

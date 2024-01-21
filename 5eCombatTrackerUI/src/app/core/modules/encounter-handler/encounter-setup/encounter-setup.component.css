@@ -1,5 +1,11 @@
 .encounter-setup-container {
-    border: 2px solid rgb(227, 71, 10);
-    padding: 20px;
-    margin: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mat-mdc-button.mat-mdc-button-base, .mat-mdc-raised-button.mat-mdc-button-base, .mat-mdc-unelevated-button.mat-mdc-button-base, .mat-mdc-outlined-button.mat-mdc-button-base {
+    height: 48px;
+    margin-bottom: 16px;
+    margin-left: 5px;
 }

@@ -28,7 +28,7 @@ export abstract class Observables {
     }   
     protected logPush(): void {
       var currentLog: string[] = this._log.getValue();
-      currentLog.push(this._logEntry)
+      currentLog.unshift(this._logEntry)
       this._log.next(currentLog)
     }   
 

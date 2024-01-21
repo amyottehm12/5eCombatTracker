@@ -1,9 +1,14 @@
 <div class="encounter-setup-container">
-    <select #biomeTypeSelector (change)="onSelected(biomeTypeSelector.value)">
-        <option default>Select a biome</option>
-        <option *ngFor="let biomeType of biomeTypes">
-            {{biomeType}}
-        </option>
-    </select>
-    <button (click)="encounterSetup()">Generate encounter</button>
+    <div class="encounter-setup-centered">
+        Choose your encounter:
+        <mat-form-field appearance="fill">
+            <mat-label>Select a biome</mat-label>
+            <mat-select #biomeTypeSelector (selectionChange)="onSelected(biomeTypeSelector.value)">
+                <mat-option *ngFor="let biomeType of biomeTypes" [value]="biomeType">
+                    {{biomeType}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="encounterSetup()">Generate encounter</button>
+    </div>
 </div>

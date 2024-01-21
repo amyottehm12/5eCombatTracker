@@ -1,15 +1,15 @@
-<div class="monster-details-container">
-  <div mat-dialog-content>
-    <div class="monster-content">
-        <h1>{{ monster.name }} {{ monster.generatedMonsterIdentifier }}</h1>
-        <div>Initiative: {{ monster.initiative }} </div>
-        <div>{{ monster.currentHp }}/{{ monster.hp }}</div>
-        <div>AC: {{ monster.ac }}</div>
-        <div>Attack Bonus: {{ monster.attacks.hitRoll }}</div>
-        <!-- monster possible attacks ngFor? -->
-    </div>
+<div class="monster-details-modal-header">
+  <div mat-dialog-actions>
+    <h1>{{ monster.name }} {{ monster.generatedMonsterIdentifier }} Details</h1>
+    <button class="monster-details-modal-button" mat-icon-button color="primary" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
-    <div mat-dialog-actions>
-      <button (click)="close()">Close</button>
-    </div>
+</div>
+<div mat-dialog-content class="monster-details-modal-body">
+  <div>Initiative: {{ monster.initiative }} </div>
+  <div>HP: {{ monster.currentHp }}/{{ monster.hp }}</div>
+  <div>AC: {{ monster.ac }}</div>
+  <div>Attack Bonus: {{ monster.attacks.hitRoll }}</div>
+  <!-- monster possible attacks ngFor? -->
 </div>
