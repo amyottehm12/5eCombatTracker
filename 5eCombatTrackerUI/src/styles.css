@@ -3,3 +3,22 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.flex-center {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
+
+.flex-row {
+    display: flex;
+    flex-flow: row;
+}
+
+.flex-space-around {
+    justify-content: space-around;
+}

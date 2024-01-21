@@ -17,7 +17,7 @@ export class RoundHandlerComponent {
   public currentMonster!: IMonster;
 
   public currentTurn: number = 0;
-  public currentRound: number = 0;
+  public currentRound: number = 1;
 
   @Input() public displayEncounter: boolean = false;
   public activationReady: boolean = false;
@@ -46,7 +46,7 @@ export class RoundHandlerComponent {
   }
 
   async roundHandler(): Promise<void> {
-    this.activationReady = false;
+    this.activationReady = true;
     if (this.currentTurn == this.monsters.length - 1) {
       this.currentRound ++;
       this.currentTurn = 0;
@@ -63,12 +63,11 @@ export class RoundHandlerComponent {
     await this.encounterHandler.setMonsterAttack(this.currentRound);
     
     this.currentMonster = this.monsters[0];
-    this.activationReady = true;
   }
 
   async showLogModal(): Promise<void> {
       const dialogRef = this.dialog.open(CombatLogComponent, { 
-        height: '70%', width: '70%', data: this.combatLog
+        autoFocus: false, data: this.combatLog
       });
   }
   

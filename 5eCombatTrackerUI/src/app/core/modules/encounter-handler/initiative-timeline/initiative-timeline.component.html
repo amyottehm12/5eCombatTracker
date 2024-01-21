@@ -1,26 +1,27 @@
 <div *ngIf="this.displayEncounter" class="initiative-container">
-    <h2>{{encounterName}}</h2>
-    <div class="flex-container">
-        <mat-card *ngFor="let monster of monsters" class="card-container">
-            <div class="flex-child">
-                <div class="monster-info-snapshot-container">
-                    <div> {{ monster.name }} </div>
-                    <div> {{ monster.initiative }} </div>
-                    <div> id: {{ monster.generatedMonsterIdentifier }} </div>
-                    <div>
-                        <input #monsterHp id={{monster.generatedMonsterIdentifier}} 
-                            type="number" min="0" max={{monster.hp}} value={{monster.hp}}
-                            (change)="onSelected(monsterHp.value, monsterHp.id)">
-                    </div>    
+    <h1>Encounter: {{encounterName}}</h1>
+    <div class="card-container">
+        <mat-card *ngFor="let monster of monsters">
+            <div class="card-info-and-picture-container">
+                <div class="card-info">
+                    <div class="card-info-centered">
+                        <div class="mat-body-strong mat-h1"> {{ monster.name }} </div>
+                        <div> Initiative: {{ monster.initiative }} </div>
+                        <div>
+                            HP: <input #monsterHp id={{monster.generatedMonsterIdentifier}} type="number" min="0"
+                                max={{monster.hp}} value={{monster.hp}}
+                                (change)="onSelected(monsterHp.value, monsterHp.id)">
+                        </div>
+                        <div class="mat-small"> id: {{ monster.generatedMonsterIdentifier }} </div>
+                    </div>
                 </div>
-                <div class="monster-image" [style.background-image]="'url('+monster.imageURL+')'"></div>
-                <div class="monster-details-button-container">
-                    <button (click)="showMonsterDetailsModal(monster.generatedMonsterIdentifier)">Details</button>
-                </div>
+                <div class="card-image" [style.background-image]="'url('+monster.imageURL+')'"></div>
+            </div>
+            <div class="monster-details-button-container">
+                <button mat-raised-button class="details-button" color="accent"
+                    (click)="showMonsterDetailsModal(monster.generatedMonsterIdentifier)">Details</button>
             </div>
         </mat-card>
     </div>
     <!-- <app-monster-details></app-monster-details> -->
 </div>
-
-
