@@ -24,10 +24,10 @@ namespace _5eCombatTracker.API.Controllers.Tests
 
             IActionResult actionResult = controller.GetAllBiomes().Result;
             var contentResult = actionResult as OkObjectResult;
+            var actualResult = contentResult.Value;
 
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Value);
-            Assert.AreEqual(expectedResult, contentResult.Value);
+            Assert.IsNotNull(actualResult);
+            Assert.AreEqual(expectedResult, actualResult);
             Assert.AreEqual(200, contentResult.StatusCode);
         }
 
