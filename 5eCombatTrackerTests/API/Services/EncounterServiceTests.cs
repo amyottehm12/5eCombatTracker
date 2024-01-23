@@ -10,6 +10,9 @@ namespace _5eCombatTracker.API.Services.Tests
     [TestClass()]
     public class EncounterServiceTests
     {
+        /// <summary>
+        /// Happy path service test for random encounter generation
+        /// </summary>
         [TestMethod()]
         public void GetRandomEncounterTest()
         {
@@ -17,8 +20,8 @@ namespace _5eCombatTracker.API.Services.Tests
             var mockMonsterGroupRepository = new Mock<IMonsterGroupRepository>();
             var service = new EncounterService(mockedEncounterRepository.Object, mockMonsterGroupRepository.Object);
 
-            Encounter mockedEncounterResponse = StubEncounter();
-            Task<Encounter> successTask = Task.FromResult(mockedEncounterResponse);
+            Encounter mockEncounterResponse = StubEncounter();
+            Task<Encounter> successTask = Task.FromResult(mockEncounterResponse);
             mockedEncounterRepository
                 .Setup(x => x.GetEncounterByBiomeNameRandom("Dungeon"))
                 .Returns(successTask);
@@ -35,6 +38,21 @@ namespace _5eCombatTracker.API.Services.Tests
 
             Assert.IsNotNull(actualResult);
             Assert.AreEqual(actualJSON, expectedJSON);
+        }
+
+        /// <summary>
+        /// If the data isn't returned from the repositories, then the result should be null
+        /// </summary>
+        [TestMethod()]
+        public void GetRandomEncounterTest_NullResult()
+        {
+            var mockedEncounterRepository = new Mock<IEncounterRepository>();
+            var mockMonsterGroupRepository = new Mock<IMonsterGroupRepository>();
+            var service = new EncounterService(mockedEncounterRepository.Object, mockMonsterGroupRepository.Object);
+
+            var actualResult = service.GetRandomEncounter(Data.Enums.BiomeTypeEnum.Dungeon).Result;
+
+            Assert.IsNull(actualResult);
         }
 
         public Encounter StubEncounter()

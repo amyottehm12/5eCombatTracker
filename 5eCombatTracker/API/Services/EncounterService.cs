@@ -38,10 +38,13 @@ namespace _5eCombatTracker.API.Services
         public async Task<EncounterDTO> GetRandomEncounter(BiomeTypeEnum biomeType)
         {
             Encounter encounter = await _encounterRepository.GetEncounterByBiomeNameRandom(biomeType.ToString());
+            if (encounter == null) { return null; }
             EncounterDTO encounterDTO = _mapper.Map<Encounter, EncounterDTO>(encounter);
-            //null check for no monster group with specified encounter type
+            
             List<MonsterGroup> monsterGroup = await _monsterGroupRepository.GetMonsterGroupByMonsterGroupId(encounter.MonsterGroupId);
+            if (monsterGroup == null) { return null; }
             encounterDTO.Monsters = _mapper.Map<List<MonsterGroup>, List<EncounterMonsterDTO>>(monsterGroup);
+
             return encounterDTO;
         }
     }
