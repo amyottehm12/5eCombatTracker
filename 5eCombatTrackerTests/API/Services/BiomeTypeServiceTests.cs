@@ -32,10 +32,10 @@ namespace _5eCombatTracker.API.Services.Tests
             Task<List<BiomeType>> successTask = Task.FromResult(mockedResult);
             mockRepository.Setup(x => x.GetAllBiomeTypesAsync()).Returns(successTask);
 
-            var result = service.GetAllBiomes().Result;
+            var actualResult = service.GetAllBiomes().Result;
 
-            Assert.IsNotNull(result);
-            CollectionAssert.AreEquivalent(expectedResult, result);
+            Assert.IsNotNull(actualResult);
+            CollectionAssert.AreEquivalent(expectedResult, actualResult);
         }
     }
 }
