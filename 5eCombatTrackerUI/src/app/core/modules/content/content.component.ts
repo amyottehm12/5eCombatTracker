@@ -8,6 +8,5 @@ import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent { 
-  mode = new FormControl('over' as MatDrawerMode);
 }
 
