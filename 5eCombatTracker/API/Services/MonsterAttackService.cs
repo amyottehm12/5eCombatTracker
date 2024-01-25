@@ -6,11 +6,19 @@ using AutoMapper;
 
 namespace _5eCombatTracker.API.Services
 {
+    /// <summary>
+    /// Handles generating attacks for given monsters
+    /// </summary>
     public class MonsterAttackService : IMonsterAttackService
     {
         private IMonsterAttackRepository _mosnterAttackRepository;
         private readonly MapperConfiguration _mapperConfiguration;
         private Mapper _mapper;
+
+        /// <summary>
+        /// Constructor using monster attack repository, creates maps needed for responses
+        /// </summary>
+        /// <param name="monsterAttackRepository">Monster attack repository</param>
         public MonsterAttackService(IMonsterAttackRepository monsterAttackRepository)
         {
             _mapperConfiguration = new MapperConfiguration(mc =>
@@ -21,6 +29,11 @@ namespace _5eCombatTracker.API.Services
             _mosnterAttackRepository = monsterAttackRepository;
         }
 
+        /// <summary>
+        /// Returns a random monster attack via monster ID
+        /// </summary>
+        /// <param name="id">ID of monster to generate attack</param>
+        /// <returns></returns>
         public async Task<MonsterAttackDTO> GetRandomMonsterAttack(int id)
         {
 

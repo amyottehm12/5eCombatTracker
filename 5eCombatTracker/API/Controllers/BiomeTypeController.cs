@@ -25,12 +25,12 @@ namespace _5eCombatTracker.API.Controllers
             try 
             { 
                 var responseData = await _biomeService.GetAllBiomes();
-                if (responseData == null) { return StatusCode(StatusCodes.Status404NotFound); }
+                if (responseData == null) { return NotFound(); }
                 return Ok(responseData);
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return Problem();
             }
         }
     }

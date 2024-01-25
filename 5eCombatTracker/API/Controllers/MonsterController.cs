@@ -28,12 +28,12 @@ namespace _5eCombatTracker.API.Controllers
             try
             {
                 var responseData = await _monsterService.GetMonsterById(id);
-                if (responseData == null) { return StatusCode(StatusCodes.Status404NotFound); }
+                if (responseData == null) { return NotFound(); }
                 return Ok(responseData);
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return Problem();
             }
         }
 
@@ -50,12 +50,12 @@ namespace _5eCombatTracker.API.Controllers
             try
             {
                 var responseData = await _monsterService.GetMonsterByName(name);
-                if (responseData == null) { return StatusCode(StatusCodes.Status404NotFound); }
+                if (responseData == null) { NotFound(); }
                 return Ok(responseData);
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return Problem();
             }
         }
 
@@ -76,7 +76,7 @@ namespace _5eCombatTracker.API.Controllers
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return Problem();
             }
         }
     }

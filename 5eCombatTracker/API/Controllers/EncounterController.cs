@@ -30,12 +30,12 @@ namespace _5eCombatTracker.API.Controllers
             try
             {
                 var responseData = await _encounterService.GetRandomEncounter(biomeType);
-                if (responseData == null) { return StatusCode(StatusCodes.Status404NotFound); }
+                if (responseData == null) { return NotFound(); }
                 return Ok(responseData);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return Problem();
             }
         }
     }
