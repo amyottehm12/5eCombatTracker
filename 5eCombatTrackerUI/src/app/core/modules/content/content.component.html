@@ -1,0 +1,23 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/admin" routerLinkActive (click)="sidenav.toggle()">Admin</a>
+            <a mat-list-item routerLink="/characterinput" routerLinkActive (click)="sidenav.toggle()">Character Input</a>
+            <a mat-list-item routerLink="/" routerLinkActive (click)="sidenav.toggle()">Encounter Generator</a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <h1 class="title">5e Encounter Generator</h1>
+        </mat-toolbar>
+        
+        <div class="website-content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
