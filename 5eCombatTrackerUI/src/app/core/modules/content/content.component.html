@@ -8,7 +8,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <mat-toolbar>
+        <mat-toolbar class="toolbar-nav">
             <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
@@ -16,8 +16,6 @@
             <h1 class="title">5e Encounter Generator</h1>
         </mat-toolbar>
         
-        <div class="website-content">
-            <router-outlet></router-outlet>
-        </div>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
