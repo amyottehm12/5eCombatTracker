@@ -3,32 +3,33 @@
     <form>
       <mat-form-field class="input">
         <mat-label>Name</mat-label>
-        <input matInput>
+        <input matInput #nameInput>
       </mat-form-field>
   
       <mat-form-field class="input">
         <mat-label>Initiative</mat-label>
-        <input matInput>
+        <input matInput #initiativeInput type="number" min="0" max="30">
       </mat-form-field>
     </form>
-    <button mat-raised-button class="character-input-button">Save</button>
+    <button mat-raised-button class="character-input-button" (click)="saveInput(nameInput.value, initiativeInput.value)">Save</button>
 </mat-card>
 
 <mat-card *ngFor="let character of characters" class="input-card">
     <div class="header-row">
     <p>Character {{character.generatedId}}</p>
-    <button mat-mini-fab color="primary" class="delete-character-button">
+    <button mat-mini-fab color="primary" class="delete-character-button" (click)="deleteCharacter(character.generatedId)">
         <mat-icon>delete</mat-icon>
     </button>
     </div>
     <form>
     <mat-form-field class="input">
       <mat-label>Name</mat-label>
-      <input matInput value={{character.name}}>
+      <input matInput value={{character.name}}  (change)="updateName(character.name, character.generatedId)">
     </mat-form-field>
         <mat-form-field class="input">
       <mat-label>Initiative</mat-label>
-      <input matInput value={{character.initiative}}>
+      <input matInput value={{character.initiative}} min="0" max="30"
+      (change)="updateInitiative(character.initiative, character.generatedId)">
     </mat-form-field>
     </form>
 </mat-card>

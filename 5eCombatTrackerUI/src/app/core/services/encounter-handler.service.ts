@@ -13,6 +13,8 @@ import { Observables } from './observables';
   providedIn: 'root'
 })
 export class EncounterHandlerService extends Observables {
+    characterId: number = 1;
+
     constructor(private monsterAttackService: MonsterAttackService,
                 private dieRoller: DieRoller) {
           super();
@@ -102,4 +104,29 @@ export class EncounterHandlerService extends Observables {
         return environmentVariables.imageBaseURL + name.replace(' ', '-').toLowerCase() + '.png';
     }
 
+    public async addCharacter(name: string, initiative: number): Promise<void> {
+        this._internalCharacterList.push({
+            name: name,
+            initiative: initiative,
+            generatedId: this.characterId ++
+        });
+
+        this.setCharacters();
+    }
+
+    public async removeCharacter(id: number): Promise<void> {
+        this._internalCharacterList.splice(this._internalCharacterList.findIndex(x => x.generatedId == id), 1);
+        this.setCharacters();
+    }
+
+    public async updateCharacterName(newName: string, id: number): Promise<void> {
+        this._internalCharacterList[this._internalCharacterList.findIndex(x => x.generatedId == id)].name = newName;
+        this.setCharacters();
+    } 
+
+    public async updateCharacterInitiative(newInitiative: number, id: number): Promise<void> {
+        this._internalCharacterList[this._internalCharacterList.findIndex(x => x.generatedId == id)].initiative = newInitiative;
+        this.setCharacters();
+    } 
+    
 }

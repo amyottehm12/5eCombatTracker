@@ -1,11 +1,13 @@
 import { BehaviorSubject, Observable } from "rxjs";
 import { IMonster } from "../models/IMonster";
+import { ICharacter } from "../models/ICharacter";
 
 export abstract class Observables {
 
     constructor() {
           this.monsters = this._monsters.asObservable();
           this.log = this._log.asObservable();
+          this.characterList = this._characterList.asObservable();
     }   
 
     //Monsters List
@@ -31,5 +33,18 @@ export abstract class Observables {
       currentLog.unshift(this._logEntry)
       this._log.next(currentLog)
     }   
+
+    //Character List
+    public characterList: Observable<ICharacter[]> = new Observable<ICharacter[]>;
+    protected _characterList: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>([]);
+    protected _internalCharacterList: ICharacter[] = [];
+
+    public getCharacters(): Observable<ICharacter[]> {
+      return this.characterList;
+    }
+
+    protected setCharacters(): void {
+      this._characterList.next(this._internalCharacterList);
+    }
 
 }
