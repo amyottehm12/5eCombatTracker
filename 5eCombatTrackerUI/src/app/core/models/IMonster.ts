@@ -10,4 +10,5 @@ export interface IMonster {
     attacks: IMonsterAttack;
     imageURL: string;
     generatedMonsterIdentifier: number;
+    player: boolean;
 }

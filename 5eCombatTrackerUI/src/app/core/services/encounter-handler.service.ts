@@ -36,7 +36,8 @@ export class EncounterHandlerService extends Observables {
                     initiative: initiative,
                     attacks: monsterEncounter[i].monster.attacks,
                     imageURL: this.generateImageURL(monsterEncounter[i].monster.name),
-                    generatedMonsterIdentifier: generatedMonsterIdentifier
+                    generatedMonsterIdentifier: generatedMonsterIdentifier,
+                    player: false
                 });
             }
         }
