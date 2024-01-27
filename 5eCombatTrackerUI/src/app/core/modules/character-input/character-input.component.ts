@@ -7,5 +7,5 @@ import { Character, ICharacter } from '../../models/ICharacter';
   styleUrls: ['./character-input.component.css']
 })
 export class CharacterInputComponent {
-  public characters: ICharacter[] = [new Character("Test rogue", 15), new Character("Test cleric", 2)];
+  public characters: ICharacter[] = [new Character(1, "Test rogue", 15), new Character(2, "Test cleric", 2)];
 }

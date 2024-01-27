@@ -1,3 +1,4 @@
+<div class="card-container">
 <mat-card class="input-card">
     <form>
       <mat-form-field class="input">
@@ -10,13 +11,16 @@
         <input matInput>
       </mat-form-field>
     </form>
-    <button mat-raised-button class="character-input-button">Input</button>
+    <button mat-raised-button class="character-input-button">Save</button>
 </mat-card>
 
 <mat-card *ngFor="let character of characters" class="input-card">
+    <div class="header-row">
+    <p>Character {{character.generatedId}}</p>
     <button mat-mini-fab color="primary" class="delete-character-button">
         <mat-icon>delete</mat-icon>
     </button>
+    </div>
     <form>
     <mat-form-field class="input">
       <mat-label>Name</mat-label>
@@ -28,3 +32,4 @@
     </mat-form-field>
     </form>
 </mat-card>
+</div>

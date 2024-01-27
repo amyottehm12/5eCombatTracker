@@ -1,6 +1,13 @@
+.card-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
 .input-card {
     margin: 0 auto;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     display: flex;
     max-width: 500px;
     padding: 20px;
@@ -14,6 +21,12 @@
     margin: 0 auto;
     display: flex;
     max-width: 50px;
+}
+
+.header-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 .delete-character-button {
