@@ -33,7 +33,9 @@ export class CharacterInputComponent {
 
   initiativeUpdated(initiative: string) {
     if (initiative === "") initiative = "0";
-    this.initiative = parseInt(initiative);
+    let value: number = parseInt(initiative);
+    if (value > 30) value = 30
+    this.initiative = value;
     this.initiativeChanged.emit(this.initiative)
   }
 
