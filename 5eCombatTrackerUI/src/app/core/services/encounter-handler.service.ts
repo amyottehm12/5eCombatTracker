@@ -44,6 +44,21 @@ export class EncounterHandlerService extends Observables {
             }
         }
 
+        this._internalCharacterList.forEach(character => {
+            this._internalMonsters.push({
+                id: 0,
+                name: character.name,
+                hp: 0,
+                currentHp: 0,
+                ac: 0,
+                initiative: character.initiative,
+                attacks: this._internalMonsters[0].attacks,
+                imageURL: "",
+                generatedMonsterIdentifier: character.generatedId,
+                player: true
+            })
+        });
+
         await this.initiativeOrder();
         this.setMonsters();
     }
@@ -128,5 +143,5 @@ export class EncounterHandlerService extends Observables {
         this._internalCharacterList[this._internalCharacterList.findIndex(x => x.generatedId == id)].initiative = newInitiative;
         this.setCharacters();
     } 
-    
+
 }
