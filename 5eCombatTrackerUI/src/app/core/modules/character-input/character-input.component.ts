@@ -38,7 +38,7 @@ export class CharacterInputComponent {
   }
 
   saveInput() {
-    if (this.name == "") {
+    if (this.name == "" || this.name === undefined) {
       alert("Need name!");
       return;
     }
