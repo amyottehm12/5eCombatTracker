@@ -7,15 +7,17 @@
     <form>
       <mat-form-field class="input">
         <mat-label>Name</mat-label>
-        <input matInput #nameInput>
+        <input matInput #nameInput id="nameInput" type="text"
+            value="{{name}}" (change)="nameUpdated(nameInput.value)">
       </mat-form-field>
   
       <mat-form-field class="input">
         <mat-label>Initiative</mat-label>
-        <input matInput #initiativeInput type="number" min="0" max="30">
+        <input matInput #initiativeInput type="number" min="0" max="30" maxlength="2"
+            value="{{initiative}}" (change)="initiativeUpdated(initiativeInput.value)">
       </mat-form-field>
     </form>
-    <button mat-raised-button class="character-input-button" (click)="saveInput(nameInput.value, initiativeInput.value)">Save</button>
+    <button mat-raised-button class="character-input-button" (click)="saveInput()">Save</button>
 </mat-card>
 
 <mat-card *ngFor="let character of characters" class="input-card">
@@ -28,12 +30,13 @@
     <form>
     <mat-form-field class="input">
       <mat-label>Name</mat-label>
-      <input matInput value={{character.name}}  (change)="updateName(character.name, character.generatedId)">
+      <input matInput #nameInput value={{character.name}}  
+        (change)="updateName(nameInput.value, character.generatedId)">
     </mat-form-field>
         <mat-form-field class="input">
       <mat-label>Initiative</mat-label>
-      <input matInput value={{character.initiative}} min="0" max="30"
-      (change)="updateInitiative(character.initiative, character.generatedId)">
+      <input matInput #initiativeInput value={{character.initiative}} min="0" max="30" maxlength="2"
+        (change)="updateInitiative(initiativeInput.value, character.generatedId)">
     </mat-form-field>
     </form>
 </mat-card>

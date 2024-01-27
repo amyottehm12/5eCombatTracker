@@ -13,7 +13,7 @@ import { Observables } from './observables';
   providedIn: 'root'
 })
 export class EncounterHandlerService extends Observables {
-    characterId: number = 1;
+    generatedId: number = 0;
 
     constructor(private monsterAttackService: MonsterAttackService,
                 private dieRoller: DieRoller) {
@@ -22,12 +22,11 @@ export class EncounterHandlerService extends Observables {
 
     public async setupMonsterData(monsterEncounter: IMonsterEncounter[]): Promise<void> {
         this.resetMonsters();
-        let generatedMonsterIdentifier = 0;
         for (let i = 0; i < monsterEncounter.length; i++) {
             console.log(monsterEncounter);
             for (let j = 1; j <= monsterEncounter[i].quantity; j++) {
                 let initiative = await this.dieRoller.rollDie(20, 0);
-                generatedMonsterIdentifier++;
+                this.generatedId++;
 
                 this._internalMonsters.push({
                     id: monsterEncounter[i].monster.id,
@@ -38,7 +37,7 @@ export class EncounterHandlerService extends Observables {
                     initiative: initiative,
                     attacks: monsterEncounter[i].monster.attacks,
                     imageURL: this.generateImageURL(monsterEncounter[i].monster.name),
-                    generatedMonsterIdentifier: generatedMonsterIdentifier,
+                    generatedMonsterIdentifier: this.generatedId,
                     player: false
                 });
             }
@@ -123,7 +122,7 @@ export class EncounterHandlerService extends Observables {
         this._internalCharacterList.push({
             name: name,
             initiative: initiative,
-            generatedId: this.characterId ++
+            generatedId: this.generatedId ++
         });
 
         this.setCharacters();
