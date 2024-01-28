@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-content',
