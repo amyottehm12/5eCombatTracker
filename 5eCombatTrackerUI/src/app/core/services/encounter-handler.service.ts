@@ -105,13 +105,36 @@ export class EncounterHandlerService extends Observables {
     }
 
     public async setHealth(id: number, hp: number): Promise<void> {
-        this._internalMonsters[this._internalMonsters.findIndex(x => x.generatedMonsterIdentifier == id)].currentHp = hp;
+        let index: number = this._internalMonsters.findIndex(x => x.generatedMonsterIdentifier == id);
+        this.writeHpChangeToLog(this._internalMonsters[index].name, this._internalMonsters[index].currentHp, hp);
+        this._internalMonsters[index].currentHp = hp;
         this.setMonsters();
     }
 
+    private async writeHpChangeToLog(monsterName: string, currentHp: number,  newMonsterHp: number): Promise<void> {
+        let hpChange: number = currentHp - newMonsterHp;
+        if (hpChange > 0) {
+            this._logEntry = 
+                monsterName + " lost " + hpChange + " health";
+        }
+        else {
+            this._logEntry = 
+                monsterName + " gained " + Math.abs(hpChange) + " health";
+        }
+        this.logPush();
+    }
+
     public async removeMonster(id: number): Promise<void> {
-        this._internalMonsters.splice(this._internalMonsters.findIndex(x => x.generatedMonsterIdentifier == id), 1);
+        let index: number = this._internalMonsters.findIndex(x => x.generatedMonsterIdentifier == id);
+        this.writeMonsterDeathToLog(this._internalMonsters[index].name, this._internalMonsters[index].generatedMonsterIdentifier);
+        this._internalMonsters.splice(index, 1);
         this.setMonsters();
+    }
+
+    private async writeMonsterDeathToLog(monsterName: string, monsterId: number): Promise<void> {
+        this._logEntry =
+            monsterName + " " + monsterId + " died";
+        this.logPush();
     }
 
     private  generateImageURL(name: string): string {
