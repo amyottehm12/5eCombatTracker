@@ -24,7 +24,8 @@ export abstract class Observables {
     //Combat Log
     public log: Observable<string[]> = new Observable<string[]>;
     protected _log: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
-    protected _logEntry: string = "";  
+    protected _logEntry: string = "";
+    protected _internalLog: string[] = [];
     public getLog(): Observable<string[]>{
       return this.log;
     }   
@@ -33,6 +34,10 @@ export abstract class Observables {
       currentLog.unshift(this._logEntry)
       this._log.next(currentLog)
     }   
+    public logReset(): void {
+      this._internalLog = [];
+      this._log.next(this._internalLog);
+    }
 
     //Character List
     public characterList: Observable<ICharacter[]> = new Observable<ICharacter[]>;

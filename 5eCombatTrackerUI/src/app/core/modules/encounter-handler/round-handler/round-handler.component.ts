@@ -75,6 +75,7 @@ export class RoundHandlerComponent {
     this.firstRound = true;
     this.activationReady = false;
     this.currentRound = 1;
+    this.encounterHandler.logReset();
   }
 
 }
