@@ -16,9 +16,9 @@
                 <div>Dealing {{currentMonster.attacks.damageResult}}, on a hit</div>
                 <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>
             </div>
-            <div class="round-handler-show-log-button">
-                <button mat-raised-button color="accent" (click)="showLogModal()">Show log</button>
-            </div>
+        </div>
+        <div class="round-handler-show-log-button">
+            <button mat-raised-button color="accent" (click)="showLogModal()">Show log</button>
         </div>
     </div>
 </div>
