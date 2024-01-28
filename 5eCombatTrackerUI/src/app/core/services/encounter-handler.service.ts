@@ -13,6 +13,8 @@ import { Observables } from './observables';
   providedIn: 'root'
 })
 export class EncounterHandlerService extends Observables {
+    generatedId: number = 0;
+
     constructor(private monsterAttackService: MonsterAttackService,
                 private dieRoller: DieRoller) {
           super();
@@ -20,12 +22,11 @@ export class EncounterHandlerService extends Observables {
 
     public async setupMonsterData(monsterEncounter: IMonsterEncounter[]): Promise<void> {
         this.resetMonsters();
-        let generatedMonsterIdentifier = 0;
         for (let i = 0; i < monsterEncounter.length; i++) {
             console.log(monsterEncounter);
             for (let j = 1; j <= monsterEncounter[i].quantity; j++) {
                 let initiative = await this.dieRoller.rollDie(20, 0);
-                generatedMonsterIdentifier++;
+                this.generatedId++;
 
                 this._internalMonsters.push({
                     id: monsterEncounter[i].monster.id,
@@ -36,10 +37,26 @@ export class EncounterHandlerService extends Observables {
                     initiative: initiative,
                     attacks: monsterEncounter[i].monster.attacks,
                     imageURL: this.generateImageURL(monsterEncounter[i].monster.name),
-                    generatedMonsterIdentifier: generatedMonsterIdentifier
+                    generatedMonsterIdentifier: this.generatedId,
+                    player: false
                 });
             }
         }
+
+        this._internalCharacterList.forEach(character => {
+            this._internalMonsters.push({
+                id: 0,
+                name: character.name,
+                hp: 0,
+                currentHp: 0,
+                ac: 0,
+                initiative: character.initiative,
+                attacks: this._internalMonsters[0].attacks,
+                imageURL: "",
+                generatedMonsterIdentifier: character.generatedId,
+                player: true
+            })
+        });
 
         await this.initiativeOrder();
         this.setMonsters();
@@ -100,5 +117,30 @@ export class EncounterHandlerService extends Observables {
     private  generateImageURL(name: string): string {
         return environmentVariables.imageBaseURL + name.replace(' ', '-').toLowerCase() + '.png';
     }
+
+    public async addCharacter(name: string, initiative: number): Promise<void> {
+        this._internalCharacterList.push({
+            name: name,
+            initiative: initiative,
+            generatedId: this.generatedId ++
+        });
+
+        this.setCharacters();
+    }
+
+    public async removeCharacter(id: number): Promise<void> {
+        this._internalCharacterList.splice(this._internalCharacterList.findIndex(x => x.generatedId == id), 1);
+        this.setCharacters();
+    }
+
+    public async updateCharacterName(newName: string, id: number): Promise<void> {
+        this._internalCharacterList[this._internalCharacterList.findIndex(x => x.generatedId == id)].name = newName;
+        this.setCharacters();
+    } 
+
+    public async updateCharacterInitiative(newInitiative: number, id: number): Promise<void> {
+        this._internalCharacterList[this._internalCharacterList.findIndex(x => x.generatedId == id)].initiative = newInitiative;
+        this.setCharacters();
+    } 
 
 }
