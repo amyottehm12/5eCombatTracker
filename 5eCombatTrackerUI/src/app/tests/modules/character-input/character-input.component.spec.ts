@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CharacterInputComponent } from './character-input.component';
+import { CharacterInputComponent } from '../../../core/modules/character-input/character-input.component';
 
 describe('CharacterInputComponent', () => {
   let component: CharacterInputComponent;
