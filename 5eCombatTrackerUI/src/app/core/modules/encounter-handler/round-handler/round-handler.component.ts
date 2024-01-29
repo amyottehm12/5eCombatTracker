@@ -77,5 +77,4 @@ export class RoundHandlerComponent {
     this.currentRound = 1;
     this.encounterHandler.logReset();
   }
-
 }

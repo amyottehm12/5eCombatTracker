@@ -3,7 +3,6 @@ import { IMonster } from "../models/IMonster";
 import { ICharacter } from "../models/ICharacter";
 
 export abstract class Observables {
-
     constructor() {
           this.monsters = this._monsters.asObservable();
           this.log = this._log.asObservable();
