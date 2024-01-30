@@ -46,8 +46,10 @@ namespace _5eCombatTracker.Data.Seeder
             attack.HitRoll = Convert.ToInt32(data[2]);
             attack.DamageDie = Convert.ToInt32(data[3]);
             attack.DamageBonus = Convert.ToInt32(data[4]);
-            attack.ExtraEffect = data[5];
-            attack.DescriptionSet = new List<string> { data[6] };
+            attack.NumberOfAttacks = Convert.ToInt32(data[5]);
+            attack.NumberOfDice = Convert.ToInt32(data[6]);
+            attack.ExtraEffect = data[7];
+            attack.DescriptionSet = new List<string> { data[8] };
 
             return attack;
         }

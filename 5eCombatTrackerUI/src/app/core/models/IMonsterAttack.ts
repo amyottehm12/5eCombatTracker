@@ -5,5 +5,7 @@ export interface IMonsterAttack {
     damageBonus: number;
     extraEffect: string;
     toHitResult: number;
-    damageResult: number
+    damageResult: number;
+    NumberOfDice: number;
+    NumberOfAttacks: number;
 }

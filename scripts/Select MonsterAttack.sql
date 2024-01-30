@@ -1,2 +1,2 @@
-SELECT "Id", "MonsterId", "WeaponName", "HitRoll", "DamageDie", "DamageBonus", "ExtraEffect", "DescriptionSet"
+SELECT *
 	FROM public."MonsterAttack";

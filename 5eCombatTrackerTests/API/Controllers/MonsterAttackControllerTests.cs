@@ -45,6 +45,8 @@ namespace _5eCombatTracker.API.Controllers.Tests
                 ExtraEffect = "none",
                 HitRoll = 2,
                 WeaponName = "attack",
+                NumberOfAttacks = 1,
+                NumberOfDice = 1
             };
         }
     }

@@ -47,6 +47,8 @@ namespace _5eCombatTracker.API.Services.Tests
                 WeaponName = "Test attack",
                 HitRoll = 20,
                 MonsterId = 1,
+                NumberOfAttacks = 1,
+                NumberOfDice = 1,
                 Monster = StubMonster()
             };
         }

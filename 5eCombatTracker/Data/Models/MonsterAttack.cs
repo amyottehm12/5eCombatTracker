@@ -16,6 +16,8 @@ namespace _5eCombatTracker.Data.Models
         public int DamageBonus { get; set; }
         public string ExtraEffect { get; set; }
         public List<string> DescriptionSet { get; set; }
+        public int NumberOfDice { get; set; }
+        public int NumberOfAttacks { get; set; }
 
         public virtual Monster Monster { get; set; }
 
