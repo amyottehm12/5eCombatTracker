@@ -2,6 +2,8 @@
     <h1>Encounter: {{encounterName}}</h1>
     <div class="card-container">
         <mat-card *ngFor="let monster of monsters">
+        <!-- If the monster is not a player -->
+        <div *ngIf="!monster.player">
             <div class="card-info-and-picture-container">
                 <div class="card-info">
                     <div class="card-info-centered">
@@ -21,7 +23,19 @@
                 <button mat-raised-button class="details-button" color="accent"
                     (click)="showMonsterDetailsModal(monster.generatedMonsterIdentifier)">Details</button>
             </div>
+        </div>
+        <!-- If the monster is a player -->
+        <div *ngIf="monster.player">
+            <div class="card-info-and-picture-container">
+                <div class="card-info">
+                    <div class="card-info-centered">
+                        <div class="mat-body-strong mat-h1"> {{ monster.name }} </div>
+                        <div> Initiative: {{ monster.initiative }} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         </mat-card>
     </div>
-    <!-- <app-monster-details></app-monster-details> -->
 </div>

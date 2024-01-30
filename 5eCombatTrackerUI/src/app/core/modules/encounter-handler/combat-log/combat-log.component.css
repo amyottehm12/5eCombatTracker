@@ -10,6 +10,7 @@ div.combat-log-header h1 {
     padding: 2em;
     overflow-y: scroll;
     max-height:400px;
+    min-width: 400px;
 }
 
 .combat-log-content-item {
