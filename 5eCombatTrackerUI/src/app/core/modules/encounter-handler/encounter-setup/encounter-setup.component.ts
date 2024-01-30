@@ -14,8 +14,7 @@ export class EncounterSetupComponent {
   constructor(private biomeTypeService: BiomeTypeService,
               private encounterService: EncounterService,
               private encounterHandlerService: EncounterHandlerService) { }
-
-  @Output("reset") reset: EventEmitter<any> = new EventEmitter;
+              
   @Output("displayEncounterChanged") displayEncounterChanged: EventEmitter<boolean> = new EventEmitter; 
   @Output("encounterNameSet") encounterNameSet: EventEmitter<string> = new EventEmitter; 
 
