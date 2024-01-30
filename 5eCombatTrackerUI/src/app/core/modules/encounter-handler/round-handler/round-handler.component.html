@@ -11,9 +11,12 @@
                     <h2>Combat Round {{currentRound}}</h2>
                     <h2>{{currentMonster.name}} {{currentMonster.generatedMonsterIdentifier}} activation</h2>
                 </div>
-                <div>{{currentMonster.name}} attacks with a {{currentMonster.attacks.weaponName}}</div>
-                <div>Hit roll: {{currentMonster.attacks.toHitResult}}</div>
-                <div>Dealing {{currentMonster.attacks.damageResult}}, on a hit</div>
+                <div *ngIf="currentMonster.attacks.numberOfAttacks < 2">{{currentMonster.name}} attacks with a {{currentMonster.attacks.weaponName}}</div>
+                <div *ngIf="currentMonster.attacks.numberOfAttacks >= 2">{{currentMonster.name}} attacks {{currentMonster.attacks.numberOfAttacks}} times with a {{currentMonster.attacks.weaponName}}</div>
+                <div *ngFor="let attack of currentMonster.attackResult">
+                    <div>Hit roll: {{attack.toHitResult}}</div>
+                    <div>Dealing {{attack.damageResult}}, on a hit</div>
+                </div>
                 <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>
             </div>
         </div>

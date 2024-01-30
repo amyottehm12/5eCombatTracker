@@ -8,6 +8,7 @@ import { DieRoller } from '../shared-helpers/die-roller';
 import { IMonsterEncounter } from '../models/IEncounter';
 import { environmentVariables } from 'src/environments/variables';
 import { Observables } from './observables';
+import { IMonsterAttackResult } from '../models/IMonsterAttack';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class EncounterHandlerService extends Observables {
         for (let i = 0; i < monsterEncounter.length; i++) {
             console.log(monsterEncounter);
             for (let j = 1; j <= monsterEncounter[i].quantity; j++) {
-                let initiative = await this.dieRoller.rollDie(20, 0);
+                let initiative = await this.dieRoller.rollDie(20, 0, 1);
                 this.generatedId++;
 
                 this._internalMonsters.push({
@@ -36,6 +37,7 @@ export class EncounterHandlerService extends Observables {
                     ac: monsterEncounter[i].monster.ac,
                     initiative: initiative,
                     attacks: monsterEncounter[i].monster.attacks,
+                    attackResult: [],
                     imageURL: this.generateImageURL(monsterEncounter[i].monster.name),
                     generatedMonsterIdentifier: this.generatedId,
                     player: false
@@ -52,6 +54,7 @@ export class EncounterHandlerService extends Observables {
                 ac: 0,
                 initiative: character.initiative,
                 attacks: this._internalMonsters[0].attacks,
+                attackResult: [],
                 imageURL: "",
                 generatedMonsterIdentifier: character.generatedId,
                 player: true
@@ -82,21 +85,35 @@ export class EncounterHandlerService extends Observables {
         const response = await firstValueFrom(
             this.monsterAttackService.getMonsterAttack(this._internalMonsters[0].id)
         );
-        response.toHitResult = await this.dieRoller.rollDie(20, response.hitRoll);
-        response.damageResult = await this.dieRoller.rollDie(response.damageDie, response.damageBonus);
-        
         this._internalMonsters[0].attacks = response;
-        this.writeAttackToLog(this._internalMonsters[0], round)
+
+        let attackResult: IMonsterAttackResult[] = [];
+        for (let i = 0; i < response.numberOfAttacks; i++)
+        {
+            attackResult.push({
+                toHitResult: await this.dieRoller.rollDie(20, response.hitRoll, 1),
+                damageResult: await this.dieRoller.rollDie(response.damageDie, response.damageBonus, response.numberOfDice)
+            });
+        }
+
+        this._internalMonsters[0].attackResult = attackResult;
+        for (let i = 0; i < this._internalMonsters[0].attacks.numberOfAttacks; i++) {
+            this.writeAttackToLog(this._internalMonsters[0], round)
+        }
+
         this.setMonsters();
     }
 
     public writeAttackToLog(monsterData: IMonster, round: number) {
-        this._logEntry = 
-          monsterData.name + " " + monsterData.generatedMonsterIdentifier + " " +
-          "attack " + round + " " +
-          "with " + monsterData.attacks.weaponName + " " +
-          "for " + monsterData.attacks.damageResult;
-        this.logPush();
+        for (let i = 0; i < monsterData.attackResult.length; i++) {
+            this._logEntry = 
+                monsterData.name + " " + monsterData.generatedMonsterIdentifier + " " +
+                "attack " + round + " " +
+                "with " + monsterData.attacks.weaponName + " " +
+                "hitting with a " + monsterData.attackResult[i].toHitResult
+                "for " + monsterData.attackResult[i].damageResult;
+            this.logPush();
+        }
     }
 
     private async resetMonsters(): Promise<void> {

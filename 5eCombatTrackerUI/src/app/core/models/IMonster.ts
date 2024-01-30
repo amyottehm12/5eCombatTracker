@@ -1,4 +1,4 @@
-import { IMonsterAttack } from "./IMonsterAttack";
+import { IMonsterAttack, IMonsterAttackResult } from "./IMonsterAttack";
 
 export interface IMonster {
     id: number;
@@ -8,6 +8,7 @@ export interface IMonster {
     ac: number;
     initiative: number;
     attacks: IMonsterAttack;
+    attackResult: IMonsterAttackResult[];
     imageURL: string;
     generatedMonsterIdentifier: number;
     player: boolean;
