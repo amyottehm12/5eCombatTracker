@@ -1,7 +1,6 @@
 <section>
     <div>
         <app-encounter-setup
-        (reset)="reset()"
         (displayEncounterChanged)="displayEncounterChanged($event)"
         (encounterNameSet)="encounterNameSet($event)">
         </app-encounter-setup>
@@ -18,6 +17,4 @@
         [displayEncounter]="displayEncounter">
         </app-round-handler>
     </div>
-    
-    
 </section>

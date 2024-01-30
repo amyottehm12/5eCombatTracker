@@ -32,7 +32,7 @@ export abstract class Observables {
       var currentLog: string[] = this._log.getValue();
       currentLog.unshift(this._logEntry)
       this._log.next(currentLog)
-    }   
+    }
     public logReset(): void {
       this._internalLog = [];
       this._log.next(this._internalLog);

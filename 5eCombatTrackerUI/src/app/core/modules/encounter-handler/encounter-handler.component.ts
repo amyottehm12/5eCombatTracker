@@ -11,7 +11,6 @@ import { RoundHandlerComponent } from './round-handler/round-handler.component';
   styleUrls: ['./encounter-handler.component.css']
 })
 export class EncounterHandlerComponent {
-
   @ViewChild(RoundHandlerComponent) roundHandlerChild!: any;
   @ViewChild(InitiativeTimelineComponent) initiativeTimelineChild!: any;
 
@@ -19,10 +18,6 @@ export class EncounterHandlerComponent {
   public monsters: IMonster[] = [];
 
   public displayEncounter: boolean = false;
-
-  reset() {
-    this.roundHandlerChild.roundReset();
-  }
 
   displayEncounterChanged(displayEncounter: boolean) {
     this.displayEncounter = displayEncounter;

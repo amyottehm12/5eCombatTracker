@@ -24,7 +24,6 @@ export class EncounterHandlerService extends Observables {
     public async setupMonsterData(monsterEncounter: IMonsterEncounter[]): Promise<void> {
         this.resetMonsters();
         for (let i = 0; i < monsterEncounter.length; i++) {
-            console.log(monsterEncounter);
             for (let j = 1; j <= monsterEncounter[i].quantity; j++) {
                 let initiative = await this.dieRoller.rollDie(20, 0, 1);
                 this.generatedId++;
@@ -82,6 +81,11 @@ export class EncounterHandlerService extends Observables {
     }
 
     public async setMonsterAttack(round: number): Promise<void> {
+        if (this._internalMonsters[0].player) {
+            this.writePlayerTurnToLog(this._internalMonsters[0].name, round);
+            return;
+        }
+
         const response = await firstValueFrom(
             this.monsterAttackService.getMonsterAttack(this._internalMonsters[0].id)
         );
@@ -97,9 +101,7 @@ export class EncounterHandlerService extends Observables {
         }
 
         this._internalMonsters[0].attackResult = attackResult;
-        for (let i = 0; i < this._internalMonsters[0].attacks.numberOfAttacks; i++) {
-            this.writeAttackToLog(this._internalMonsters[0], round)
-        }
+        this.writeAttackToLog(this._internalMonsters[0], round)
 
         this.setMonsters();
     }
@@ -110,10 +112,15 @@ export class EncounterHandlerService extends Observables {
                 monsterData.name + " " + monsterData.generatedMonsterIdentifier + " " +
                 "attack " + round + " " +
                 "with " + monsterData.attacks.weaponName + " " +
-                "hitting with a " + monsterData.attackResult[i].toHitResult
-                "for " + monsterData.attackResult[i].damageResult;
-            this.logPush();
-        }
+                "hitting with a " + monsterData.attackResult[i].toHitResult + " " +
+                "for " + monsterData.attackResult[i].damageResult + " damage";
+                this.logPush();
+            }
+    }
+
+    public writePlayerTurnToLog(name: string, round: number) {
+        this._logEntry = name + "'s turn " + round;
+        this.logPush();
     }
 
     private async resetMonsters(): Promise<void> {

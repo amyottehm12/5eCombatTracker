@@ -50,6 +50,5 @@ export class EncounterSetupComponent {
 
   async encounterReset(): Promise<void> {
     this.displayEncounterChanged.emit(false);
-    this.reset.emit();
   }  
 }

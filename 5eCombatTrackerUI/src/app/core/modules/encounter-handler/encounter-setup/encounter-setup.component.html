@@ -5,8 +5,8 @@
 <div class="encounter-setup-container">
     <div class="encounter-setup-centered">
         Choose your encounter:
-        <mat-form-field appearance="fill">
-            <mat-label>Select a biome</mat-label>
+        <mat-form-field appearance="fill" id="biome-select">
+            <mat-label for="biome-select">Select a biome</mat-label>
             <mat-select #biomeTypeSelector (selectionChange)="onSelected(biomeTypeSelector.value)">
                 <mat-option *ngFor="let biomeType of biomeTypes" [value]="biomeType">
                     {{biomeType}}

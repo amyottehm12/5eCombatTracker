@@ -17,7 +17,7 @@ export class RoundHandlerComponent {
   public currentMonster!: IMonster;
 
   public currentTurn: number = 0;
-  public currentRound: number = 1;
+  public currentRound: number = 0;
 
   @Input() public displayEncounter: boolean = false;
   public activationReady: boolean = false;
@@ -27,6 +27,7 @@ export class RoundHandlerComponent {
               private dialog: MatDialog) {
     this.getMonsters();
     this.getLog();
+    this.roundReset();
   }
 
   getMonsters(): void {
