@@ -40,6 +40,11 @@ export class CharacterInputComponent {
   }
 
   saveInput() {
+    if (this.characters.length >= 5) {
+      alert("5 Character maximum");
+      return;
+    }
+
     if (this.name == "" || this.name === undefined) {
       alert("Need name!");
       return;

@@ -6,11 +6,10 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    margin-top: 30px;
 }
 
 .input-card {
-    margin: 0 auto;
+    margin: 25px auto 0;
     display: flex;
     max-width: 500px;
     padding: 20px;
