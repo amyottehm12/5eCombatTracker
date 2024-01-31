@@ -16,6 +16,7 @@
                 <div *ngIf="currentMonster.attacks.numberOfAttacks >= 2">{{currentMonster.name}} attacks {{currentMonster.attacks.numberOfAttacks}} times with a {{currentMonster.attacks.weaponName}}</div>
                 <div *ngFor="let attack of currentMonster.attackResult">
                     <div>Hit roll: {{attack.toHitResult}}</div>
+                    <div *ngIf="attack.crit">CRIT!</div>
                     <div>Dealing {{attack.damageResult}}, on a hit</div>
                 </div>
                 <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>

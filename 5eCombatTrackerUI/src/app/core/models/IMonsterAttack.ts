@@ -11,4 +11,5 @@ export interface IMonsterAttack {
 export interface IMonsterAttackResult {
     toHitResult: number;
     damageResult: number;
+    crit: boolean;
 }
