@@ -49,7 +49,9 @@ namespace _5eCombatTracker.Data.Seeder
             attack.NumberOfAttacks = Convert.ToInt32(data[5]);
             attack.NumberOfDice = Convert.ToInt32(data[6]);
             attack.ExtraEffect = data[7];
-            attack.DescriptionSet = new List<string> { data[8] };
+            attack.DamageType = _dataContext.DamageTypes.FirstOrDefault(DT => DT.Name == data[8]);
+            attack.DamageTypeId = attack.DamageType.Id;
+            attack.DescriptionSet = new List<string> { data[9] };
 
             return attack;
         }

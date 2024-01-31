@@ -17,7 +17,7 @@
                 <div *ngFor="let attack of currentMonster.attackResult">
                     <div>Hit roll: {{attack.toHitResult}}</div>
                     <div *ngIf="attack.crit">CRIT!</div>
-                    <div>Dealing {{attack.damageResult}}, on a hit</div>
+                    <div>Dealing {{attack.damageResult}} {{currentMonster.attacks.damageTypeName}} damage, on a hit</div>
                 </div>
                 <div *ngIf="currentMonster.attacks.extraEffect != 'none'">{{currentMonster.attacks.extraEffect}}</div>
             </div>

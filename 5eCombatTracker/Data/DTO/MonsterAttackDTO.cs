@@ -12,5 +12,6 @@ namespace _5eCombatTracker.Data.DTO
         public string ExtraEffect { get; set; }
         public int NumberOfDice { get; set; }
         public int NumberOfAttacks { get; set; }
+        public string DamageTypeName { get; set; }
     }
 }

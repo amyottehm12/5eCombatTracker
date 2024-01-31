@@ -1,17 +1,17 @@
-zombie,Bite,3,4,1,1,1,Saving throw vs con 11 for disease,{}
-zombie,Acid Spit,3,4,2,1,1,Saving throw vs con 12 for 2 acid damage,{}
-zombie,Graple,1,0,0,1,1,Saving throw vs str 12 for prone,{}
-skeleton,Shortsword,4,6,2,1,1,none,{}
-skeleton,Skeletal claw,4,6,2,1,1,none,{}
-skeleton,Shortbow,4,4,2,1,1,none,{}
-twig-blight,Claws,3,4,1,1,1,none,{}
-druid,Quarterstaff,2,6,2,1,1,none,{}
-druid,Produce flame,4,8,0,1,1,none,{}
-wolf,Bite,4,8,2,1,1,Saving throw vs str 11 for prone,{}
-wolf,Claws,4,6,2,none,1,1,{}
-dire-wolf,Bite,5,6,3,1,2,Saving throw vs str 13 for prone,{}
-goblin,Scimitar,4,6,2,1,1,none,{}
-goblin,Shortbow,4,6,2,1,1,none,{}
-hobgoblin,Longsword,3,8,1,1,1,none,{}
-hobgoblin,Longbow,3,8,1,1,1,none,{}
-earth-elemental,slam,8,8,5,2,2,none,{}
+zombie,Bite,3,4,1,1,1,Saving throw vs con 11 for disease,Piercing,{}
+zombie,Acid Spit,3,4,2,1,1,Saving throw vs con 12 for 2 acid damage,Acid,{}
+zombie,Graple,1,0,0,1,1,Saving throw vs str 12 for prone,Bludgeoning,{}
+skeleton,Shortsword,4,6,2,1,1,none,Slashing,{}
+skeleton,Skeletal claw,4,6,2,1,1,none,Slashing,{}
+skeleton,Shortbow,4,4,2,1,1,none,Piercing,{}
+twig-blight,Claws,3,4,1,1,1,none,Slashing,{}
+druid,Quarterstaff,2,6,2,1,1,none,Bludgeoning,{}
+druid,Produce flame,4,8,0,1,1,none,Fire,{}
+wolf,Bite,4,8,2,1,1,Saving throw vs str 11 for prone,Piercing,{}
+wolf,Claws,4,6,2,1,1,none,Slashing,{}
+dire-wolf,Bite,5,6,3,1,2,Saving throw vs str 13 for prone,Piercing,{}
+goblin,Scimitar,4,6,2,1,1,none,Slashing,{}
+goblin,Shortbow,4,6,2,1,1,none,Piercing,{}
+hobgoblin,Longsword,3,8,1,1,1,none,Slashing,{}
+hobgoblin,Longbow,3,8,1,1,1,none,Piercing,{}
+earth-elemental,slam,8,8,5,2,2,none,Bludgeoning,{}

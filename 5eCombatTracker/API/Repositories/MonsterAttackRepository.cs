@@ -20,6 +20,7 @@ namespace _5eCombatTracker.API.Repositories
             MonsterAttack attack = await _dataContext.MonsterAttacks
                 .Where(x => x.MonsterId == id)
                 .OrderBy(x => Guid.NewGuid())
+                .Include(dt => dt.DamageType)
                 .FirstOrDefaultAsync();
 
             return attack;

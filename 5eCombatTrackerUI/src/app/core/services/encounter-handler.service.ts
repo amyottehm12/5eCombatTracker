@@ -119,7 +119,7 @@ export class EncounterHandlerService extends Observables {
             this._logEntry = 
                 `${monsterData.name} ${monsterData.generatedMonsterIdentifier}
                 attack ${round} with ${monsterData.attacks.weaponName}
-                ${monsterData.attackResult[i].crit ? "hitting" : "critting"}
+                ${monsterData.attackResult[i].crit ? "critting" : "hitting"}
                  with a ${monsterData.attackResult[i].toHitResult}
                  for ${monsterData.attackResult[i].damageResult} damage`;
                 this.logPush();
