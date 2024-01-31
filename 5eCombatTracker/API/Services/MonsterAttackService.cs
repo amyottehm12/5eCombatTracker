@@ -24,6 +24,8 @@ namespace _5eCombatTracker.API.Services
             _mapperConfiguration = new MapperConfiguration(mc =>
             {
                 mc.CreateMap<MonsterAttack, MonsterAttackDTO>();
+                //This maps the name item, from the FK table DamageType, right into the DTO. so we don't have to transfer the whole damage type object
+                mc.CreateMap<MonsterAttack, string>().ConvertUsing(dt => dt.DamageType.Name);
             });
             _mapper = new Mapper(_mapperConfiguration);
             _mosnterAttackRepository = monsterAttackRepository;

@@ -1,2 +1,3 @@
-SELECT *
-	FROM public."MonsterAttack";
+SELECT * FROM public."MonsterAttack";
+	
+--DELETE FROM public."MonsterAttack";

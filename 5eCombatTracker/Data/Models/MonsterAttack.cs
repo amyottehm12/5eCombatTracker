@@ -18,15 +18,11 @@ namespace _5eCombatTracker.Data.Models
         public List<string> DescriptionSet { get; set; }
         public int NumberOfDice { get; set; }
         public int NumberOfAttacks { get; set; }
+        [ForeignKey("DamageType")]
+        public int DamageTypeId { get; set; }
+
 
         public virtual Monster Monster { get; set; }
-
-
-        //a FK int to monster personality types, allowing for new attacks?
-        //Is an arcanist a personality? for additional spells?
-        //If its a brawler/skulker, how does this present in attacks? or is it ONLY for other behaviours?
-
-        //a bool for enchanted values?
-        //can i make this more interesting then just converting damage into some elemental type?
+        public virtual DamageType DamageType { get; set; }
     }
 }

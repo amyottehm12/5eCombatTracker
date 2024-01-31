@@ -1,15 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using _5eCombatTracker.API.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using _5eCombatTracker.API.Interfaces.Services;
 using _5eCombatTracker.Data.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using static _5eCombatTracker.Data.Enums;
 
 namespace _5eCombatTracker.API.Controllers.Tests
 {
@@ -46,7 +39,8 @@ namespace _5eCombatTracker.API.Controllers.Tests
                 HitRoll = 2,
                 WeaponName = "attack",
                 NumberOfAttacks = 1,
-                NumberOfDice = 1
+                NumberOfDice = 1,
+                DamageTypeName = "Slashing"
             };
         }
     }

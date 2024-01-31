@@ -23,6 +23,6 @@ namespace _5eCombatTracker.Data.Helpers
         public DbSet<BiomeType> BiomeTypes { get; set; }
         public DbSet<Encounter> Encounters { get; set; }
         public DbSet<MonsterAttack> MonsterAttacks { get; set; }
-
+        public DbSet<DamageType> DamageTypes { get; set; }
     }
 }

@@ -5,6 +5,7 @@ import { IMonster } from '../models/IMonster';
 
 import { MonsterAttackService } from './api-services/monster-attack.service';
 import { DieRoller } from '../shared-helpers/die-roller';
+import { IRollResult } from "../models/IRollResult";
 import { IMonsterEncounter } from '../models/IEncounter';
 import { environmentVariables } from 'src/environments/variables';
 import { Observables } from './observables';
@@ -25,7 +26,7 @@ export class EncounterHandlerService extends Observables {
         this.resetMonsters();
         for (let i = 0; i < monsterEncounter.length; i++) {
             for (let j = 1; j <= monsterEncounter[i].quantity; j++) {
-                let initiative = await this.dieRoller.rollDie(20, 0, 1);
+                let initiative = await this.dieRoller.rollDie(20, 0, 1, false);
                 this.generatedId++;
 
                 this._internalMonsters.push({
@@ -92,11 +93,18 @@ export class EncounterHandlerService extends Observables {
         this._internalMonsters[0].attacks = response;
 
         let attackResult: IMonsterAttackResult[] = [];
+        let rollResult: IRollResult;
         for (let i = 0; i < response.numberOfAttacks; i++)
         {
+            rollResult = await this.dieRoller.rollDieCritable(20, response.hitRoll, 1);
             attackResult.push({
-                toHitResult: await this.dieRoller.rollDie(20, response.hitRoll, 1),
-                damageResult: await this.dieRoller.rollDie(response.damageDie, response.damageBonus, response.numberOfDice)
+                toHitResult: rollResult.result,
+                damageResult: await this.dieRoller.rollDie(
+                    response.damageDie, 
+                    response.damageBonus, 
+                    response.numberOfDice, 
+                    rollResult.crit),
+                crit: rollResult.crit
             });
         }
 
@@ -109,17 +117,17 @@ export class EncounterHandlerService extends Observables {
     public writeAttackToLog(monsterData: IMonster, round: number) {
         for (let i = 0; i < monsterData.attackResult.length; i++) {
             this._logEntry = 
-                monsterData.name + " " + monsterData.generatedMonsterIdentifier + " " +
-                "attack " + round + " " +
-                "with " + monsterData.attacks.weaponName + " " +
-                "hitting with a " + monsterData.attackResult[i].toHitResult + " " +
-                "for " + monsterData.attackResult[i].damageResult + " damage";
+                `${monsterData.name} ${monsterData.generatedMonsterIdentifier}
+                attack ${round} with ${monsterData.attacks.weaponName}
+                ${monsterData.attackResult[i].crit ? "critting" : "hitting"}
+                 with a ${monsterData.attackResult[i].toHitResult}
+                 for ${monsterData.attackResult[i].damageResult} damage`;
                 this.logPush();
             }
     }
 
     public writePlayerTurnToLog(name: string, round: number) {
-        this._logEntry = name + "'s turn " + round;
+        this._logEntry = `${name}'s turn ${round}`;
         this.logPush();
     }
 
@@ -138,12 +146,10 @@ export class EncounterHandlerService extends Observables {
     private async writeHpChangeToLog(monsterName: string, currentHp: number,  newMonsterHp: number): Promise<void> {
         let hpChange: number = currentHp - newMonsterHp;
         if (hpChange > 0) {
-            this._logEntry = 
-                monsterName + " lost " + hpChange + " health";
+            this._logEntry = `${monsterName} lost ${hpChange} health`;
         }
         else {
-            this._logEntry = 
-                monsterName + " gained " + Math.abs(hpChange) + " health";
+            this._logEntry = `${monsterName} gained ${Math.abs(hpChange)} health`;
         }
         this.logPush();
     }
@@ -156,8 +162,7 @@ export class EncounterHandlerService extends Observables {
     }
 
     private async writeMonsterDeathToLog(monsterName: string, monsterId: number): Promise<void> {
-        this._logEntry =
-            monsterName + " " + monsterId + " died";
+        this._logEntry = `${monsterName} ${monsterId} died`;
         this.logPush();
     }
 

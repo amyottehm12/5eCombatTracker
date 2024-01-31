@@ -6,9 +6,11 @@ export interface IMonsterAttack {
     extraEffect: string;
     numberOfDice: number;
     numberOfAttacks: number;
+    damageTypeName: string;
 }
 
 export interface IMonsterAttackResult {
     toHitResult: number;
     damageResult: number;
+    crit: boolean;
 }
